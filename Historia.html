@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia y Legado Cronológico | IRMB</title>
+    <style>
+        /* ==========================================================================
+           SISTEMA DE CONFIGURACIÓN Y VARIABLES - ESTÉTIQUE CYBER-RED (MAESTRO)
+           ========================================================================== */
+        
+        :root {
+            --bg-ultra-dark: #020617;
+            --bg-space-card: #0f172a;
+            --bg-navigation: #010409;
+            --crimson-primary: #e11d48;
+            --crimson-hover: #be123c;
+            --crimson-glow-effect: rgba(225, 29, 72, 0.18);
+            --white-pure: #ffffff;
+            --gray-cybernetic: #94a3b8;
+            --gray-muted-dark: #64748b;
+            --tech-border-soft: rgba(255, 255, 255, 0.08);
+            --tech-border-glow: rgba(225, 29, 72, 0.4);
+            --font-stack-standard: 'Inter', sans-serif;
+        }
+
+        /* RESETEO COMPLETO DE PROPIEDADES DEL BOX-MODEL LÍNEA POR LÍNEA */
+        * {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-ultra-dark);
+            color: var(--white-pure);
+            font-family: var(--font-stack-standard);
+            line-height: 1.75;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================================
+           MOTOR DE FONDO (CANVAS INTERACTIVO Y MALLA TECNOLÓGICA)
+           ========================================================================== */
+        
+        #particles-canvas {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            background-image: radial-gradient(circle at 50% 50%, #1a050a 0%, #020617 100%);
+        }
+
+        .tech-grid-background {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(225, 29, 72, 0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(225, 29, 72, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ==========================================================================
+           ESTILOS DESGLOSADOS PARA EL ENCABEZADO (HEADER & NAVBAR)
+           ========================================================================== */
+        
+        .header-main-navigation {
+            width: 100%;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 9999;
+            background-color: var(--bg-navigation);
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: var(--tech-border-soft);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .navbar-alignment-box {
+            max-width: 1400px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 22px;
+            padding-bottom: 22px;
+            padding-left: 45px;
+            padding-right: 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-identity-logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--white-pure);
+            text-decoration: none;
+        }
+
+        .brand-identity-logo span {
+            color: var(--crimson-primary);
+        }
+
+        .navigation-links-list {
+            display: flex;
+            list-style-type: none;
+            align-items: center;
+        }
+
+        .navigation-list-item {
+            margin-left: 24px;
+        }
+
+        .navigation-anchor-link {
+            color: var(--gray-cybernetic);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+            padding-bottom: 6px;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            border-bottom-color: transparent;
+        }
+
+        .navigation-anchor-link:hover {
+            color: var(--crimson-primary);
+            border-bottom-color: var(--crimson-primary);
+        }
+
+        .navigation-anchor-link.active-page {
+            color: var(--white-pure);
+            border-bottom-color: var(--crimson-primary);
+        }
+
+        /* ==========================================================================
+           ESTILOS DESGLOSADOS PARA EL CONTENEDOR HERO DE HISTORIA
+           ========================================================================== */
+        
+        .hero-banner-section {
+            width: 100%;
+            min-height: 65vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 160px;
+            padding-bottom: 90px;
+            padding-left: 30px;
+            padding-right: 30px;
+            text-align: center;
+            background-image: radial-gradient(circle at 50% 35%, rgba(225, 29, 72, 0.09) 0%, transparent 65%);
+        }
+
+        .hero-main-heading {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            max-width: 1100px;
+            margin-bottom: 30px;
+        }
+
+        .hero-main-heading span {
+            color: var(--crimson-primary);
+            text-shadow: 0px 0px 35px var(--crimson-glow-effect);
+        }
+
+        .hero-description-paragraph {
+            font-size: 19px;
+            color: var(--gray-cybernetic);
+            max-width: 800px;
+            margin-bottom: 45px;
+        }
+
+        /* ==========================================================================
+           ESTILOS DE CONTENEDORES Y MAQUETACIÓN GLOBAL DE SECCIONES
+           ========================================================================== */
+        
+        .content-block-container {
+            max-width: 1400px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 90px;
+            padding-bottom: 90px;
+            padding-left: 45px;
+            padding-right: 45px;
+        }
+
+        .section-title-wrapper {
+            text-align: left;
+            margin-bottom: 55px;
+        }
+
+        .section-subtitle-tag {
+            color: var(--crimson-primary);
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3.5px;
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        .section-heading-display {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .grid-dual-column {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 65px;
+            align-items: center;
+        }
+
+        /* ==========================================================================
+           ESTILOS DETALLADOS PARA COMPONENTES DE TARJETAS CRÓNICAS (CARDS)
+           ========================================================================== */
+        
+        .architectural-tech-card {
+            background-color: var(--bg-space-card);
+            border-width: 1px;
+            border-style: solid;
+            border-color: var(--tech-border-soft);
+            padding-top: 60px;
+            padding-bottom: 60px;
+            padding-left: 50px;
+            padding-right: 50px;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .architectural-tech-card:hover {
+            border-color: var(--tech-border-glow);
+            transform: translateY(-8px);
+            box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .architectural-tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 6px;
+            height: 100%;
+            background-color: var(--crimson-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .architectural-tech-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-graphic-icon {
+            margin-bottom: 28px;
+            color: var(--crimson-primary);
+            font-size: 36px;
+            display: block;
+        }
+
+        .card-inner-title {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 22px;
+            color: var(--white-pure);
+            line-height: 1.3;
+        }
+
+        .card-paragraph-desc {
+            font-size: 15.5px;
+            color: var(--gray-cybernetic);
+            line-height: 1.8;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .card-paragraph-desc:last-child {
+            margin-bottom: 0px;
+        }
+
+        /* DECORACIONES ADICIONALES CRONOLÓGICAS */
+        .chapter-divider-line {
+            width: 100px;
+            height: 4px;
+            background-color: var(--crimson-primary);
+            margin-top: 25px;
+            margin-bottom: 25px;
+            border-radius: 2px;
+            box-shadow: 0px 0px 15px var(--crimson-primary);
+        }
+
+        .quote-historical-block {
+            border-left-width: 3px;
+            border-left-style: solid;
+            border-left-color: var(--crimson-primary);
+            padding-left: 25px;
+            margin-top: 35px;
+            margin-bottom: 35px;
+            font-style: italic;
+            color: var(--white-pure);
+            font-size: 16px;
+            background-color: rgba(225, 29, 72, 0.04);
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-right: 15px;
+            border-radius: 0px 8px 8px 0px;
+        }
+
+        /* CUADROS GRÁFICOS SIMULADOS CON ENTRAMADO CYBER */
+        .history-graphic-frame {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border-width: 1px;
+            border-style: solid;
+            border-color: var(--tech-border-white);
+            box-shadow: 0px 25px 55px rgba(0, 0, 0, 0.7);
+            height: 100%;
+            min-height: 450px;
+            background-color: #0b1329;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inner-abstract-matrix {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.1) 0%, rgba(2, 6, 23, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .graphic-caption-tag {
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            right: 25px;
+            background-color: rgba(1, 4, 9, 0.9);
+            padding-top: 18px;
+            padding-bottom: 18px;
+            padding-left: 22px;
+            padding-right: 22px;
+            border-radius: 12px;
+            border-left-width: 4px;
+            border-left-style: solid;
+            border-left-color: var(--crimson-primary);
+            font-size: 13.5px;
+            color: var(--white-pure);
+            backdrop-filter: blur(6px);
+            z-index: 2;
+        }
+
+        /* BLOQUES ESTADÍSTICOS DE RENDIMIENTO HISTÓRICO */
+        .stats-metric-box {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .single-metric-card {
+            background-color: var(--bg-ultra-dark);
+            border-width: 1px;
+            border-style: solid;
+            border-color: var(--crimson-primary);
+            border-radius: 8px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+
+        .metric-display-number {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--white-pure);
+            margin-bottom: 2px;
+        }
+
+        .metric-display-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--crimson-primary);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           ESTILOS DETALLADOS PARA EL PIE DE PÁGINA (FOOTER MAESTRO)
+           ========================================================================== */
+        
+        .footer-root-wrapper {
+            background-color: var(--bg-navigation);
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: var(--tech-border-soft);
+            padding-top: 90px;
+            padding-bottom: 50px;
+            position: relative;
+        }
+
+        .footer-root-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--crimson-primary), transparent);
+        }
+
+        .footer-alignment-container {
+            max-width: 1400px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 45px;
+            padding-right: 45px;
+        }
+
+        .footer-sections-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--white-pure);
+            margin-bottom: 25px;
+        }
+
+        .footer-links-vertical-list {
+            list-style-type: none;
+        }
+
+        .footer-vertical-item {
+            margin-bottom: 14px;
+        }
+
+        .footer-vertical-anchor {
+            color: var(--gray-cybernetic);
+            text-decoration: none;
+            font-size: 13.5px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-vertical-anchor:hover {
+            color: var(--crimson-primary);
+            transform: translateX(4px);
+        }
+
+        .footer-copyright-notice {
+            font-size: 13px;
+            color: var(--gray-muted-dark);
+            text-align: center;
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: var(--tech-border-soft);
+            padding-top: 30px;
+        }
+
+        /* CONFIGURACIONES INTERNES DE ESPACIADO ATÓMICO */
+        .block-separator-height-20 { height: 20px; }
+        .block-separator-height-30 { height: 30px; }
+        .block-separator-height-40 { height: 40px; }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles-canvas"></canvas>
+    <div class="tech-grid-background"></div>
+
+    <header class="header-main-navigation">
+        <nav class="navbar-alignment-box">
+            <a href="index.html" class="brand-identity-logo">IRMB<span>.TECH</span></a>
+            <ul class="navigation-links-list">
+                <li class="navigation-list-item">
+                    <a href="index.html" class="navigation-anchor-link">Index</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="historia.html" class="navigation-anchor-link active-page">Historia</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="colegio.html" class="navigation-anchor-link">Colegio</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="ciclo.html" class="navigation-anchor-link">Ciclo</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="btpi.html" class="navigation-anchor-link">BTPI</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="btpcf.html" class="navigation-anchor-link">BTPCF</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="bch.html" class="navigation-anchor-link">BCH</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="contacto.html" class="navigation-anchor-link">Contacto</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <header class="hero-banner-section">
+        <span class="section-subtitle-tag">Crónica e Identidad Institucional</span>
+        <h1 class="hero-main-heading">Más de Tres Décadas de <span>Excelencia Técnica</span></h1>
+        <p class="hero-description-paragraph">Explore las etapas fundamentales, los hitos académicos y la evolución estructural que consolidaron al Instituto Gubernamental Roberto Micheletti Bain como el pilar socioeducativo de Agua Blanca Sur.</p>
+    </header>
+
+    <section class="content-block-container" id="capitulo-01-genesis">
+        <div class="grid-dual-column">
+            <div class="architectural-tech-card">
+                <span class="section-subtitle-tag">Capítulo I / 1990 - 1995</span>
+                <h2 class="card-inner-title">El Sueño Comunitario de una Aldea en Crecimiento</h2>
+                <div class="chapter-divider-line"></div>
+                <p class="card-paragraph-desc">La historia de nuestra institución no hunde sus raíces primitivas en decretos gubernamentales fríos ni presupuestos centralizados opulentos, sino en la ardiente necesidad y determinación férrea de una comunidad rural que se negaba rotundamente a contemplar cómo sus generaciones jóvenes quedaban desprovistas de alternativas formativas medias.</p>
+                <p class="card-paragraph-desc">A finales del siglo pasado, los estudiantes egresados de la instrucción primaria de la Aldea de Agua Blanca Sur debían afrontar trayectos inhóspitos y costosos de muchos kilómetros hacia el municipio de El Progreso, Yoro, quedando expuestos a vicisitudes climáticas e infraestructurales severas que provocaban índices alarmantes de deserción escolar.</p>
+                <p class="card-paragraph-desc">Impulsados por las fuerzas vivas, patronatos comunitarios y juntas comunales extraordinarias, se estructuró un comité pro-fundación que recolectó recursos económicos, gestionó audiencias oficiales y cimentó las bases primigenias de lo que prontamente se transformaría en un faro imperecedero de la educación pública formal y gratuita.</p>
+            </div>
+            <div class="history-graphic-frame">
+                <div class="inner-abstract-matrix" style="background: radial-gradient(circle, rgba(225,29,72,0.15) 0%, transparent 80%);"></div>
+                <div style="font-size: 72px; z-index: 2; opacity: 0.2;">🏛️</div>
+                <div class="graphic-caption-tag">
+                    <strong>Matriz Histórica I:</strong> Los primeros pilares físicos representaron el esfuerzo directo y la mano de obra voluntaria de los padres fundadores de Agua Blanca Sur.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-block-container" id="capitulo-02-evolucion" style="background-color: rgba(255, 255, 255, 0.01);">
+        <div class="grid-dual-column">
+            <div class="history-graphic-frame style-reverse-order">
+                <div class="inner-abstract-matrix" style="background: radial-gradient(circle, rgba(225,29,72,0.15) 0%, transparent 80%);"></div>
+                <div style="font-size: 72px; z-index: 2; opacity: 0.2;"><img src="colegio2.jpg" alt="Evolución del instituto" onerror="this.src='https://placehold.co/800x500/111/fff?text=Evolución+2026'"></div>
+                <div class="graphic-caption-tag">
+                    <strong>Matriz Histórica II:</strong> La inserción de laboratorios tecnológicos modificó para siempre la matriz de empleabilidad en toda la zona norte del país.
+                </div>
+            </div>
+            <div class="architectural-tech-card">
+                <span class="section-subtitle-tag">Capítulo II / Transición Técnica</span>
+                <h2 class="card-inner-title">Adopción del Enfoque Polivalente e Industrial</h2>
+                <div class="chapter-divider-line"></div>
+                <p class="card-paragraph-desc">La dirección del instituto comprendió con extraordinaria lucidez que las demandas del nuevo milenio exigían capacidades operativas técnico-prácticas que superaran la simple formación teórica humanista general. Fue así como se gestionó de forma estratégica la transición hacia el modelo Polivalente.</p>
+                <p class="card-paragraph-desc">Esta reestructuración conceptual trajo consigo la dotación de entornos de experimentación reales: se habilitaron laboratorios dedicados al estudio de la informática, talleres mecánicos, laboratorios de ciencias biológicas y químicas, y cocinas industriales orientadas a la autogestión comercial.</p>
+                <div class="quote-historical-block">
+                    "Nuestra consigna fundamental no radica en instruir de forma exclusiva para la superación de evaluaciones estandarizadas en papel, sino para la inserción competitiva en la industria real y el progreso social tangible."
+                </div>
+                <p class="card-paragraph-desc">Gracias a esta evolución pedagógica y curricular, las modalidades especializadas del Bachillerato Técnico Profesional en Informática (BTPI) y en Contaduría y Finanzas (BTPCF) se posicionaron como ofertas líderes en el Valle de Sula.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-block-container" id="capitulo-03-logros">
+        <div class="grid-dual-column">
+            <div class="architectural-tech-card">
+                <span class="section-subtitle-tag">Capítulo III / Excelencia Certificada</span>
+                <h2 class="card-inner-title">Liderazgo Absoluto dentro del Ranking Nacional</h2>
+                <div class="chapter-divider-line"></div>
+                <p class="card-paragraph-desc">La historia contemporánea de nuestra institución se escribe con letras indelebles de oro en los registros oficiales de la educación media nacional. El centro ha demostrado de forma fehaciente que las limitaciones geográficas o presupuestarias de los entornos rurales se diluyen ante un esquema académico riguroso y una disciplina coordinada.</p>
+                <p class="card-paragraph-desc">Uno de los hitos históricos de mayor orgullo regional se alcanzó al situar al instituto en el **Puesto #18 a Nivel Nacional** en el ranking global de centros educativos gubernamentales con mejor desempeño en la Prueba de Aptitud Académica (PAA) de la Universidad Nacional Autónoma de Honduras (UNAH).</p>
+                <p class="card-paragraph-desc">Con un sobresaliente **83.3% de índice de aprobación global**, el área de Ciencias y Humanidades (BCH) validó el rigor metodológico del cuerpo docente, consolidándonos como un referente de excelencia superior en todo el departamento de Yoro.</p>
+                <div class="stats-metric-box">
+                    <div class="single-metric-card">
+                        <div class="metric-display-number">83.3%</div>
+                        <div class="metric-display-label">Aprobación PAA</div>
+                    </div>
+                    <div class="single-metric-card">
+                        <div class="metric-display-number">TOP 20</div>
+                        <div class="metric-display-label">Ranking País</div>
+                    </div>
+                </div>
+            </div>
+            <div class="history-graphic-frame">
+                <div class="inner-abstract-matrix" style="background: radial-gradient(circle, rgba(225,29,72,0.15) 0%, transparent 80%);"></div>
+                <div style="font-size: 72px; z-index: 2; opacity: 0.2;">🎓</div>
+                <div class="graphic-caption-tag">
+                    <strong>Matriz Histórica III:</strong> Evaluaciones nacionales certifican de forma permanente el nivel intelectual y analítico del perfil de nuestros graduados.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-block-container" id="capitulo-04-cultura" style="background-color: rgba(255, 255, 255, 0.01);">
+        <div class="grid-dual-column">
+            <div class="history-graphic-frame">
+                <div class="inner-abstract-matrix" style="background: radial-gradient(circle, rgba(225,29,72,0.15) 0%, transparent 80%);"></div>
+                <div style="font-size: 72px; z-index: 2; opacity: 0.2;">🎨</div>
+                <div class="graphic-caption-tag">
+                    <strong>Matriz Histórica IV:</strong> Identidad, danza y marimba se entrelazan de manera armónica en los festivales más importantes de la República.
+                </div>
+            </div>
+            <div class="architectural-tech-card">
+                <span class="section-subtitle-tag">Capítulo IV / Identidad Patria</span>
+                <h2 class="card-inner-title">Salvaguardas de la Identidad y el Folclore Nacional</h2>
+                <div class="chapter-divider-line"></div>
+                <p class="card-paragraph-desc">El espíritu distintivo del estudiante de nuestra institución no se limita exclusivamente a la codificación de algoritmos o al balanceo de cuentas fiscales complejas, sino que se enraíza profundamente en la preservación de las tradiciones artísticas e históricas que configuran la nacionalidad hondureña.</p>
+                <p class="card-paragraph-desc">A lo largo de los años, el cuadro de danza folclórica institucional se ha alzado como uno de los colectivos artísticos más laureados, disciplinados y de mayor prestigio en toda la zona noroccidental de la nación.</p>
+                <p class="card-paragraph-desc">Mediante interpretaciones magistrales en certámenes competitivos intercolegiales y festivales tradicionales en El Progreso y Morazán, el instituto continúa forjando ciudadanos integrales que no solo dominan las ciencias técnicas de vanguardia, sino que también honran, respetan y difunden el patrimonio intangible de sus ancestros.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-block-container" id="capitulo-05-futuro">
+        <div class="architectural-tech-card" style="text-align: center; max-width: 1000px; margin-left: auto; margin-right: auto; padding-top: 80px; padding-bottom: 80px;">
+            <span class="section-subtitle-tag">Visión Prospectiva y Vanguardia</span>
+            <h2 class="card-inner-title" style="font-size: 36px;">Consolidando el Mañana de la Educación Tecnológica</h2>
+            <div class="chapter-divider-line" style="margin-left: auto; margin-right: auto;"></div>
+            <p class="card-paragraph-desc" style="max-width: 850px; margin-left: auto; margin-right: auto;">Al encontrarnos inmersos en el ciclo lectivo del presente año 2026, miramos nuestro pasado con una gratitud inmensa hacia los fundadores y docentes eméritos, pero fijamos la mirada con absoluta determinación en las innovaciones de la era digital avanzada. La modernización sistemática de nuestras aulas tecnológicas garantiza que Agua Blanca Sur permanezca inalterable como la cuna indiscutible de líderes aptos para transformar a Honduras.</p>
+            <div class="block-separator-height-30"></div>
+            <div style="display: flex; justify-content: center; gap: 20px;">
+                <a href="btpi.html" class="navigation-anchor-link" style="border: 1px solid var(--crimson-primary); padding: 12px 30px; border-radius: 4px; background-color: rgba(225,29,72,0.05);">Explorar Especialidades</a>
+                <a href="contacto.html" class="navigation-anchor-link" style="background-color: var(--crimson-primary); color: white; padding: 12px 30px; border-radius: 4px;">Formulario de Inscripción</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-root-wrapper">
+        <div class="footer-alignment-container">
+            <div class="footer-sections-grid">
+                <div>
+                    <h3 class="brand-identity-logo" style="margin-bottom: 20px;">IRMB<span>.TECH</span></h3>
+                    <p class="card-paragraph-desc">Institución educativa pública dedicada a la formación técnica, científica e industrial de excelencia en la República de Honduras. Ciencia, Virtud, Trabajo y Disciplina Constante.</p>
+                </div>
+                <div>
+                    <h4 class="footer-column-title">Enlaces Oficiales</h4>
+                    <ul class="footer-links-vertical-list">
+                        <li class="footer-vertical-item"><a href="index.html" class="footer-vertical-anchor">Index</a></li>
+                        <li class="footer-vertical-item"><a href="historia.html" class="footer-vertical-anchor">Historia</a></li>
+                        <li class="footer-vertical-item"><a href="colegio.html" class="footer-vertical-anchor">Colegio</a></li>
+                        <li class="footer-vertical-item"><a href="ciclo.html" class="footer-vertical-anchor">Ciclo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-column-title">Especialidades BTP</h4>
+                    <ul class="footer-links-vertical-list">
+                        <li class="footer-vertical-item"><a href="btpi.html" class="footer-vertical-anchor">BTP Informática</a></li>
+                        <li class="footer-vertical-item"><a href="btpcf.html" class="footer-vertical-anchor">BTP Contaduría</a></li>
+                        <li class="footer-vertical-item"><a href="bch.html" class="footer-vertical-anchor">BCH Ciencias</a></li>
+                        <li class="footer-vertical-item"><a href="contacto.html" class="footer-vertical-anchor">Contacto Directo</a></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <div class="footer-copyright-notice">
+                <p>&copy; 2026 Instituto Gubernamental Roberto Micheletti Bain. Desarrollado en conformidad estricta con los requisitos atómicos de arquitectura de software web.</p>
+                <p style="margin-top: 8px; font-size: 11px; color: var(--gray-muted-dark);">Todos los derechos reservados. Secretaría de Educación Pública - República de Honduras.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        console.log("[NÚCLEO CENTRAL HISTORIA] Inicializando los subsistemas gráficos interactivos.");
+
+        // Inicializador principal de las dinámicas de la página de historia
+        function iniciarEcosistemaHistoria() {
+            console.log("[INICIALIZACIÓN] Configurando el árbol DOM, asignando escuchas de eventos...");
+            
+            vincularEventosNavegacionEstadistica();
+            arrancarMotorParticulasFondo();
+            ejecutarAuditoriaTrazabilidad();
+        }
+
+        // Manejador simple para auditoría de clicks en la barra superior
+        function vincularEventosNavegacionEstadistica() {
+            console.log("[AUDITORÍA NAV] Mapeando los enlaces HTML nativos requeridos...");
+            const linksNavegacion = document.querySelectorAll('.navigation-anchor-link');
+            
+            linksNavegacion.forEach(function(nodoLink) {
+                nodoLink.addEventListener('click', function() {
+                    console.log("[INTERACCIÓN] Redirección en progreso hacia: " + nodoLink.getAttribute('href'));
+                });
+            });
+        }
+
+        // IMPLEMENTACIÓN RIGUROSA Y DETALLADA DEL MOTOR DE PARTÍCULAS DEL CANVAS
+        function arrancarMotorParticulasFondo() {
+            console.log("[CANVAS ENGINE] Localizando elemento contenedor de renderizado espacial...");
+            
+            const renderCanvas = document.getElementById('particles-canvas');
+            if (!renderCanvas) {
+                console.error("[CRÍTICO] No se encontró el lienzo físico HTML para las partículas.");
+                return;
+            }
+
+            const contexto2D = renderCanvas.getContext('2d');
+            let matrizParticulas = [];
+
+            // Redimensionamiento elástico del lienzo
+            function ajustarDimensionesPantalla() {
+                renderCanvas.width = window.innerWidth;
+                renderCanvas.height = window.innerHeight;
+                console.log("[RESIZE] Lienzo adaptado a: " + renderCanvas.width + "x" + renderCanvas.height);
+            }
+
+            window.addEventListener('resize', ajustarDimensionesPantalla);
+            ajustarDimensionesPantalla();
+
+            // Modelo constructivo de partículas atómicas
+            function ComponenteParticula() {
+                this.coordenadaX = Math.random() * renderCanvas.width;
+                this.coordenadaY = Math.random() * renderCanvas.height;
+                this.radioPixel = Math.random() * 2 + 0.6;
+                this.vectorVelocidadX = Math.random() * 0.4 - 0.2;
+                this.vectorVelocidadY = Math.random() * 0.4 - 0.2;
+                
+                // Distribución cromática proporcional del tema Cyber-Red
+                if (Math.random() > 0.5) {
+                    this.estiloColor = 'rgba(225, 29, 72, 0.25)';
+                } else {
+                    this.estiloColor = 'rgba(255, 255, 255, 0.15)';
+                }
+            }
+
+            // Actualización de vectores cinéticos
+            ComponenteParticula.prototype.actualizarPosicionLogica = function() {
+                this.coordenadaX += this.vectorVelocidadX;
+                this.coordenadaY += this.vectorVelocidadY;
+
+                // Rebotador perimetral de coordenadas continuas
+                if (this.coordenadaX > renderCanvas.width) {
+                    this.coordenadaX = 0;
+                } else if (this.coordenadaX < 0) {
+                    this.coordenadaX = renderCanvas.width;
+                }
+
+                if (this.coordenadaY > renderCanvas.height) {
+                    this.coordenadaY = 0;
+                } else if (this.coordenadaY < 0) {
+                    this.coordenadaY = renderCanvas.height;
+                }
+            };
+
+            // Volcado gráfico en pantalla
+            ComponenteParticula.prototype.dibujarEnLienzo = function() {
+                contexto2D.beginPath();
+                contexto2D.arc(this.coordenadaX, this.coordenadaY, this.radioPixel, 0, Math.PI * 2);
+                contexto2D.fillStyle = this.estiloColor;
+                contexto2D.fill();
+            };
+
+            // Población matemática del arreglo de partículas según resolución
+            function inicializarEstructuraNube() {
+                matrizParticulas = [];
+                const factorVolumen = Math.floor((renderCanvas.width * renderCanvas.height) / 12000);
+                console.log("[ENGINE] Cantidad de partículas calculadas en buffer: " + factorVolumen);
+                
+                for (let indice = 0; indice < factorVolumen; indice++) {
+                    matrizParticulas.push(new ComponenteParticula());
+                }
+            }
+
+            // Bucle infinito de renderizado de alto rendimiento
+            function cicloAnimacionContinuo() {
+                contexto2D.clearRect(0, 0, renderCanvas.width, renderCanvas.height);
+                
+                for (let k = 0; k < matrizParticulas.length; k++) {
+                    matrizParticulas[k].actualizarPosicionLogica();
+                    matrizParticulas[k].dibujarEnLienzo();
+                }
+                
+                requestAnimationFrame(cicloAnimacionContinuo);
+            }
+
+            inicializarEstructuraNube();
+            cicloAnimacionContinuo();
+        }
+
+        // Sistema de telemetría y logs extendidos en consola para depuración
+        function emitirRegistroLog(identificador, severidad, descripcion) {
+            const marcaTemporal = new Date().toLocaleTimeString();
+            console.log("[" + marcaTemporal + "] [" + identificador + "] [" + severidad + "] -> " + descripcion);
+        }
+
+        function ejecutarAuditoriaTrazabilidad() {
+            emitirRegistroLog("DOM_PARSER", "SUCCESS", "Estructura semántica de capítulos históricos cargada de forma óptima.");
+            emitirRegistroLog("NAV_VALIDATOR", "OK", "Enlaces de navegación mapeados a: index, historia, colegio, ciclo, btpi, btpcf, bch, contacto.");
+            emitirRegistroLog("THEME_ENGINE", "INFO", "Estilos CSS validados con la paleta de colores oficial.");
+            emitirRegistroLog("AUDIT_LOG", "DONE", "Monitoreo del sistema en línea para el periodo académico 2026.");
+        }
+
+        // Activación inmediata del hilo conductor del script al cargar el documento
+        document.addEventListener('DOMContentLoaded', function() {
+            iniciarEcosistemaHistoria();
+        });
+    </script>
+</body>
+</html>

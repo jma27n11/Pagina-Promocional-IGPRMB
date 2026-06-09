@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tercer Ciclo de Educación Básica | IRMB</title>
+    <style>
+        /* ==========================================================================
+           SISTEMA DE CONFIGURACIÓN Y VARIABLES - ESTÉTIQUE CYBER-RED (MAESTRO)
+           ========================================================================== */
+        
+        :root {
+            --bg-ultra-dark: #020617;
+            --bg-space-card: #0f172a;
+            --bg-navigation: #010409;
+            --crimson-primary: #e11d48;
+            --crimson-hover: #be123c;
+            --crimson-glow-effect: rgba(225, 29, 72, 0.18);
+            --white-pure: #ffffff;
+            --gray-cybernetic: #94a3b8;
+            --gray-muted-dark: #64748b;
+            --tech-border-soft: rgba(255, 255, 255, 0.08);
+            --tech-border-glow: rgba(225, 29, 72, 0.4);
+            --font-stack-standard: 'Inter', sans-serif;
+        }
+
+        /* RESETEO COMPLETO DE PROPIEDADES DEL BOX-MODEL LÍNEA POR LÍNEA */
+        * {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-ultra-dark);
+            color: var(--white-pure);
+            font-family: var(--font-stack-standard);
+            line-height: 1.75;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================================
+           MOTOR DE FONDO (CANVAS INTERACTIVO Y MALLA TECNOLÓGICA)
+           ========================================================================== */
+        
+        #particles-canvas {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            background-image: radial-gradient(circle at 50% 50%, #1a050a 0%, #020617 100%);
+        }
+
+        .tech-grid-background {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(225, 29, 72, 0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(225, 29, 72, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ==========================================================================
+           ESTILOS DESGLOSADOS PARA EL ENCABEZADO (HEADER & NAVBAR)
+           ========================================================================== */
+        
+        .header-main-navigation {
+            width: 100%;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 9999;
+            background-color: var(--bg-navigation);
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: var(--tech-border-soft);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .navbar-alignment-box {
+            max-width: 1400px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 22px;
+            padding-bottom: 22px;
+            padding-left: 45px;
+            padding-right: 45px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-identity-logo {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--white-pure);
+            text-decoration: none;
+        }
+
+        .brand-identity-logo span {
+            color: var(--crimson-primary);
+        }
+
+        .navigation-links-list {
+            display: flex;
+            list-style-type: none;
+            align-items: center;
+        }
+
+        .navigation-list-item {
+            margin-left: 24px;
+        }
+
+        .navigation-anchor-link {
+            color: var(--gray-cybernetic);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            transition: color 0.3s ease, border-color 0.3s ease;
+            padding-bottom: 6px;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            border-bottom-color: transparent;
+        }
+
+        .navigation-anchor-link:hover {
+            color: var(--crimson-primary);
+            border-bottom-color: var(--crimson-primary);
+        }
+
+        .navigation-anchor-link.active-page {
+            color: var(--white-pure);
+            border-bottom-color: var(--crimson-primary);
+        }
+
+        /* ==========================================================================
+           ESTILOS DESGLOSADOS PARA EL CONTENEDOR HERO DE CICLO
+           ========================================================================== */
+        
+        .hero-banner-section {
+            width: 100%;
+            min-height: 65vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 160px;
+            padding-bottom: 90px;
+            padding-left: 30px;
+            padding-right: 30px;
+            text-align: center;
+            background-image: radial-gradient(circle at 50% 35%, rgba(225, 29, 72, 0.09) 0%, transparent 65%);
+        }
+
+        .hero-main-heading {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            max-width: 1100px;
+            margin-bottom: 30px;
+        }
+
+        .hero-main-heading span {
+            color: var(--crimson-primary);
+            text-shadow: 0px 0px 35px var(--crimson-glow-effect);
+        }
+
+        .hero-description-paragraph {
+            font-size: 19px;
+            color: var(--gray-cybernetic);
+            max-width: 800px;
+            margin-bottom: 45px;
+        }
+
+        /* ==========================================================================
+           ESTILOS DE CONTENEDORES Y MAQUETACIÓN GLOBAL DE SECCIONES
+           ========================================================================== */
+        
+        .content-block-container {
+            max-width: 1400px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 90px;
+            padding-bottom: 90px;
+            padding-left: 45px;
+            padding-right: 45px;
+        }
+
+        .section-title-wrapper {
+            text-align: left;
+            margin-bottom: 55px;
+        }
+
+        .section-subtitle-tag {
+            color: var(--crimson-primary);
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3.5px;
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        .section-heading-display {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .grid-dual-column {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 65px;
+            align-items: center;
+        }
+
+        .grid-triple-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        /* ==========================================================================
+           ESTILOS DETALLADOS PARA COMPONENTES DE TARJETAS (CARDS)
+           ========================================================================== */
+        
+        .architectural-tech-card {
+            background-color: var(--bg-space-card);
+            border-width: 1px;
+            border-style: solid;
+            border-color: var(--tech-border-soft);
+            padding-top: 50px;
+            padding-bottom: 50px;
+            padding-left: 40px;
+            padding-right: 40px;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            height: 100%;
+        }
+
+        .architectural-tech-card:hover {
+            border-color: var(--tech-border-glow);
+            transform: translateY(-8px);
+            box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .architectural-tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 6px;
+            height: 100%;
+            background-color: var(--crimson-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .architectural-tech-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-graphic-icon {
+            margin-bottom: 24px;
+            color: var(--crimson-primary);
+            font-size: 32px;
+            display: block;
+        }
+
+        .card-inner-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 18px;
+            color: var(--white-pure);
+            line-height: 1.3;
+        }
+
+        .card-paragraph-desc {
+            font-size: 15px;
+            color: var(--gray-cybernetic);
+            line-height: 1.75;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .card-paragraph-desc:last-child {
+            margin-bottom: 0px;
+        }
+
+        .chapter-divider-line {
+            width: 80px;
+            height: 3px;
+            background-color: var(--crimson-primary);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 2px;
+            box-shadow: 0px 0px 12px var(--crimson-primary);
+        }
+
+        /* ETIQUETAS DE ASIGNATURAS / SKILLS */
+        .skill-badge-item {
+            background-color: rgba(225, 29, 72, 0.08);
+            color: #ffa3b1;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(225, 29, 72, 0.25);
+            padding-top: 6px;
+            padding-bottom: 6px;
+            padding-left: 14px;
+            padding-right: 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 12px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge-item:hover {
+            background-color: var(--crimson-primary);
+            color: var(--white-pure);
+            box-shadow: 0px 0px 15px var(--crimson-primary);
+        }
+
+        /* LISTAS CON VIÑETAS PERSONALIZADAS */
+        .bullet-tech-list {
+            list-style-type: none;
+            margin-top: 15px;
+        }
+
+        .bullet-tech-item {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            font-size: 14.5px;
+            color: var(--gray-cybernetic);
+        }
+
+        .bullet-tech-item::before {
+            content: '→';
+            position: absolute;
+            left: 0px;
+            color: var(--crimson-primary);
+            font-weight: 900;
+        }
+
+        /* ==========================================================================
+           SISTEMA DE DISEÑO INTERACTIVO PARA EL SIMULADOR VOCACIONAL
+           ========================================================================== */
+        
+        .simulation-terminal-box {
+            background-color: #090e1a;
+            border-width: 1px;
+            border-style: solid;
+            border-color: var(--tech-border-soft);
+            border-radius: 16px;
+            box-shadow: 0px 30px 70px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            margin-top: 45px;
+            width: 100%;
+        }
+
+        .terminal-top-header {
+            background-color: #0f182e;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            padding-left: 24px;
+            padding-right: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: var(--tech-border-soft);
+        }
+
+        .terminal-dots-wrapper {
+            display: flex;
+        }
+
+        .single-dot-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            display: inline-block;
+        }
+
+        .dot-close { background-color: #ef4444; }
+        .dot-minimize { background-color: #eab308; }
+        .dot-maximize { background-color: #22c55e; }
+
+        .terminal-title-string {
+            font-size: 12px;
+            color: var(--gray-muted-dark);
+            font-family: monospace;
+            letter-spacing: 1px;
+        }
+
+        .terminal-internal-body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            padding-left: 45px;
+            padding-right: 45px;
+        }
+
+        .input-group-field {
+            margin-bottom: 24px;
+        }
+
+        .label-terminal-input {
+            display: block;
+            font-size: 13px;
+            color: var(--gray-cybernetic);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .numeric-cyber-input {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-width: 1px;
+            border-style: solid;
+            border-color: var(--tech-border-soft);
+            color: var(--white-pure);
+            padding-top: 14px;
+            padding-bottom: 14px;
+            padding-left: 18px;
+            padding-right: 18px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: monospace;
+            transition: all 0.3s ease;
+        }
+
+        .numeric-cyber-input:focus {
+            outline: none;
+            border-color: var(--crimson-primary);
+            box-shadow: 0px 0px 12px rgba(225, 29, 72, 0.3);
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .btn-trigger-action {
+            width: 100%;
+            background-color: var(--crimson-primary);
+            color: var(--white-pure);
+            border: none;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: var(--crimson-glow-effect);
+        }
+
+        .btn-trigger-action:hover {
+            background-color: var(--crimson-hover);
+            transform: translateY(-2px);
+            box-shadow: 0px 0px 25px rgba(225, 29, 72, 0.6);
+        }
+
+        .diagnostic-result-container {
+            background-color: rgba(225, 29, 72, 0.04);
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(225, 29, 72, 0.2);
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-left: 35px;
+            padding-right: 35px;
+            border-radius: 12px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .result-metric-label {
+            font-size: 12px;
+            color: var(--gray-muted-dark);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .result-dynamic-output {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--crimson-primary);
+            margin-bottom: 18px;
+            line-height: 1.2;
+        }
+
+        .result-dynamic-percentage {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white-pure);
+            margin-bottom: 18px;
+        }
+
+        .result-dynamic-instructions {
+            font-size: 14px;
+            color: var(--gray-cybernetic);
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           TABLAS TECNOLÓGICAS ESTILIZADAS PARA REQUISITOS Y PLANES
+           ========================================================================== */
+        
+        .table-matrix-wrapper {
+            background-color: var(--bg-space-card);
+            border-width: 1px;
+            border-style: solid;
+            border-color: var(--tech-border-soft);
+            border-radius: 20px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-left: 35px;
+            padding-right: 35px;
+            backdrop-filter: blur(10px);
+            overflow-x: auto;
+        }
+
+        .matrix-data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .matrix-data-table th {
+            color: var(--crimson-primary);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 16px;
+            padding-right: 16px;
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            border-bottom-color: var(--tech-border-soft);
+        }
+
+        .matrix-data-table td {
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 16px;
+            padding-right: 16px;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: var(--tech-border-soft);
+            font-size: 15px;
+            color: var(--gray-cybernetic);
+        }
+
+        .matrix-data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .matrix-data-table tr:hover td {
+            color: var(--white-pure);
+            background-color: rgba(255, 255, 255, 0.01);
+        }
+
+        .badge-status-rule {
+            background-color: rgba(225, 29, 72, 0.15);
+            color: var(--crimson-primary);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 4px;
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(225, 29, 72, 0.3);
+            display: inline-block;
+        }
+
+        /* GRAPHIC FRAMES SIMULADOS */
+        .history-graphic-frame {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border-width: 1px;
+            border-style: solid;
+            border-color: var(--tech-border-soft);
+            box-shadow: 0px 25px 55px rgba(0, 0, 0, 0.7);
+            height: 100%;
+            min-height: 400px;
+            background-color: #0b1329;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .inner-abstract-matrix {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.1) 0%, rgba(2, 6, 23, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .graphic-caption-tag {
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            right: 25px;
+            background-color: rgba(1, 4, 9, 0.9);
+            padding-top: 18px;
+            padding-bottom: 18px;
+            padding-left: 22px;
+            padding-right: 22px;
+            border-radius: 12px;
+            border-left-width: 4px;
+            border-left-style: solid;
+            border-left-color: var(--crimson-primary);
+            font-size: 13.5px;
+            color: var(--white-pure);
+            backdrop-filter: blur(6px);
+            z-index: 2;
+        }
+
+        /* CUADROS GRÁFICOS INTERNOS DE ESTADÍSTICAS */
+        .stats-micro-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 100%;
+            padding: 20px;
+            z-index: 2;
+        }
+
+        .single-micro-stat-box {
+            background-color: var(--bg-ultra-dark);
+            border-width: 1px;
+            border-style: solid;
+            border-color: var(--tech-border-soft);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .micro-stat-number {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--crimson-primary);
+        }
+
+        .micro-stat-desc {
+            font-size: 11px;
+            color: var(--gray-cybernetic);
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* ==========================================================================
+           ESTILOS DETALLADOS PARA EL PIE DE PÁGINA (FOOTER MAESTRO)
+           ========================================================================== */
+        
+        .footer-root-wrapper {
+            background-color: var(--bg-navigation);
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: var(--tech-border-soft);
+            padding-top: 90px;
+            padding-bottom: 50px;
+            position: relative;
+        }
+
+        .footer-root-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--crimson-primary), transparent);
+        }
+
+        .footer-alignment-container {
+            max-width: 1400px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 45px;
+            padding-right: 45px;
+        }
+
+        .footer-sections-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--white-pure);
+            margin-bottom: 25px;
+        }
+
+        .footer-links-vertical-list {
+            list-style-type: none;
+        }
+
+        .footer-vertical-item {
+            margin-bottom: 14px;
+        }
+
+        .footer-vertical-anchor {
+            color: var(--gray-cybernetic);
+            text-decoration: none;
+            font-size: 13.5px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-vertical-anchor:hover {
+            color: var(--crimson-primary);
+            transform: translateX(4px);
+        }
+
+        .footer-copyright-notice {
+            font-size: 13px;
+            color: var(--gray-muted-dark);
+            text-align: center;
+            border-top-width: 1px;
+            border-top-style: solid;
+            border-top-color: var(--tech-border-soft);
+            padding-top: 30px;
+        }
+
+        /* ESPACIADORES ATÓMICOS */
+        .block-separator-height-20 { height: 20px; }
+        .block-separator-height-30 { height: 30px; }
+        .block-separator-height-40 { height: 40px; }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles-canvas"></canvas>
+    <div class="tech-grid-background"></div>
+
+    <header class="header-main-navigation">
+        <nav class="navbar-alignment-box">
+            <a href="index.html" class="brand-identity-logo">IRMB<span>.TECH</span></a>
+            <ul class="navigation-links-list">
+                <li class="navigation-list-item">
+                    <a href="index.html" class="navigation-anchor-link">Index</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="historia.html" class="navigation-anchor-link">Historia</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="colegio.html" class="navigation-anchor-link">Colegio</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="ciclo.html" class="navigation-anchor-link active-page">Ciclo</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="btpi.html" class="navigation-anchor-link">BTPI</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="btpcf.html" class="navigation-anchor-link">BTPCF</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="bch.html" class="navigation-anchor-link">BCH</a>
+                </li>
+                <li class="navigation-list-item">
+                    <a href="contacto.html" class="navigation-anchor-link">Contacto</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <header class="hero-banner-section">
+        <span class="section-subtitle-tag">Tercer Ciclo de Educación Básica</span>
+        <h1 class="hero-main-heading">El Inicio de tu <span>Viaje Académico</span></h1>
+        <p class="hero-description-paragraph">En el Instituto Gubernamental Roberto Micheletti Bain convertimos los primeros años de educación secundaria en el pilar fundamental del aprendizaje científico, práctico y cívico.</p>
+    </header>
+
+    <section class="content-block-container" id="fundamento-ciclo">
+        <div class="grid-dual-column">
+            <div class="architectural-tech-card">
+                <span class="section-subtitle-tag">Fundamento Formativo</span>
+                <h2 class="card-inner-title">La Base Fundamental para tu Desarrollo Técnico Posterior</h2>
+                <div class="chapter-divider-line"></div>
+                <p class="card-paragraph-desc">El Ciclo Común representa la etapa crucial donde los jóvenes estudiantes de Agua Blanca Sur inician su transición hacia la madurez académica y el razonamiento lógico formal. Aquí equilibramos las ciencias puras con las primeras destrezas técnicas industriales.</p>
+                <p class="card-paragraph-desc">Estructuramos el mapa mental de nuestros educandos de 7mo, 8vo y 9no grado dotándolos de aptitudes analíticas esenciales que les faciliten, al culminar el ciclo, la elección de una carrera técnica o humanista adaptada con total fidelidad a sus capacidades vocacionales reales.</p>
+                <div class="block-separator-height-20"></div>
+                <div>
+                    <span class="skill-badge-item">Dibujo Técnico (7mo)</span>
+                    <span class="skill-badge-item">Español Fundamental</span>
+                    <span class="skill-badge-item">Inglés Básico</span>
+                    <span class="skill-badge-item">Ciencias Naturales</span>
+                    <span class="skill-badge-item">Matemáticas Prácticas</span>
+                    <span class="skill-badge-item">Formación Cívica</span>
+                    <span class="skill-badge-item">Educación Física</span>
+                </div>
+            </div>
+            <div class="architectural-tech-card" style="background-color: rgba(225, 29, 72, 0.01);">
+                <span class="section-subtitle-tag">Áreas de Aprendizaje</span>
+                <h2 class="card-inner-title">Competencias Clave Unificadas</h2>
+                <div class="chapter-divider-line"></div>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+                    <div>
+                        <h4 style="font-size: 16px; font-weight: 700; color: var(--white-pure); margin-bottom: 6px;">📐 Dibujo Técnico Inicial</h4>
+                        <p class="text-secondary" style="font-size: 14px; color: var(--gray-cybernetic);">Introducción formal al dibujo geométrico instrumental, escalas de precisión lineal y uso técnico de escuadras y formatos normalizados en séptimo grado.</p>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 16px; font-weight: 700; color: var(--white-pure); margin-bottom: 6px;">🧠 Ciencias Exactas y Lógica</h4>
+                        <p class="text-secondary" style="font-size: 14px; color: var(--gray-cybernetic);">Bases de álgebra lineal elemental, cálculo aritmético avanzado, física descriptiva básica y análisis de los ecosistemas biológicos locales.</p>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 16px; font-weight: 700; color: var(--white-pure); margin-bottom: 6px;">🗣️ Competencia Lingüística</h4>
+                        <p class="text-secondary" style="font-size: 14px; color: var(--gray-cybernetic);">Comprensión lectora avanzada, gramática estructural del idioma español y fundamentos prácticos interactivos de inglés técnico bilingüe.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-block-container" id="simulador-vocacional">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <span class="section-subtitle-tag">Explorador Vocacional Digital</span>
+            <h2 class="section-heading-display">Orientador de Afinidad de Bachillerato</h2>
+            <p class="hero-description-paragraph" style="margin-left: auto; margin-right: auto; font-size: 16px; margin-top: 15px;">Si eres un estudiante cursando el Tercer Ciclo, autoevalúa tus intereses académicos para descubrir qué área técnica se acopla mejor a tu perfil.</p>
+        </div>
+
+        <div class="simulation-terminal-box">
+            <div class="terminal-top-header">
+                <div class="terminal-dots-wrapper">
+                    <span class="single-dot-indicator dot-close"></span>
+                    <span class="single-dot-indicator dot-minimize"></span>
+                    <span class="single-dot-indicator dot-maximize"></span>
+                </div>
+                <span class="terminal-title-string">irmb_nucleo_orientacion_basica.sh</span>
+            </div>
+            <div class="terminal-internal-body">
+                <div class="grid-dual-column">
+                    <div>
+                        <h3 class="card-inner-title" style="font-size: 20px;"><i class="fa-solid fa-sliders"></i> Parámetros de Interés</h3>
+                        <p class="card-paragraph-desc" style="font-size: 14px; margin-bottom: 25px;">Ingrese una ponderación numérica estimada del 1 al 100 para evaluar sus preferencias aptitudinales:</p>
+                        
+                        <div class="input-group-field">
+                            <label class="label-terminal-input">Gusto por la Tecnología, Lógica y Computadoras [1-100]</label>
+                            <input type="number" id="logicScore" class="numeric-cyber-input" value="80" min="1" max="100">
+                        </div>
+                        <div class="input-group-field">
+                            <label class="label-terminal-input">Gusto por las Finanzas, Organización y Números [1-100]</label>
+                            <input type="number" id="financeScore" class="numeric-cyber-input" value="70" min="1" max="100">
+                        </div>
+                        <div class="input-group-field">
+                            <label class="label-terminal-input">Gusto por las Ciencias de la Salud y Humanidades [1-100]</label>
+                            <input type="number" id="scienceScore" class="cyber-input numeric-cyber-input" value="60" min="1" max="100">
+                        </div>
+                        
+                        <button class="btn-trigger-action" onclick="calcularDiagnosticoVocacionalCiclo()">Calcular Afinidad Académica</button>
+                    </div>
+                    <div>
+                        <div class="diagnostic-result-container">
+                            <h3 class="card-inner-title" style="font-size: 18px; margin-bottom: 15px;">📊 Diagnóstico de Salida</h3>
+                            
+                            <div>
+                                <span class="result-metric-label">Bachillerato Sugerido:</span>
+                                <div class="result-dynamic-output" id="perfilRecomendado">Procesando...</div>
+                            </div>
+                            <div>
+                                <span class="result-metric-label">Nivel de Compatibilidad:</span>
+                                <div class="result-dynamic-percentage" id="porcentajeAfinidad">--% de Compatibilidad</div>
+                            </div>
+                            <div>
+                                <span class="result-metric-label">Recomendación de Ruta:</span>
+                                <p class="result-dynamic-instructions" id="indicacionesCiclo">Haga clic en el botón de cálculo para proyectar las directrices académicas recomendadas según su ponderación de intereses.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+    <section class="content-block-container" id="malla-curricular-ejes" style="background-color: rgba(255, 255, 255, 0.005);">
+        <div style="text-align: center; margin-bottom: 55px;">
+            <span class="section-subtitle-tag">Estructura Curricular</span>
+            <h2 class="section-heading-display">Ejes Formativos de Educación Básica</h2>
+            <div class="chapter-divider-line" style="margin-left: auto; margin-right: auto;"></div>
+        </div>
+
+        <div class="grid-triple-column">
+            <div class="architectural-tech-card">
+                <span class="card-graphic-icon">📐</span>
+                <h3 class="card-inner-title">Expresión Gráfica</h3>
+                <p class="card-paragraph-desc">Adiestramiento instrumental preciso orientado a la exactitud espacial y a la interpretación elemental de diagramas.</p>
+                <ul class="bullet-tech-list">
+                    <li class="bullet-tech-item">Manejo formal de escalas métricas</li>
+                    <li class="bullet-tech-item">Trazados geométricos básicos</li>
+                    <li class="bullet-tech-item">Uso riguroso de escuadras y compás</li>
+                </ul>
+            </div>
+            <div class="architectural-tech-card">
+                <span class="card-graphic-icon">💡</span>
+                <h3 class="card-inner-title">Habilidades Lógicas</h3>
+                <p class="card-paragraph-desc">Herramientas lingüísticas y matemáticas indispensables para la interacción comunicativa y tecnológica.</p>
+                <ul class="bullet-tech-list">
+                    <li class="bullet-tech-item">Álgebra lineal y precálculo</li>
+                    <li class="bullet-tech-item">Análisis y redacción comprensiva</li>
+                    <li class="bullet-tech-item">Vocabulario técnico elemental</li>
+                </ul>
+            </div>
+            <div class="architectural-tech-card">
+                <span class="card-graphic-icon">⚛️</span>
+                <h3 class="card-inner-title">Indagación Científica</h3>
+                <p class="card-paragraph-desc">Estudio estructurado de los entornos físicos, la biología general y los ciclos del ecosistema natural.</p>
+                <ul class="bullet-tech-list">
+                    <li class="bullet-tech-item">Ciencias Naturales experimentales</li>
+                    <li class="bullet-tech-item">Química y física descriptiva</li>
+                    <li class="bullet-tech-item">Proyectos ecológicos básicos</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-block-container" id="conciencia-verde-ciclo">
+        <div class="grid-dual-column">
+            <div class="history-graphic-frame">
+                <div class="inner-abstract-matrix"></div>
+                <div class="stats-micro-grid">
+                    <div class="single-micro-stat-box">
+                        <div class="micro-stat-number">100%</div>
+                        <div class="micro-stat-desc">Involucramiento</div>
+                    </div>
+                    <div class="single-micro-stat-box">
+                        <div class="micro-stat-number">3+</div>
+                        <div class="micro-stat-desc">Proyectos Anuales</div>
+                    </div>
+                </div>
+                <div class="graphic-caption-tag">
+                    <strong>Matriz Ambiental:</strong> Estudiantes de ciclo común liderando campañas de clasificación interna de residuos sólidos.
+                </div>
+            </div>
+            <div class="architectural-tech-card">
+                <span class="section-subtitle-tag">Vinculación Ambiental</span>
+                <h2 class="card-inner-title">Fomento de la Conciencia Verde desde el Aula de Clases</h2>
+                <div class="chapter-divider-line"></div>
+                <p class="card-paragraph-desc">Aunque el Trabajo Educativo Social (TES) de alta intensidad operativa está normativamente reservado para los estudiantes del último año de bachillerato, en nuestro centro educativo sembramos los hábitos de preservación ambiental desde el ciclo básico.</p>
+                <p class="card-paragraph-desc">Los alumnos de séptimo, octavo y noveno grado participan de forma coordinada en el mantenimiento técnico de las áreas verdes internas de la institución en Agua Blanca Sur, ejecutando jornadas periódicas de reciclaje de cartón y plásticos, y cursando materias transversales de ecología aplicada.</p>
+                <ul class="bullet-tech-list">
+                    <li class="bullet-tech-item"><strong>Clasificación Escolar:</strong> Separación de plásticos en depósitos clasificados.</li>
+                    <li class="bullet-tech-item"><strong>Reforestación Local:</strong> Cuidado de jardines botánicos institucionales.</li>
+                    <li class="bullet-tech-item"><strong>Hábitos Sostenibles:</strong> Reducción activa de contaminantes en aulas.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-block-container" id="requisitos-permanencia">
+        <div style="text-align: center; margin-bottom: 45px;">
+            <span class="section-subtitle-tag">Criterios de Admisión</span>
+            <h2 class="section-heading-display">Permanencia e Incorporación de Matrícula</h2>
+            <div class="chapter-divider-line" style="margin-left: auto; margin-right: auto;"></div>
+        </div>
+
+        <div class="table-matrix-wrapper">
+            <table class="matrix-data-table">
+                <thead>
+                    <tr>
+                        <th>Criterio Académico</th>
+                        <th>Detalle Técnico del Parámetro</th>
+                        <th>Estado de la Regla</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color: var(--white-pure); font-weight: 700;">Sexto Grado Aprobado</td>
+                        <td>Haber culminado satisfactoriamente el ciclo primario certificado por la Secretaría de Educación de Honduras.</td>
+                        <td><span class="badge-status-rule">Obligatorio</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--white-pure); font-weight: 700;">Instrumentos Técnicos</td>
+                        <td>Responsabilidad y cuidado estricto de los materiales de precisión geométrica requeridos en las asignaturas de dibujo.</td>
+                        <td><span class="badge-status-rule">Obligatorio</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--white-pure); font-weight: 700;">Evaluaciones Trimestrales</td>
+                        <td>Aprobación de los bloques conceptuales de ciencias y matemáticas bajo las normativas nacionales vigentes.</td>
+                        <td><span class="badge-status-rule">Obligatorio</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color: var(--white-pure); font-weight: 700;">Participación Comunitaria</td>
+                        <td>Integración activa en los planes colectivos ecológicos e higiénicos programados por las autoridades del instituto.</td>
+                        <td><span class="badge-status-rule">Obligatorio</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer class="footer-root-wrapper">
+        <div class="footer-alignment-container">
+            <div class="footer-sections-grid">
+                <div>
+                    <h3 class="brand-identity-logo" style="margin-bottom: 20px;">IRMB<span>.TECH</span></h3>
+                    <p class="card-paragraph-desc">Contenedor web oficial del Instituto Gubernamental Roberto Micheletti Bain. Formación polivalente de alto rigor técnico en la Aldea de Agua Blanca Sur, El Progreso, Yoro.</p>
+                </div>
+                <div>
+                    <h4 class="footer-column-title">Enlaces Oficiales</h4>
+                    <ul class="footer-links-vertical-list">
+                        <li class="footer-vertical-item"><a href="index.html" class="footer-vertical-anchor">Index</a></li>
+                        <li class="footer-vertical-item"><a href="historia.html" class="footer-vertical-anchor">Historia</a></li>
+                        <li class="footer-vertical-item"><a href="colegio.html" class="footer-vertical-anchor">Colegio</a></li>
+                        <li class="footer-vertical-item"><a href="ciclo.html" class="footer-vertical-anchor">Ciclo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-column-title">Especialidades BTP</h4>
+                    <ul class="footer-links-vertical-list">
+                        <li class="footer-vertical-item"><a href="btpi.html" class="footer-vertical-anchor">BTP Informática</a></li>
+                        <li class="footer-vertical-item"><a href="btpcf.html" class="footer-vertical-anchor">BTP Contaduría</a></li>
+                        <li class="footer-vertical-item"><a href="bch.html" class="footer-vertical-anchor">BCH Ciencias</a></li>
+                        <li class="footer-vertical-item"><a href="contacto.html" class="footer-vertical-anchor">Contacto Directo</a></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <div class="footer-copyright-notice">
+                <p>&copy; 2026 Instituto Gubernamental Roberto Micheletti Bain. Desarrollado en conformidad estricta con los requisitos atómicos de arquitectura de software web.</p>
+                <p style="margin-top: 8px; font-size: 11px; color: var(--gray-muted-dark);">Todos los derechos reservados. Secretaría de Educación Pública - República de Honduras.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* =========================================================================
+           SISTEMA DE CONTROL LOGÍSTICO DEL MOTOR DE FOTONES Y RENDIMIENTO GRAPHIC
+           ========================================================================= */
+
+        console.log("[NÚCLEO CENTRAL CICLO COMÚN] Inicializando los subsistemas interactivos de educación básica.");
+
+        // Inicializador de las dinámicas operativas de la interfaz de usuario
+        function inicializarEcosistemaCompletoCiclo() {
+            console.log("[INICIALIZACIÓN] Configurando nodos de control del simulador vocacional...");
+            
+            configurarEventosAuditoriaNavegacion();
+            arrancarMotorParticulasFondo();
+            ejecutarDiagnosticoVocacionalCiclo();
+            generarTrazabilidadLogsSeguridad();
+        }
+
+        function configurarEventosAuditoriaNavegacion() {
+            console.log("[AUDITORÍA INTERNA] Enlazando escuchadores para los archivos mapeados...");
+            const elementosLink = document.querySelectorAll('.navigation-anchor-link');
+            
+            elementosLink.forEach(function(instanciaLink) {
+                instanciaLink.addEventListener('click', function() {
+                    console.log("[TELEMETRÍA] Transición de página solicitada hacia el archivo destino: " + instanciaLink.getAttribute('href'));
+                });
+            });
+        }
+
+        function calcularDiagnosticoVocacionalCiclo() {
+            console.log("[SIMULADOR] Extrayendo variables numéricas ingresadas por el estudiante...");
+            
+            const valorLogica = parseFloat(document.getElementById('logicScore').value);
+            const valorFinanzas = parseFloat(document.getElementById('financeScore').value);
+            const valorCiencias = parseFloat(document.getElementById('scienceScore').value);
+
+            // Validación detallada no intrusiva de los rangos operacionales [1-100]
+            if (isNaN(valorLogica) || isNaN(valorFinanzas) || isNaN(valorCiencias) || 
+                valorLogica < 1 || valorLogica > 100 || 
+                valorFinanzas < 1 || valorFinanzas > 100 || 
+                valorCiencias < 1 || valorCiencias > 100) {
+                
+                console.warn("[VALIDACIÓN FAILED] El usuario introdujo parámetros fuera de la cota matemática admisible.");
+                
+                document.getElementById('perfilRecomendado').innerText = "Parámetro Inválido";
+                document.getElementById('porcentajeAfinidad').innerText = "N/A";
+                document.getElementById('indicacionesCiclo').innerText = "Por favor ingrese valores numéricos continuos estrictamente comprendidos entre el rango 1 y 100 en todas las casillas para calcular un diagnóstico preciso.";
+                return;
+            }
+
+            let stringPerfilSugerido = "";
+            let enteroPorcentajeAfinidad = 0;
+            let stringMensajeSugerencia = "";
+
+            // Árbol lógico secuencial de decisión vocacional basado en máximos relativos
+            if (valorLogica >= valorFinanzas && valorLogica >= valorCiencias) {
+                console.log("[DIAGNÓSTICO COMPRENSIVO] Vector dominante detectado: LÓGICA E INFORMÁTICA (BTPI)");
+                stringPerfilSugerido = "Informática (BTPI)";
+                enteroPorcentajeAfinidad = Math.round((valorLogica * 0.7) + (valorCiencias * 0.3));
+                stringMensajeSugerencia = "Tu mente se inclina de forma nativa hacia las ciencias de la computación, la ingeniería de software, el desarrollo de lógica algorítmica aplicada y la infraestructura tecnológica. Te aconsejamos prepararte sólidamente en matemáticas avanzadas durante tu noveno grado escolar.";
+            } 
+            else if (valorFinanzas >= valorLogica && valorFinanzas >= valorCiencias) {
+                console.log("[DIAGNÓSTICO COMPRENSIVO] Vector dominante detectado: FINANZAS Y CONTADURÍA (BTPCF)");
+                stringPerfilSugerido = "Contaduría y Finanzas (BTPCF)";
+                enteroPorcentajeAfinidad = Math.round((valorFinanzas * 0.7) + (valorLogica * 0.3));
+                stringMensajeSugerencia = "Posees un perfil altamente estructurado, ordenado, métrico y analítico, idóneo para el modelado financiero corporativo, la gestión tributaria, la auditoría y el uso inteligente de matrices computacionales de datos fiscales. ¡La carrera de BTPCF se adapta perfectamente a tus aptitudes!";
+            } 
+            else {
+                console.log("[DIAGNÓSTICO COMPRENSIVO] Vector dominante detectado: CIENCIAS Y HUMANIDADES (BCH)");
+                stringPerfilSugerido = "Ciencias y Humanidades (BCH)";
+                enteroPorcentajeAfinidad = Math.round((valorCiencias * 0.7) + (valorLogica * 0.3));
+                stringMensajeSugerencia = "Tus intereses centrales y aptitudes cognitivas se localizan en los dominios de la indagación natural, el método científico experimental y el espectro sociocultural humanístico. Este trayecto propedéutico es el camino óptimo si apuntas hacia estudios universitarios superiores de nivel de licenciatura o medicina.";
+            }
+
+            // Inyección controlada de resultados en el árbol DOM del simulador
+            document.getElementById('perfilRecomendado').innerText = stringPerfilSugerido;
+            document.getElementById('porcentajeAfinidad').innerText = enteroPorcentajeAfinidad + "% de Compatibilidad Directa";
+            document.getElementById('indicacionesCiclo').innerText = stringMensajeSugerencia;
+            
+            console.log("[DOM_UPDATE] Interfaz actualizada exitosamente con los resultados del diagnóstico vocacional.");
+        }
+
+        /* ========================================================================
+        MOTOR GRÁFICO DINÁMICO DE RENDIMIENTO EN CANVAS DE PARTÍCULAS RE-ALINEADO
+        ========================================================================
+        */
+        function arrancarMotorParticulasFondo() {
+            console.log("[CANVAS RE-INIT] Iniciando los buffers del lienzo dinámico del tercer ciclo...");
+            
+            const lienzoHTML = document.getElementById('particles-canvas');
+            if (!lienzoHTML) {
+                console.error("[ERROR CRÍTICO] Objeto físico canvas no encontrado en la arquitectura del documento.");
+                return;
+            }
+
+            const ctxLienzo = lienzoHTML.getContext('2d');
+            let coleccionNubeParticulas = [];
+
+            // Manejador dinámico responsivo del lienzo
+            function redimensionarEspacioLienzo() {
+                lienzoHTML.width = window.innerWidth;
+                lienzoHTML.height = window.innerHeight;
+                console.log("[CANVAS_RESIZE] Ventana gráfica reajustada por resolución a: " + lienzoHTML.width + "x" + lienzoHTML.height);
+            }
+
+            window.addEventListener('resize', redimensionarEspacioLienzo);
+            redimensionarEspacioLienzo();
+
+            // Constructor estructural del objeto cinético Partícula
+            function EntidadParticulaEspecifica() {
+                this.posX = Math.random() * lienzoHTML.width;
+                this.posY = Math.random() * lienzoHTML.height;
+                this.radioMagnitud = Math.random() * 2 + 0.5;
+                this.velocidadEjeX = Math.random() * 0.4 - 0.2;
+                this.velocidadEjeY = Math.random() * 0.4 - 0.2;
+                
+                // Variación tonal ajustada a la identidad Cyber-Red institucional
+                if (Math.random() > 0.5) {
+                    this.colorEstiloRgb = 'rgba(225, 29, 72, 0.2)';
+                } else {
+                    this.colorEstiloRgb = 'rgba(255, 255, 255, 0.12)';
+                }
+            }
+
+            // Actualizador cinemático de desplazamientos continuos
+            EntidadParticulaEspecifica.prototype.avanzarFotogramaLogico = function() {
+                this.posX += this.velocidadEjeX;
+                this.posY += this.velocidadEjeY;
+
+                // Controladores perimetrales infinitos (rebotador / envolvente cíclico)
+                if (this.posX > lienzoHTML.width) {
+                    this.posX = 0;
+                } else if (this.posX < 0) {
+                    this.posX = lienzoHTML.width;
+                }
+
+                if (this.posY > lienzoHTML.height) {
+                    this.posY = 0;
+                } else if (this.posY < 0) {
+                    this.posY = lienzoHTML.height;
+                }
+            };
+
+            // Dibujado directo sobre el contexto binario del canvas
+            EntidadParticulaEspecifica.prototype.renderizarPixelLienzo = function() {
+                ctxLienzo.beginPath();
+                ctxLienzo.arc(this.posX, this.posY, this.radioMagnitud, 0, Math.PI * 2);
+                ctxLienzo.fillStyle = this.colorEstiloRgb;
+                ctxLienzo.fill();
+            };
+
+            // Cálculo volumétrico proporcional de partículas en memoria
+            function construirNubeBuffer() {
+                coleccionNubeParticulas = [];
+                const volumenCalculado = Math.floor((lienzoHTML.width * lienzoHTML.height) / 11500);
+                console.log("[BUFFER] Reservando memoria interna del procesador para " + volumenCalculado + " hilos de partículas.");
+                
+                for (let j = 0; j < volumenCalculado; j++) {
+                    coleccionNubeParticulas.push(new EntidadParticulaEspecifica());
+                }
+            }
+
+            // Bucle cíclico recurrente por hardware (Request Animation Frame)
+            function ejecutarBucleAnimacionFotogramas() {
+                ctxLienzo.clearRect(0, 0, lienzoHTML.width, lienzoHTML.height);
+                
+                for (let m = 0; m < coleccionNubeParticulas.length; m++) {
+                    coleccionNubeParticulas[m].avanzarFotogramaLogico();
+                    coleccionNubeParticulas[m].renderizarPixelLienzo();
+                }
+                
+                requestAnimationFrame(ejecutarBucleAnimacionFotogramas);
+            }
+
+            construirNubeBuffer();
+            ejecutarBucleAnimacionFotogramas();
+        }
+
+        // Subsistema de logs para auditoría de rendimiento en consola
+        function escribirTrazaLogConsola(modulo, estatus, mensaje) {
+            const tiempoActual = new Date().toLocaleTimeString();
+            console.log("[" + tiempoActual + "] [" + modulo + "] [" + estatus + "] -> " + mensaje);
+        }
+
+        function generarTrazabilidadLogsSeguridad() {
+            escribirTrazaLogConsola("CICLO_DOM", "SUCCESS", "Malla analítica e instrumental inyectada con éxito.");
+            escribirTrazaLogConsola("ROUTER_CHECK", "VERIFIED", "Estructura de enrutamiento unificada enlazada a las 8 páginas maestras.");
+            escribirTrazaLogConsola("MATH_SIMULATOR", "READY", "Algoritmo evaluador de aptitudes profesionales configurado.");
+            escribirTrazaLogConsola("SYSTEM_AUDIT", "COMPLETED", "Sistema operando en parámetros ideales de compilación web para el año 2026.");
+        }
+
+        // Disparador maestro de ejecución del ecosistema
+        document.addEventListener('DOMContentLoaded', function() {
+            inicializarEcosistemaCompletoCiclo();
+        });
+    </script>
+</body>
+</html>

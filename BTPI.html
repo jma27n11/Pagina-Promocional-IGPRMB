@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bachillerato Técnico Profesional en Informática | IGP Micheletti Bain</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;600;700;900&family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        /* ========================================================================
+        1. SISTEMA DE DISEÑO AVANZADO - VARIABLES Y PALETA DE COLORES
+        ========================================================================
+        */
+        :root {
+            --bg-dark: #020617;
+            --bg-card: rgba(15, 23, 42, 0.65);
+            --accent-red: #e11d48;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --font-main: 'Inter', sans-serif;
+            --font-title: 'Montserrat', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            --font-tech: 'Space Grotesk', sans-serif;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --glow-red: 0 0 25px rgba(225, 29, 72, 0.4);
+            --glow-blue: 0 0 25px rgba(59, 130, 246, 0.4);
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ========================================================================
+        2. NORMALIZACIÓN Y SCROLLBAR PERSONALIZADO
+        ========================================================================
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-red), var(--accent-blue));
+            border-radius: 5px;
+        }
+
+        /* ========================================================================
+        3. CAPA DE INTERFAZ GRÁFICA DE FONDO (CANVAS Y RED TECNOLÓGICA)
+        ========================================================================
+        */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
+        }
+
+        .tech-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(225, 29, 72, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(225, 29, 72, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ========================================================================
+        4. MENÚ DE NAVEGACIÓN FUTURISTA (LINKS TRADICIONALES A ARCHIVOS HTML)
+        ========================================================================
+        */
+        .custom-nav {
+            background: rgba(2, 6, 23, 0.85) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 1.2rem 0;
+            transition: var(--transition-smooth);
+            z-index: 1000;
+        }
+
+        .custom-nav.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(2, 6, 23, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-brand-tech {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #ffffff !important;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand-tech span {
+            color: var(--accent-red);
+        }
+
+        .nav-link {
+            color: var(--text-dim) !important;
+            font-family: var(--font-tech);
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition-smooth);
+            margin: 0 8px;
+            padding: 8px 16px !important;
+            border-radius: 6px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff !important;
+            background: rgba(225, 29, 72, 0.08);
+            text-shadow: 0 0 10px rgba(225, 29, 72, 0.5);
+        }
+
+        .btn-nav-accent {
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red) !important;
+            font-family: var(--font-tech);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            border-radius: 50px;
+            padding: 6px 20px !important;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-nav-accent:hover {
+            background: var(--accent-red) !important;
+            color: #ffffff !important;
+            box-shadow: var(--glow-red);
+            transform: translateY(-2px);
+        }
+
+        /* ========================================================================
+        5. HERO SECTION DEL BTPI (DISEÑO RADIAL Y TEXTOS GLOW)
+        ========================================================================
+        */
+        .hero-special {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top right, rgba(225, 29, 72, 0.12), transparent 50%);
+            padding-top: 140px;
+            position: relative;
+        }
+
+        .badge-btp {
+            background: rgba(225, 29, 72, 0.08);
+            border: 1px solid rgba(225, 29, 72, 0.3);
+            color: var(--accent-red);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(225, 29, 72, 0.1);
+        }
+
+        .main-title {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: clamp(2.5rem, 6vw, 4.8rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to bottom, #ffffff 40%, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-glow-red {
+            -webkit-text-fill-color: var(--accent-red);
+            text-shadow: 0 0 20px rgba(225, 29, 72, 0.6);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 650px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+        }
+
+        .btn-cyber {
+            font-family: var(--font-tech);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 16px 36px;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cyber-red {
+            background: var(--accent-red);
+            color: #ffffff;
+            border: 1px solid var(--accent-red);
+            box-shadow: var(--glow-red);
+        }
+
+        .btn-cyber-red:hover {
+            background: #be123c;
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(225, 29, 72, 0.7);
+            color: #ffffff;
+        }
+
+        .btn-cyber-outline {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            margin-left: 15px;
+        }
+
+        .btn-cyber-outline:hover {
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-3px);
+            color: #ffffff;
+        }
+
+        /* ========================================================================
+        6. SECCIÓN DE PERFIL DE LA CARRERA Y DATOS CLAVE
+        ========================================================================
+        */
+        .section-padding {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 70px;
+        }
+
+        .section-tag {
+            font-family: var(--font-mono);
+            color: var(--accent-blue);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-weight: 800;
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+        }
+
+        .card-internship {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 40px;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(15px);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-internship::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent-blue);
+            opacity: 0.7;
+        }
+
+        .card-internship:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-8px);
+            background: rgba(15, 23, 42, 0.85);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .skill-tag {
+            background: rgba(59, 130, 246, 0.08);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-family: var(--font-tech);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 10px;
+            display: inline-block;
+            transition: var(--transition-smooth);
+        }
+
+        .skill-tag:hover {
+            background: var(--accent-blue);
+            color: #ffffff;
+            box-shadow: var(--glow-blue);
+        }
+
+        /* ========================================================================
+        7. SIMULADOR DE CONSOLA / TERMINAL INTERACTIVA
+        ========================================================================
+        */
+        .terminal-container {
+            background: #090d16;
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            font-family: var(--font-mono);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            overflow: hidden;
+            margin-top: 40px;
+            cursor: text;
+        }
+
+        .terminal-header {
+            background: #0f172a;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #eab308; }
+        .dot-green { background: #22c55e; }
+
+        .terminal-body {
+            padding: 25px;
+            height: 350px;
+            overflow-y: auto;
+            color: #34d399;
+            font-size: 0.9rem;
+        }
+
+        .terminal-prompt {
+            color: var(--accent-blue);
+        }
+
+        .terminal-input {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-family: var(--font-mono);
+            width: 70%;
+            outline: none;
+        }
+
+        /* ========================================================================
+        8. MALLA CURRICULAR Y ACORDEONES TÉCNICOS
+        ========================================================================
+        */
+        .tech-accordion .accordion-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            margin-bottom: 15px;
+            border-radius: 12px !important;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+        }
+
+        .tech-accordion .accordion-button {
+            background: transparent;
+            color: #ffffff;
+            font-family: var(--font-title);
+            font-weight: 700;
+            padding: 22px;
+            font-size: 1.1rem;
+            box-shadow: none !important;
+        }
+
+        .tech-accordion .accordion-button:not(.collapsed) {
+            background: rgba(225, 29, 72, 0.05);
+            color: var(--accent-red);
+        }
+
+        .tech-accordion .accordion-body {
+            color: var(--text-dim);
+            background: rgba(2, 6, 23, 0.4);
+            border-top: 1px solid var(--border-glass);
+            padding: 25px;
+        }
+
+        .subject-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            padding: 10px 18px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition-smooth);
+        }
+
+        .subject-tag:hover {
+            border-color: var(--accent-red);
+            background: rgba(225, 29, 72, 0.03);
+        }
+
+        /* ========================================================================
+        9. CARRETE DE IMÁGENES / CAROUSEL DINÁMICO REFINADO
+        ========================================================================
+        */
+        .custom-slider-container {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .slider-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-item {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.4) contrast(1.1);
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            right: 40px;
+            z-index: 10;
+        }
+
+        .slide-caption h3 {
+            font-family: var(--font-title);
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .slide-caption p {
+            font-size: 1rem;
+            color: var(--text-dim);
+            margin: 0;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-glass);
+            border-radius: 50%;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 20;
+            transition: var(--transition-smooth);
+        }
+
+        .slider-btn:hover {
+            background: var(--accent-red);
+            box-shadow: var(--glow-red);
+            border-color: var(--accent-red);
+        }
+
+        .slider-btn-prev { left: 20px; }
+        .slider-btn-next { right: 20px; }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 20;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .dot.active {
+            background: var(--accent-red);
+            width: 25px;
+            border-radius: 10px;
+        }
+
+        /* ========================================================================
+        10. SECCIÓN TES (TRABAJO EDUCATIVO SOCIAL) Y COMPROMISO
+        ========================================================================
+        */
+        .tes-section {
+            background: linear-gradient(180deg, transparent, rgba(16, 185, 129, 0.02));
+            border-top: 1px solid rgba(16, 185, 129, 0.05);
+            border-bottom: 1px solid rgba(16, 185, 129, 0.05);
+        }
+
+        .tes-card {
+            border-bottom: 4px solid var(--accent-green) !important;
+        }
+
+        .tes-card:hover {
+            border-color: var(--accent-green) !important;
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15) !important;
+        }
+
+        .tes-icon {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
+        }
+
+        /* ========================================================================
+        11. REQUISITOS Y TABLAS ESTILIZADAS
+        ========================================================================
+        */
+        .tech-table-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+        }
+
+        .tech-table {
+            width: 100%;
+            color: var(--text-main);
+            border-collapse: collapse;
+        }
+
+        .tech-table th {
+            font-family: var(--font-title);
+            font-weight: 700;
+            color: var(--accent-blue);
+            border-bottom: 2px solid var(--border-glass);
+            padding: 18px;
+            text-align: left;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tech-table td {
+            padding: 18px;
+            border-bottom: 1px solid var(--border-glass);
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .tech-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tech-table tr:hover td {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        /* ========================================================================
+        12. FOOTER CYBER ELECTRÓNICO (LINKS DE NAVEGACIÓN COMPLETOS)
+        ========================================================================
+        */
+        .footer-cyber {
+            background: #010409;
+            border-top: 1px solid var(--border-glass);
+            padding: 100px 0 40px;
+            position: relative;
+        }
+
+        .footer-cyber::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), var(--accent-blue), transparent);
+        }
+
+        .footer-title {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-logo-span {
+            color: var(--accent-red);
+        }
+
+        .footer-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links-list li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links-list a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-family: var(--font-tech);
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            display: inline-block;
+        }
+
+        .footer-links-list a:hover {
+            color: var(--accent-red);
+            transform: translateX(5px);
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-glass);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            margin-right: 12px;
+        }
+
+        .social-btn:hover {
+            background: var(--accent-red);
+            color: #ffffff;
+            box-shadow: var(--glow-red);
+            border-color: var(--accent-red);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-glass);
+            margin-top: 60px;
+            padding-top: 30px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        /* ========================================================================
+        13. RESPONSIVE MEDIA QUERIES (DISPOSITIVOS MÓVILES)
+        ========================================================================
+        */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: #020617;
+                border: 1px solid var(--border-glass);
+                border-radius: 12px;
+                padding: 20px;
+                margin-top: 15px;
+            }
+            
+            .nav-link {
+                margin: 5px 0;
+            }
+            
+            .btn-nav-accent {
+                margin-top: 10px;
+                display: inline-block;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .custom-slider-container {
+                height: 350px;
+            }
+            
+            .card-internship {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles-canvas"></canvas>
+    <div class="tech-grid"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark custom-nav sticky-top">
+        <div class="container">
+            <a class="navbar-brand-tech" href="index.html">
+                <i class="fa-solid fa-microchip me-2 text-danger"></i>IGP <span class="ms-1 footer-logo-span">BTPI</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMainGrid" aria-controls="navMainGrid" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navMainGrid">
+                <ul class="navbar-nav ms-auto align-items-center">
+                  <li class="nav-item"><a class="nav-link" href="index.html">Index</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Historia.html">Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="colegio.html">Colegio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Ciclo.html">Ciclo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPI.html">BTPI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPCF.html">BTPCF</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="BCH.html">BCH</a></li>
+                    <li class="nav-item"><a class="nav-link btn-nav-accent text-white" href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-special">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7 text-start animate__animated animate__fadeInLeft">
+                    <span class="badge-btp">BACHILLERATO TÉCNICO PROFESIONAL</span>
+                    <h1 class="main-title">CONSTRUYENDO EL <br><span class="text-glow-red">FUTURO DIGITAL</span></h1>
+                    <p class="hero-desc">
+                        En el Instituto Gubernamental Polivalente Roberto Micheletti Bain, formamos a los líderes tecnológicos de Agua Blanca Sur. Prepárate para destacar en el mundo laboral y la educación universitaria con nuestra sólida formación técnica.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#malla" class="btn-cyber btn-cyber-red">Ver Plan de Estudios</a>
+                        <a href="#terminal" class="btn-cyber btn-cyber-outline">Consola Interactiva</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 animate__animated animate__fadeInRight">
+                    <div class="card-internship text-center" style="border-color: rgba(225, 29, 72, 0.2);">
+                        <i class="fa-solid fa-circle-nodes text-danger mb-4" style="font-size: 3rem; filter: drop-shadow(0 0 10px rgba(225, 29, 72, 0.5));"></i>
+                        <h4 class="text-white mb-3">Promoción 2026</h4>
+                        <p class="text-secondary small">La élite técnica del colegio lista para dejar una huella imborrable en Agua Blanca Sur, Yoro.</p>
+                        <hr class="border-secondary my-4">
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <span class="d-block text-muted small">Estudiantes</span>
+                                <span class="text-white fw-bold font-tech fs-5">21 Alumnos</span>
+                            </div>
+                            <div class="col-6">
+                                <span class="d-block text-muted small">Laboratorios</span>
+                                <span class="text-white fw-bold font-tech fs-5">2 Labs + Taller</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-padding" id="terminal">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <span class="section-tag">ENTORNO DE DESARROLLO</span>
+                    <h2 class="section-title text-white mb-4">Consola de Comandos BTPI</h2>
+                    <p class="text-secondary mb-5">Prueba nuestro simulador interactivo para conocer los detalles del bachillerato. Escribe comandos reales en la consola de abajo.</p>
+                    
+                    <div class="terminal-container text-start" id="terminalContainer">
+                        <div class="terminal-header">
+                            <div>
+                                <span class="terminal-dot dot-red"></span>
+                                <span class="terminal-dot dot-yellow"></span>
+                                <span class="terminal-dot dot-green"></span>
+                            </div>
+                            <span class="text-muted small font-mono">igp_micheletti_system_v2.0.sh</span>
+                        </div>
+                        <div class="terminal-body" id="terminalOutput">
+                            <p>=== SISTEMA OPERATIVO CENTRAL IGP MICHELETTI BAIN ===</p>
+                            <p>Escribe 'help' y presiona Enter para ver la lista de comandos disponibles.</p>
+                            <br>
+                            <div class="d-flex align-items-center">
+                                <span class="terminal-prompt me-2">guest@btpi_2026:~$&nbsp;</span>
+                                <input type="text" class="terminal-input" id="terminalCommandInput" autofocus autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <span class="section-tag">Habilidades de Vanguardia</span>
+                    <h2 class="section-title text-white mb-4">Formación de <br><span class="text-glow-red" style="-webkit-text-fill-color: var(--accent-red);">Nivel Técnico Superior</span></h2>
+                    <p class="text-secondary mb-4">
+                        Nuestra especialización forma a los estudiantes en áreas de alta demanda global. Cubrimos infraestructuras físicas de datos, arquitecturas de hardware, metodologías ágiles y optimización lógica de sistemas empresariales.
+                    </p>
+                    <div class="mb-4">
+                        <span class="skill-tag">Diseño Web Avanzado</span>
+                        <span class="skill-tag">Ofimática Profesional</span>
+                        <span class="skill-tag">Bases de Datos Relacionales SQL</span>
+                        <span class="skill-tag">Soporte Técnico de Sistemas</span>
+                        <span class="skill-tag">Programación Visual Studio</span>
+                        <span class="skill-tag">Estética y Diseño Digital</span>
+                        <span class="skill-tag">Redes Informáticas</span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card-internship">
+                        <h4 class="text-white mb-4"><i class="fa-solid fa-shield-halved text-primary me-2"></i>¿Por qué elegir BTPI?</h4>
+                        <p class="text-secondary small mb-3">La carrera de Informática es el pilar de innovación del Instituto Polivalente Roberto Micheletti Bain. Nuestros estudiantes cuentan con ventajas competitivas:</p>
+                        <ul class="text-secondary small">
+                            <li class="mb-3"><strong>Práctica Corporativa Real:</strong> Alianzas de 800 horas en empresas líderes de la zona norte.</li>
+                            <li class="mb-3"><strong>Infraestructura de Aprendizaje:</strong> Equipos modernos con sistemas de simulación virtual y software de desarrollo avanzado.</li>
+                            <li class="mb-3"><strong>Proyección al Futuro:</strong> Currículo modular enfocado en la transición exitosa a la universidad de tu preferencia.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">GALERÍA DE MOMENTOS</span>
+                <h2 class="section-title text-white">Nuestra Vida en el Instituto</h2>
+            </div>
+            
+            <div class="custom-slider-container">
+                <div class="slider-wrapper" id="sliderWrapper">
+                    <div class="slide-item">
+                        <img src="btpii.jpg" alt="Laboratorio de Informática">
+                        <div class="slide-caption">
+                            <h3>Informática / BTPI </h3>
+                            <p>La carrera de Informática, cada uno formandose como profesionales de la tecnología.</p>
+                        </div>
+                    </div>
+                     <div class="slide-item">
+                        <img src="pkarlalab.jpg" alt="Laboratorio de Informática">
+                        <div class="slide-caption">
+                            <h3>Laboratorio de Ofimática y Diseño</h3>
+                            <p>El núcleo de programación, bases de datos y estética digital para 12vo BTPI.</p>
+                        </div>
+                    </div>
+                    <div class="slide-item">
+                        <img src="lab1js.jpg" alt="Soporte y Reparación">
+                        <div class="slide-caption">
+                            <h3>Taller de Mantenimiento de Hardware</h3>
+                            <p>Diagnóstico, ensamble y reparación en la fase técnica básica del bachillerato.</p>
+                        </div>
+                    </div>
+                    <div class="slide-item">
+                        <img src="tes2026.jpeg" alt="Trabajo Comunitario">
+                        <div class="slide-caption">
+                            <h3>Trabajo Educativo Social (TES)</h3>
+                            <p>Compromiso constante con el medio ambiente y la comunidad de Agua Blanca Sur.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-btn slider-btn-prev" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></div>
+                <div class="slider-btn slider-btn-next" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></div>
+                
+                <div class="slider-dots" id="sliderDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="malla">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <span class="section-tag" style="color: var(--accent-red);">ESTRUCTURA DE APRENDIZAJE</span>
+                    <h2 class="section-title text-white mb-4">Plan de Estudios Oficial</h2>
+                    <p class="text-secondary mb-4">
+                        La malla curricular del Bachillerato Técnico Profesional en Informática abarca tres años de inmersión técnica progresiva, orientada a cumplir con las demandas tecnológicas de Yoro y del país.
+                    </p>
+                    <div class="p-3 bg-dark rounded border border-secondary mt-4">
+                        <span class="text-white font-code small"><i class="fa-solid fa-triangle-exclamation text-danger me-2"></i>Malla oficial de asignaturas diseñada bajo los estándares educativos del Ministerio de Educación.</span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="accordion tech-accordion" id="accordionPlanEstudios">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Décimo Grado (Bases Tecnológicas y Ofimáticas)
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionPlanEstudios">
+                                <div class="accordion-body">
+                                    <div class="subject-tag"><span>Informática Básica</span> <span class="badge bg-danger">Firme</span></div>
+                                    <div class="subject-tag"><span>Bases de Word (Procesadores de Texto)</span> <span class="badge bg-danger">Firme</span></div>
+                                    <div class="subject-tag"><span>Bases de Excel (Hojas de Cálculo)</span> <span class="badge bg-danger">Firme</span></div>
+                                    <div class="subject-tag"><span>Lógica de Programación Analítica</span> <span class="badge bg-danger">Firme</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Undécimo Grado (Desarrollo y Estructuras Fundamentales)
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionPlanEstudios">
+                                <div class="accordion-body">
+                                    <div class="subject-tag"><span>Programación de Computadoras</span> <span class="badge bg-primary">Intermedio</span></div>
+                                    <div class="subject-tag"><span>Ofimática Avanzada (Word, Excel y Access)</span> <span class="badge bg-primary">Intermedio</span></div>
+                                    <div class="subject-tag"><span>Bases de Mantenimiento de Computadoras</span> <span class="badge bg-primary">Intermedio</span></div>
+                                    <div class="subject-tag"><span>Bases de Estética y Diseño Digital</span> <span class="badge bg-primary">Intermedio</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Duodécimo Grado (Fase Terminal y Especialidades)
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionPlanEstudios">
+                                <div class="accordion-body">
+                                    <div class="subject-tag"><span>Programación Avanzada en Visual Studio</span> <span class="badge bg-success">Experto</span></div>
+                                    <div class="subject-tag"><span>Diseño de Páginas Web (HTML5/CSS3/JS)</span> <span class="badge bg-success">Experto</span></div>
+                                    <div class="subject-tag"><span>Gestión Empresarial Informática</span> <span class="badge bg-success">Experto</span></div>
+                                    <div class="subject-tag"><span>Redes Informáticas LAN y WAN</span> <span class="badge bg-success">Experto</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding tes-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag" style="color: var(--accent-green);">VINCULACIÓN SOCIAL Y PROFESIONAL</span>
+                <h2 class="section-title text-white">Práctica Profesional y TES</h2>
+                <div class="mx-auto" style="width: 80px; height: 3px; background: var(--accent-green); margin-top: 15px;"></div>
+            </div>
+            
+            <div class="row g-4 mt-2">
+                <div class="col-lg-6">
+                    <div class="card-internship tes-card">
+                        <div class="tes-icon"><i class="fa-solid fa-briefcase"></i></div>
+                        <h4 class="text-white mb-3">La Práctica Profesional</h4>
+                        <p class="text-secondary small mb-4">
+                            Los alumnos de 12vo grado nos integramos directamente a entornos de trabajo reales durante un periodo de 800 horas de pasantía laboral. Esta experiencia consolida los conocimientos técnicos adquiridos en el instituto en empresas reconocidas del sector norte de Honduras.
+                        </p>
+                        <ul class="text-secondary small">
+                            <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i>Desarrollo y mantenimiento preventivo de redes corporativas.</li>
+                            <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i>Programación en Visual Studio aplicada a bases de datos.</li>
+                            <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i>Maquetación web y soporte técnico a usuarios comerciales.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card-internship tes-card">
+                        <div class="tes-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                        <h4 class="text-white mb-3">Trabajo Educativo Social (TES)</h4>
+                        <p class="text-secondary small mb-4">
+                            Como estudiantes de informática de la promoción de 21 alumnos del IGP, aportamos valor a Agua Blanca Sur. A través del TES, realizamos jornadas de concientización ambiental, limpiezas de áreas comunes y apoyamos la noble causa de la fundación <strong>Relevo por la Vida</strong> para la lucha contra el cáncer.
+                        </p>
+                        <ul class="text-secondary small">
+                            <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i>Soporte informático a escuelas rurales de la localidad.</li>
+                            <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i>Preservación ecológica y aseo en Agua Blanca Sur.</li>
+                            <li class="mb-2"><i class="fa-solid fa-circle-check text-success me-2"></i>Recaudación activa para los pacientes oncológicos de Relevo por la Vida.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag" style="color: var(--accent-blue);">ADMINISTRACIÓN</span>
+                <h2 class="section-title text-white">Requisitos de Permanencia</h2>
+                <div class="mx-auto" style="width: 80px; height: 3px; background: var(--accent-blue); margin-top: 15px;"></div>
+            </div>
+            
+            <div class="tech-table-container">
+                <div class="table-responsive">
+                    <table class="tech-table">
+                        <thead>
+                            <tr>
+                                <th>Requisito Esencial</th>
+                                <th>Descripción del Parámetro</th>
+                                <th>Estado Reglado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-white fw-bold">Aprobación de Admisión</td>
+                                <td>Haber aprobado de forma completa el noveno grado de educación básica en el Ciclo Común.</td>
+                                <td><span class="badge bg-success">Obligatorio</span></td>
+                            </tr>
+                            <tr>
+                                <td class="text-white fw-bold">Disciplina de Laboratorio</td>
+                                <td>Cumplimiento estricto del reglamento de conducta, uso del uniforme formal y cuidado de equipos.</td>
+                                <td><span class="badge bg-success">Obligatorio</span></td>
+                            </tr>
+                            <tr>
+                                <td class="text-white fw-bold">Horas de Práctica</td>
+                                <td>Cumplimiento total de las horas de práctica profesional supervisada en el último período lectivo.</td>
+                                <td><span class="badge bg-success">Obligatorio</span></td>
+                            </tr>
+                            <tr>
+                                <td class="text-white fw-bold">Aprobación de TES</td>
+                                <td>Culminación y validación de los proyectos comunitarios regulados por el Ministerio de Educación.</td>
+                                <td><span class="badge bg-success">Obligatorio</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-cyber">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h4 class="footer-title text-white">IGP <span class="footer-logo-span">MICHELETTI</span></h4>
+                    <p class="text-secondary small mb-4">
+                        Instituto Gubernamental Polivalente Roberto Micheletti Bain. Forjando profesionales de alto rendimiento en informática y valores morales en Agua Blanca Sur, El Progreso, Yoro.
+                    </p>
+                    <div>
+                        <a href="https://www.facebook.com/profile.php?id=100057232578686" class="social-btn"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h6 class="text-white font-tech mb-4 fw-bold">NAVEGACIÓN PRINCIPAL</h6>
+                    <ul class="footer-links-list">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Index</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Historia.html">Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="colegio.html">Colegio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Ciclo.html">Ciclo</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-4">
+                    <h6 class="text-white font-tech mb-4 fw-bold">DOCUMENTOS DE INTERÉS</h6>
+                    <ul class="footer-links-list">
+                    <li class="nav-item"><a class="nav-link" href="BTPI.html">BTPI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPCF.html">BTPCF</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BCH.html">BCH</a></li>
+                    <li class="nav-item"><a class="nav-link btn-nav-accent text-white" href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="text-white font-tech mb-4 fw-bold">UBICACIÓN</h6>
+                    <p class="text-secondary small mb-2">
+                        Aldea Agua Blanca Sur,<br>El Progreso, Yoro, Honduras.
+                    </p>
+                    <p class="text-secondary small">
+                        <strong>Oficinas:</strong> +504 2647-1234<br>
+                        <strong>Email:</strong> info@igpmicheletti.edu
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom text-center">
+                <p class="mb-0">
+                    &copy; 2026 | Diseñado y Desarrollado por la Promoción de 21 Alumnos de 12vo Bachillerato Técnico Profesional en Informática (BTPI) | <span class="text-danger">Innovación, Excelencia y Polivalencia</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        /* ========================================================================
+        A. EFECTOS DINÁMICOS AL SCROLLEAR (NAVEGACIÓN PEGAJOSA)
+        ========================================================================
+        */
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.custom-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        /* ========================================================================
+        B. MOTOR GRÁFICO DE PARTÍCULAS DE FONDO (CANVAS HTML5)
+        ========================================================================
+        */
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        // CORRECCIÓN: Volver a inicializar partículas al cambiar tamaño de pantalla para evitar vacíos o sobresaturación
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.4 - 0.2;
+                this.color = Math.random() > 0.5 ? 'rgba(225, 29, 72, 0.15)' : 'rgba(59, 130, 246, 0.15)';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                else if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                else if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            const numberOfParticles = Math.floor((canvas.width * canvas.height) / 10000);
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        /* ========================================================================
+        C. SIMULADOR DE CONSOLA DE COMANDOS INTERACTIVA CON MALLA ACTUALIZADA
+        ========================================================================
+        */
+        const inputField = document.getElementById('terminalCommandInput');
+        const outputArea = document.getElementById('terminalOutput');
+        const terminalContainer = document.getElementById('terminalContainer');
+
+        // MEJORA DE UX: Hacer foco automático en el input al dar clic en cualquier parte de la terminal
+        terminalContainer.addEventListener('click', () => {
+            inputField.focus();
+        });
+
+        const commands = {
+            help: "Comandos disponibles: <br> - <b>btpi</b>: Resumen de la carrera.<br> - <b>materias</b>: Lista las asignaturas por año.<br> - <b>contacto</b>: Información central de contacto del colegio.<br> - <b>clear</b>: Limpia el historial de la terminal.<br> - <b>requisitos</b>: Muestra las normas de permanencia.",
+            btpi: "<b>Bachillerato Técnico Profesional en Informática:</b><br>Curso final de 12vo grado en el año 2026. Consta de <b>21 estudiantes</b>, profesores altamente capacitados y laboratorios equipados en Agua Blanca Sur.",
+            materias: "<b>Asignaturas Clave de BTPI por Grado:</b><br>- <b>10mo Grado:</b> Informática Básica, Bases de Word, Bases de Excel, Lógica de Programación.<br>- <b>11vo Grado:</b> Programación, Ofimática de Word, Excel y Access, Bases de Mantenimiento, Bases de Estética Digital.<br>- <b>12vo Grado:</b> Programación Avanzada en Visual Studio, Páginas Web, Gestión Empresarial, Redes Informáticas.",
+            contacto: "<b>IGP Roberto Micheletti Bain:</b><br>Ubicación: Agua Blanca Sur, El Progreso, Yoro.<br>Correo: info@igpmicheletti.edu<br>Admisiones: Abiertas para la promoción 2027.",
+            requisitos: "<b>Requisitos de Permanencia en la Especialidad:</b><br>1. Aprobación completa del Ciclo Común.<br>2. Cumplimiento absoluto del reglamento de laboratorios.<br>3. 800 horas reglamentarias de práctica y aprobación del TES."
+        };
+
+        inputField.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                const rawCommand = inputField.value.trim();
+                const command = rawCommand.toLowerCase();
+                
+                // Generar nueva línea de prompt estática en el historial
+                const promptLine = document.createElement('p');
+                promptLine.innerHTML = `<span class="terminal-prompt">guest@btpi_2026:~$</span> ${rawCommand}`;
+                outputArea.insertBefore(promptLine, inputField.parentElement);
+
+                // Evaluar Comando
+                if (command === 'clear') {
+                    outputArea.innerHTML = '';
+                    // Re-inyectar el contenedor del input tras limpiar
+                    const inputContainer = document.createElement('div');
+                    inputContainer.className = 'd-flex align-items-center';
+                    inputContainer.innerHTML = `<span class="terminal-prompt">guest@btpi_2026:~$</span>&nbsp;<input type="text" class="terminal-input" id="terminalCommandInput" autocomplete="off">`;
+                    outputArea.appendChild(inputContainer);
+                    
+                    // Reasignar el listener y la variable al nuevo elemento input creado
+                    const newInput = inputContainer.querySelector('input');
+                    newInput.addEventListener('keydown', arguments.callee);
+                    document.getElementById('terminalCommandInput').id = ''; // remover ID viejo si existiese
+                    newInput.id = 'terminalCommandInput';
+                    // Actualizar referencia global
+                    window.inputFieldRef = newInput; 
+                    newInput.focus();
+                    return;
+                } else if (commands[command]) {
+                    const responseLine = document.createElement('p');
+                    responseLine.innerHTML = commands[command];
+                    outputArea.insertBefore(responseLine, inputField.parentElement);
+                } else if (command !== "") {
+                    const errorLine = document.createElement('p');
+                    errorLine.innerHTML = `<span class="text-danger">Comando no encontrado: '${rawCommand}'.</span> Escribe 'help' para comandos válidos.`;
+                    outputArea.insertBefore(errorLine, inputField.parentElement);
+                }
+
+                // Reiniciar Entrada (si no se usó clear)
+                const currentInput = document.getElementById('terminalCommandInput') || inputField;
+                currentInput.value = '';
+                
+                // Auto-scroll hacia abajo de la terminal
+                outputArea.scrollTop = outputArea.scrollHeight;
+            }
+        });
+
+        /* ========================================================================
+        D. CARRETE DE IMÁGENES / CAROUSEL DINÁMICO MANUAL Y AUTOMÁTICO
+        ========================================================================
+        */
+        const sliderWrapper = document.getElementById('sliderWrapper');
+        const sliderDots = document.getElementById('sliderDots');
+        const slides = document.querySelectorAll('.slide-item');
+        let currentSlide = 0;
+        let slideInterval;
+
+        // Generar Indicadores Dinámicamente
+        slides.forEach((slide, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+                resetSlideTimer();
+            });
+            sliderDots.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function updateSlider() {
+            sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+        }
+
+        function startSlideTimer() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetSlideTimer() {
+            clearInterval(slideInterval);
+            startSlideTimer();
+        }
+
+        // Iniciar Temporizador del Slider
+        startSlideTimer();
+    </script>
+</body>
+</html>    

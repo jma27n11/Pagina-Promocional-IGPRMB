@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contacto y Admisiones | IGP Roberto Micheletti Bain</title>
+    
+    <!-- Fuentes Premium y Tipografía de Sistema Tecnológico -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;600;700;900&family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- CDNs Estables de Bootstrap, Icons y Animaciones -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        /* 
+        ========================================================================
+        1. SISTEMA DE DISEÑO AVANZADO - VARIABLES Y PALETA DE COLORES (ROJO)
+        ========================================================================
+        */
+        :root {
+            --bg-dark: #020617;
+            --bg-card: rgba(15, 23, 42, 0.65);
+            --accent-red: #e11d48;
+            --accent-red-dark: #be123c;
+            --accent-blue: #2563eb;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --font-main: 'Inter', sans-serif;
+            --font-title: 'Montserrat', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            --font-tech: 'Space Grotesk', sans-serif;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --glow-red: 0 0 25px rgba(225, 29, 72, 0.4);
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 
+        ========================================================================
+        2. NORMALIZACIÓN Y SCROLLBAR PERSONALIZADO (ROJO CARMESÍ)
+        ========================================================================
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-red), var(--accent-red-dark));
+            border-radius: 5px;
+        }
+
+        /* 
+        ========================================================================
+        3. CAPA DE INTERFAZ GRÁFICA DE FONDO (CANVAS Y RED TECNOLÓGICA)
+        ========================================================================
+        */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, #1e080f 0%, #020617 100%);
+        }
+
+        .tech-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(225, 29, 72, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(225, 29, 72, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* 
+        ========================================================================
+        4. MENÚ DE NAVEGACIÓN FUTURISTA (LINKS REALES MULTIPÁGINA)
+        ========================================================================
+        */
+        .custom-nav {
+            background: rgba(2, 6, 23, 0.85) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 1.2rem 0;
+            transition: var(--transition-smooth);
+            z-index: 1000;
+        }
+
+        .custom-nav.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(2, 6, 23, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-brand-tech {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #ffffff !important;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand-tech span {
+            color: var(--accent-red);
+        }
+
+        .nav-link {
+            color: var(--text-dim) !important;
+            font-family: var(--font-tech);
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition-smooth);
+            margin: 0 8px;
+            padding: 8px 16px !important;
+            border-radius: 6px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff !important;
+            background: rgba(225, 29, 72, 0.08);
+            text-shadow: 0 0 10px rgba(225, 29, 72, 0.5);
+        }
+
+        .btn-nav-accent {
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red) !important;
+            font-family: var(--font-tech);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            border-radius: 50px;
+            padding: 6px 20px !important;
+            transition: var(--transition-smooth);
+            background: rgba(225, 29, 72, 0.05);
+        }
+
+        .btn-nav-accent:hover, .btn-nav-accent.active {
+            background: var(--accent-red) !important;
+            color: #ffffff !important;
+            box-shadow: var(--glow-red);
+            transform: translateY(-2px);
+        }
+
+        /* 
+        ========================================================================
+        5. HERO SECTION DE CONTACTO (DISEÑO ROJO RADIAL)
+        ========================================================================
+        */
+        .hero-special {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top right, rgba(225, 29, 72, 0.12), transparent 50%);
+            padding-top: 140px;
+            position: relative;
+        }
+
+        .badge-btp {
+            background: rgba(225, 29, 72, 0.08);
+            border: 1px solid rgba(225, 29, 72, 0.3);
+            color: var(--accent-red);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(225, 29, 72, 0.1);
+        }
+
+        .main-title {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to bottom, #ffffff 40%, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-glow-red {
+            -webkit-text-fill-color: var(--accent-red);
+            text-shadow: 0 0 20px rgba(225, 29, 72, 0.6);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 650px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* 
+        ========================================================================
+        6. CONTENEDORES GLASSMORPHIC DE CRISTAL
+        ========================================================================
+        */
+        .section-padding {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-tag {
+            font-family: var(--font-mono);
+            color: var(--accent-red);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-weight: 800;
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+        }
+
+        .card-internship {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 40px;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(15px);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-internship::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent-red);
+            opacity: 0.7;
+        }
+
+        .card-internship:hover {
+            border-color: rgba(225, 29, 72, 0.3);
+            transform: translateY(-5px);
+            background: rgba(15, 23, 42, 0.85);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 
+        ========================================================================
+        7. FORMULARIO DE ADMISIÓN DE ALTO NIVEL (ROJO CARMESÍ)
+        ========================================================================
+        */
+        .form-container-cyber {
+            background: #090e1a;
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            font-family: var(--font-tech);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            overflow: hidden;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .form-header-cyber {
+            background: #0f182e;
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .window-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #eab308; }
+        .dot-blue { background: #2563eb; }
+
+        .form-body-cyber {
+            padding: 40px;
+        }
+
+        .input-title-cyber {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+            font-family: var(--font-main);
+            letter-spacing: 0.3px;
+        }
+
+        .calc-input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            color: #ffffff;
+            padding: 14px 18px;
+            border-radius: 8px;
+            width: 100%;
+            font-family: var(--font-main);
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+        }
+
+        .calc-input:focus {
+            outline: none;
+            border-color: var(--accent-red);
+            box-shadow: var(--glow-red);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .calc-input::placeholder {
+            color: #4b5563;
+        }
+
+        /* Notificación de Éxito en Formulario */
+        .success-notification {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: none;
+            font-family: var(--font-main);
+        }
+
+        select.calc-input {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            background-size: 16px;
+            padding-right: 45px;
+        }
+
+        /* Botón de envío cibernético */
+        .btn-cyber {
+            font-family: var(--font-tech);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 16px 36px;
+            border-radius: 6px;
+            transition: var(--transition-smooth);
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+            border: 1px solid var(--accent-red);
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-cyber-red {
+            background: var(--accent-red);
+            color: #ffffff;
+            box-shadow: var(--glow-red);
+        }
+
+        .btn-cyber-red:hover {
+            background: var(--accent-red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 0 35px rgba(225, 29, 72, 0.7);
+            color: #ffffff;
+        }
+
+        /* 
+        ========================================================================
+        8. INTERFAZ DE CONSULTA DE ESTADO DE ADMISIÓN (TERMINAL CYBER)
+        ========================================================================
+        */
+        .terminal-container {
+            background: #090a10;
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            font-family: var(--font-mono);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .terminal-header {
+            background: #11131e;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .terminal-output {
+            padding: 30px;
+            min-height: 200px;
+            color: #e11d48;
+            font-size: 0.9rem;
+            overflow-y: auto;
+        }
+
+        .terminal-prompt {
+            color: var(--accent-red);
+        }
+
+        /* 
+        ========================================================================
+        9. FOOTER CYBER ELECTRÓNICO (SIN REDES SOCIALES NI PROMO UNAH)
+        ========================================================================
+        */
+        .footer-cyber {
+            background: #010409;
+            border-top: 1px solid var(--border-glass);
+            padding: 100px 0 40px;
+            position: relative;
+        }
+
+        .footer-cyber::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), var(--accent-blue), transparent);
+        }
+
+        .footer-title {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-logo-span {
+            color: var(--accent-red);
+        }
+
+        .footer-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links-list li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links-list a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-family: var(--font-tech);
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            display: inline-block;
+        }
+
+        .footer-links-list a:hover {
+            color: var(--accent-red);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-glass);
+            margin-top: 60px;
+            padding-top: 30px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        /* 
+        ========================================================================
+        10. RESPONSIVE MEDIA QUERIES (DISPOSITIVOS MÓVILES)
+        ========================================================================
+        */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: #020617;
+                border: 1px solid var(--border-glass);
+                border-radius: 12px;
+                padding: 20px;
+                margin-top: 15px;
+            }
+            
+            .nav-link {
+                margin: 5px 0;
+            }
+            
+            .btn-nav-accent {
+                margin-top: 10px;
+                display: inline-block;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .form-body-cyber {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Capas Ambientales del Ecosistema de Fondo -->
+    <canvas id="particles-canvas"></canvas>
+    <div class="tech-grid"></div>
+
+    <!-- Menú de Navegación Tradicional Superior -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-nav sticky-top">
+        <div class="container">
+            <a class="navbar-brand-tech" href="index.html"> 
+                <i class="fa-solid fa-square-envelope me-2 text-danger"></i>IGP <span class="ms-1 footer-logo-span">MICHELETTI</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMainGrid" aria-controls="navMainGrid" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navMainGrid">
+                <ul class="navbar-nav ms-auto align-items-center">
+                      <li class="nav-item"><a class="nav-link" href="index.html">Index</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Historia.html">Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="colegio.html">Colegio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Ciclo.html">Ciclo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPI.html">BTPI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPCF.html">BTPCF</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="BCH.html">BCH</a></li>
+                    <li class="nav-item"><a class="nav-link btn-nav-accent text-white" href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Hero de Contacto y Admisiones -->
+    <header class="hero-special">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7 text-start animate__animated animate__fadeInLeft">
+                    <span class="badge-btp">PROCESO DE ADMISIÓN DIGITAL 2026</span>
+                    <h1 class="main-title">ÚNETE A NUESTRA <br><span class="text-glow-red">COMUNIDAD ACADÉMICA</span></h1>
+                    <p class="hero-desc">
+                        Inicia el proceso de inscripción para el año lectivo en el Instituto Gubernamental Polivalente Roberto Micheletti Bain. Completa el registro digital seguro para asegurar un cupo en la especialidad de tu preferencia.
+                    </p>
+                </div>
+                <div class="col-lg-5 animate__animated animate__fadeInRight">
+                    <div class="card-internship text-center" style="border-color: rgba(225, 29, 72, 0.2);">
+                        <i class="fa-solid fa-paper-plane text-danger mb-4" style="font-size: 3rem; filter: drop-shadow(0 0 10px rgba(225, 29, 72, 0.5));"></i>
+                        <h4 class="text-white mb-3">Admisión en Línea</h4>
+                        <p class="text-secondary small">Llena el expediente digital sin necesidad de moverte de casa. Rápido, transparente y seguro.</p>
+                        <hr class="border-secondary my-4">
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <span class="d-block text-muted small">Estado</span>
+                                <span class="text-success fw-bold font-tech fs-6">Habilitado</span>
+                            </div>
+                            <div class="col-6">
+                                <span class="d-block text-muted small">Periodo</span>
+                                <span class="text-white fw-bold font-tech fs-6">I Semestre</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de Formulario de Registro e Información -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Columna Informativa de Requisitos -->
+                <div class="col-lg-4">
+                    <span class="section-tag">Instrucciones</span>
+                    <h2 class="section-title text-white mb-4">Requisitos de Inscripción</h2>
+                    <p class="text-secondary mb-4">
+                        Para culminar con éxito el expediente escolar de ingreso en el IGP Roberto Micheletti Bain, recuerda tener a la mano la siguiente documentación de tus encargados antes de proceder con el llenado del registro:
+                    </p>
+                    
+                    <div class="p-4 bg-dark rounded border border-secondary mb-4">
+                        <h5 class="text-white mb-3"><i class="fa-solid fa-id-card text-danger me-2"></i>Encargado Legal</h5>
+                        <p class="text-secondary small mb-0">Es estrictamente obligatorio ingresar el Número de Identidad del Padre, Madre o Tutor encargado directo del alumno para validar el registro y agendar la entrevista presencial posterior.</p>
+                    </div>
+
+                    <div class="p-4 bg-dark rounded border border-secondary">
+                        <h5 class="text-white mb-3"><i class="fa-solid fa-file-circle-check text-danger me-2"></i>Puntos a Validar</h5>
+                        <ul class="text-secondary small list-unstyled">
+                            <li class="mb-2"><i class="fa-solid fa-caret-right text-danger me-2"></i>Nombre completo sin errores ortográficos.</li>
+                            <li class="mb-2"><i class="fa-solid fa-caret-right text-danger me-2"></i>Número de teléfono activo del encargado.</li>
+                            <li class="mb-2"><i class="fa-solid fa-caret-right text-danger me-2"></i>Especialidad o ciclo correcto a cursar.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Columna del Formulario de Inscripción -->
+                <div class="col-lg-8">
+                    <div class="form-container-cyber animate__animated animate__fadeInUp">
+                        <div class="form-header-cyber">
+                            <div>
+                                <span class="window-dot dot-red"></span>
+                                <span class="window-dot dot-yellow"></span>
+                                <span class="window-dot dot-blue"></span>
+                            </div>
+                            <span class="text-muted small font-mono">igp_registro_expediente_2026.sh</span>
+                        </div>
+                        <div class="form-body-cyber">
+                            <!-- Contenedor para mensajes de éxito sin recargar la página -->
+                            <div id="successNotification" class="success-notification"></div>
+                            
+                            <form id="admissionForm" onsubmit="registrarExpediente(event)">
+                                <h4 class="text-white mb-4"><i class="fa-solid fa-user-graduate text-danger me-2"></i>Datos del Estudiante Aspirante</h4>
+                                
+                                <div class="row g-4 mb-5">
+                                    <div class="col-md-6">
+                                        <label class="input-title-cyber">Nombre Completo del Estudiante</label>
+                                        <input type="text" id="studentName" class="calc-input" placeholder="Ej: Juan Antonio López" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="input-title-cyber">Fecha de Nacimiento</label>
+                                        <input type="date" id="studentBirth" class="calc-input" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="input-title-cyber">Género</label>
+                                        <select id="studentGender" class="calc-input" required>
+                                            <option value="" disabled selected>Seleccione género</option>
+                                            <option value="M">Masculino</option>
+                                            <option value="F">Femenino</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="input-title-cyber">Último Centro Educativo de Procedencia</label>
+                                        <input type="text" id="previousSchool" class="calc-input" placeholder="Ej: Escuela Francisco Morazán" required>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="input-title-cyber">Nivel o Bachillerato al que Aplica</label>
+                                        <select id="academicArea" class="calc-input" required>
+                                            <option value="" disabled selected>Seleccione el plan de estudios</option>
+                                            <option value="Ciclo Común (7mo, 8vo, 9no)">Ciclo Común de Educación Básica (7mo, 8vo, 9no)</option>
+                                            <option value="BTPI - Bachillerato Técnico Profesional en Informática">BTP en Informática (BTPI)</option>
+                                            <option value="BTPCF - Bachillerato en Contaduría y Finanzas">BTP en Contaduría y Finanzas (BTPCF)</option>
+                                            <option value="BCH - Bachillerato en Ciencias y Humanidades">Bachillerato en Ciencias y Humanidades (BCH)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <h4 class="text-white mb-4"><i class="fa-solid fa-users text-danger me-2"></i>Datos del Padre, Madre o Encargado</h4>
+                                
+                                <div class="row g-4 mb-5">
+                                    <div class="col-md-6">
+                                        <label class="input-title-cyber">Nombre del Encargado Legal</label>
+                                        <input type="text" id="parentName" class="calc-input" placeholder="Ej: María Elena López" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="input-title-cyber">N° de Identidad del Encargado (DNI)</label>
+                                        <input type="text" id="parentId" class="calc-input" placeholder="0000-0000-00000" pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}" title="Formato requerido: 13 dígitos separados por guiones (xxxx-xxxx-xxxxx)" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="input-title-cyber">Número de Teléfono del Encargado</label>
+                                        <input type="tel" id="parentPhone" class="calc-input" placeholder="Ej: 9999-9999" pattern="[0-9]{4}-[0-9]{4}" title="Formato requerido: xxxx-xxxx" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="input-title-cyber">Correo Electrónico de Contacto</label>
+                                        <input type="email" id="parentEmail" class="calc-input" placeholder="correo@ejemplo.com" required>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="input-title-cyber">Dirección de Residencia de la Familia</label>
+                                        <textarea id="address" class="calc-input" rows="3" placeholder="Indicar comunidad, aldea o barrio de residencia en Agua Blanca Sur o zonas aledañas" required></textarea>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn-cyber btn-cyber-red text-center">Registrar Expediente Escolar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Preguntas y Respuestas (FAQs) -->
+    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <span class="section-tag">RESOLUCIÓN DE DUDAS</span>
+                    <h2 class="section-title text-white mb-4">Preguntas Frecuentes</h2>
+                    <p class="text-secondary mb-5">Encuentra respuestas rápidas a las inquietudes más comunes formuladas por padres de familia y futuros estudiantes del instituto.</p>
+                </div>
+            </div>
+            
+            <div class="row g-4 justify-content-center text-start">
+                <div class="col-md-6">
+                    <div class="card-internship h-100" style="border-color: rgba(225, 29, 72, 0.15);">
+                        <h5 class="text-white mb-3"><i class="fa-solid fa-circle-question text-danger me-2"></i>¿Tiene algún costo la matrícula o las clases?</h5>
+                        <p class="text-secondary small mb-0">No. Al tratarse de un instituto oficial gubernamental público, la matrícula y las mensualidades son completamente gratuitas. Únicamente se acuerdan aportaciones voluntarias consensuadas por la Asociación de Padres de Familia para mejoras logísticas.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-internship h-100" style="border-color: rgba(225, 29, 72, 0.15);">
+                        <h5 class="text-white mb-3"><i class="fa-solid fa-circle-question text-danger me-2"></i>¿Cuáles son los horarios de las jornadas?</h5>
+                        <p class="text-secondary small mb-0">Las clases se desarrollan de lunes a viernes. Los horarios específicos de clases de aula y laboratorios prácticos se asignan de acuerdo con el grado y sección al inicio del año escolar para asegurar una cobertura académica completa.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-internship h-100" style="border-color: rgba(225, 29, 72, 0.15);">
+                        <h5 class="text-white mb-3"><i class="fa-solid fa-circle-question text-danger me-2"></i>¿Cómo se efectúan los traslados desde otro centro?</h5>
+                        <p class="text-secondary small mb-0">Para estudiantes de traslado, se debe de realizar el registro digital en esta sección y adjuntar posteriormente en dirección el expediente académico de estudios previos certificado y una carta de buena conducta.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-internship h-100" style="border-color: rgba(225, 29, 72, 0.15);">
+                        <h5 class="text-white mb-3"><i class="fa-solid fa-circle-question text-danger me-2"></i>¿El uso del uniforme oficial es obligatorio?</h5>
+                        <p class="text-secondary small mb-0">Sí, el uso del uniforme institucional diario y el de educación física es de carácter obligatorio para resguardar la identidad, el orden y la seguridad interna de los jóvenes del centro educativo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER ELECTRONICO FUTURISTA-->
+    <footer class="footer-cyber">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h4 class="footer-title text-white">IGP <span class="footer-logo-span">MICHELETTI</span></h4>
+                    <p class="text-secondary small mb-4">
+                        Instituto Gubernamental Polivalente Roberto Micheletti Bain. Forjando profesionales de alto rendimiento en informática, contaduría, ciencias y humanidades en Agua Blanca Sur, El Progreso, Yoro.
+                    </p>
+                </div>
+                
+                <!-- Columna Navegación Multipage -->
+                <div class="col-lg-3 col-md-4">
+                    <h6 class="text-white font-tech mb-4 fw-bold">NAVEGACIÓN PRINCIPAL</h6>
+                    <ul class="footer-links-list">
+                              <ul class="footer-links-list">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Index</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Historia.html">Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="colegio.html">Colegio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Ciclo.html">Ciclo</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-4">
+                    <h6 class="text-white font-tech mb-4 fw-bold">DOCUMENTOS DE INTERÉS</h6>
+                    <ul class="footer-links-list">
+                    <li class="nav-item"><a class="nav-link" href="BTPI.html">BTPI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPCF.html">BTPCF</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BCH.html">BCH</a></li>
+                    <li class="nav-item"><a class="nav-link btn-nav-accent text-white" href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <!-- Columna Información de Ubicación -->
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="text-white font-tech mb-4 fw-bold">UBICACIÓN</h6>
+                    <p class="text-secondary small mb-2">
+                        Aldea Agua Blanca Sur,<br>El Progreso, Yoro, Honduras.
+                    </p>
+                    <p class="text-secondary small">
+                        <strong>Oficinas:</strong> +504 2647-XXXX<br>
+                        <strong>Email:</strong> info@igpmicheletti.edu
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Barra de Créditos Final -->
+            <div class="footer-bottom text-center">
+                <p class="mb-0">
+                    &copy; 2026 | Diseñado y Desarrollado por la Promoción de 12vo Bachillerato Técnico Profesional en Informática (BTPI) | <span class="text-danger">Innovación, Excelencia y Polivalencia</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================================
+         SCRIPTS: LÓGICA DE PARTÍCULAS, EXPEDIENTE Y FORMULARIO
+         ========================================================================= -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        /* 
+        ========================================================================
+        A. EFECTOS DINÁMICOS AL SCROLLEAR (NAVEGACIÓN PEGAJOSA)
+        ========================================================================
+        */
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.custom-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        /* 
+        ========================================================================
+        B. MOTOR GRÁFICO DE PARTÍCULAS DE FONDO (CANVAS - ROJO CARMESÍ)
+        ========================================================================
+        */
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.4 - 0.2;
+                this.color = Math.random() > 0.5 ? 'rgba(225, 29, 72, 0.15)' : 'rgba(59, 130, 246, 0.15)';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                else if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                else if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            const numberOfParticles = Math.floor((canvas.width * canvas.height) / 10000);
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        /* 
+        ========================================================================
+        C. MÁSCARAS DE ENTRADA Y FORMATEO DE CAMPOS EN TIEMPO REAL
+        ========================================================================
+        */
+        const inputId = document.getElementById('parentId');
+        const inputPhone = document.getElementById('parentPhone');
+
+        // Formateador automático para DNI de Honduras (0000-0000-00000)
+        function formatId(element) {
+            element.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/[^0-9]/g, '');
+                let formatted = '';
+                if (value.length > 0) {
+                    formatted += value.substring(0, 4);
+                }
+                if (value.length > 4) {
+                    formatted += '-' + value.substring(4, 8);
+                }
+                if (value.length > 8) {
+                    formatted += '-' + value.substring(8, 13);
+                }
+                e.target.value = formatted;
+            });
+        }
+
+        formatId(inputId);
+
+        // Formateador automático para Teléfono de Honduras (0000-0000)
+        inputPhone.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/[^0-9]/g, '');
+            let formatted = '';
+            if (value.length > 0) {
+                formatted += value.substring(0, 4);
+            }
+            if (value.length > 4) {
+                formatted += '-' + value.substring(4, 8);
+            }
+            e.target.value = formatted;
+        });
+
+        /* 
+        ========================================================================
+        D. PROCESAMIENTO E INSCRIPCIÓN DE EXPEDIENTES (ALMACENAMIENTO DINÁMICO)
+        ========================================================================
+        */
+        function registrarExpediente(event) {
+            event.preventDefault();
+
+            const stName = document.getElementById('studentName').value;
+            const area = document.getElementById('academicArea').value;
+            const prName = document.getElementById('parentName').value;
+            const prPhone = document.getElementById('parentPhone').value;
+
+            // Mostrar retroalimentación de éxito sobre el formulario
+            const notification = document.getElementById('successNotification');
+            notification.innerHTML = `
+                <div class="d-flex align-items-start">
+                    <i class="fa-solid fa-circle-check fs-4 me-3 mt-1 text-success"></i>
+                    <div>
+                        <strong class="d-block mb-1 text-white font-tech">¡Expediente Registrado con Éxito!</strong>
+                        <span class="small text-secondary d-block mb-2">Estimado(a) ${prName}, hemos ingresado al sistema la postulación de ${stName} en el plan: <strong>${area}</strong>.</span>
+                        <span class="small text-secondary d-block">En las próximas 48 horas hábiles le llamaremos al número ${prPhone} para concretar la cita presencial de admisión.</span>
+                    </div>
+                </div>
+            `;
+            notification.style.display = 'block';
+
+            // Hacer scroll animado de manera fluida al aviso
+            notification.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Limpiar formulario de forma segura
+            document.getElementById('admissionForm').reset();
+        }
+    </script>
+</body>
+</html>

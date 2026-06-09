@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bachillerato Técnico Profesional en Contaduría y Finanzas | IGP Micheletti Bain</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;600;700;900&family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        /* ========================================================================
+        1. SISTEMA DE DISEÑO AVANZADO - VARIABLES Y PALETA DE COLORES (NARANJA CORPO)
+        ========================================================================
+        */
+        :root {
+            --bg-dark: #020617;
+            --bg-card: rgba(15, 23, 42, 0.65);
+            --accent-red: #e11d48;
+            --accent-blue: #3b82f6;
+            --accent-orange: #f97316;
+            --accent-orange-dark: #ea580c;
+            --accent-purple: #8b5cf6;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --font-main: 'Inter', sans-serif;
+            --font-title: 'Montserrat', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            --font-tech: 'Space Grotesk', sans-serif;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --glow-orange: 0 0 25px rgba(249, 115, 22, 0.4);
+            --glow-red: 0 0 25px rgba(225, 29, 72, 0.4);
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ========================================================================
+        2. NORMALIZACIÓN Y SCROLLBAR PERSONALIZADO (COLOR CONTABILIDAD / NARANJA)
+        ========================================================================
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-orange), var(--accent-blue));
+            border-radius: 5px;
+        }
+
+        /* ========================================================================
+        3. CAPA DE INTERFAZ GRÁFICA DE FONDO (CANVAS Y RED FINANCIERA)
+        ========================================================================
+        */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, #1a0f08 0%, #020617 100%);
+        }
+
+        .tech-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(249, 115, 22, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(249, 115, 22, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ========================================================================
+        4. MENÚ DE NAVEGACIÓN FUTURISTA
+        ========================================================================
+        */
+        .custom-nav {
+            background: rgba(2, 6, 23, 0.85) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 1.2rem 0;
+            transition: var(--transition-smooth);
+            z-index: 1000;
+        }
+
+        .custom-nav.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(2, 6, 23, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-brand-tech {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #ffffff !important;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand-tech span {
+            color: var(--accent-orange);
+        }
+
+        .nav-link {
+            color: var(--text-dim) !important;
+            font-family: var(--font-tech);
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition-smooth);
+            margin: 0 8px;
+            padding: 8px 16px !important;
+            border-radius: 6px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff !important;
+            background: rgba(249, 115, 22, 0.08);
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+        }
+
+        .btn-nav-accent {
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red) !important;
+            font-family: var(--font-tech);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            border-radius: 50px;
+            padding: 6px 20px !important;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-nav-accent:hover {
+            background: var(--accent-red) !important;
+            color: #ffffff !important;
+            box-shadow: var(--glow-red);
+            transform: translateY(-2px);
+        }
+
+        /* ========================================================================
+        5. HERO SECTION DEL BTPCF (ESTILO RADIAL NARANJA EXCEPCIONAL)
+        ========================================================================
+        */
+        .hero-special {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.12), transparent 50%);
+            padding-top: 140px;
+            position: relative;
+        }
+
+        .badge-btp {
+            background: rgba(249, 115, 22, 0.08);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            color: var(--accent-orange);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.1);
+        }
+
+        .main-title {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: clamp(2.5rem, 6vw, 4.8rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to bottom, #ffffff 40%, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-glow-orange {
+            -webkit-text-fill-color: var(--accent-orange);
+            text-shadow: 0 0 20px rgba(249, 115, 22, 0.6);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 650px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+        }
+
+        .btn-cyber {
+            font-family: var(--font-tech);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 16px 36px;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cyber-orange {
+            background: var(--accent-orange);
+            color: #ffffff;
+            border: 1px solid var(--accent-orange);
+            box-shadow: var(--glow-orange);
+        }
+
+        .btn-cyber-orange:hover {
+            background: var(--accent-orange-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(249, 115, 22, 0.7);
+            color: #ffffff;
+        }
+
+        .btn-cyber-outline {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            margin-left: 15px;
+        }
+
+        .btn-cyber-outline:hover {
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-3px);
+            color: #ffffff;
+        }
+
+        /* ========================================================================
+        6. SECCIÓN DE PERFIL Y DATOS CLAVE
+        ========================================================================
+        */
+        .section-padding {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 70px;
+        }
+
+        .section-tag {
+            font-family: var(--font-mono);
+            color: var(--accent-orange);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-weight: 800;
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+        }
+
+        .card-internship {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 40px;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(15px);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-internship::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent-orange);
+            opacity: 0.7;
+        }
+
+        .card-internship:hover {
+            border-color: rgba(249, 115, 22, 0.3);
+            transform: translateY(-8px);
+            background: rgba(15, 23, 42, 0.85);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .skill-tag {
+            background: rgba(249, 115, 22, 0.08);
+            color: #ff9d5c;
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-family: var(--font-tech);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 10px;
+            display: inline-block;
+            transition: var(--transition-smooth);
+        }
+
+        .skill-tag:hover {
+            background: var(--accent-orange);
+            color: #ffffff;
+            box-shadow: var(--glow-orange);
+        }
+
+        /* ========================================================================
+        7. SIMULADOR FINANCIERO INTERACTIVO (EXCEL / AMORTIZACIÓN)
+        ========================================================================
+        */
+        .financial-container {
+            background: #090d16;
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            font-family: var(--font-tech);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .financial-header {
+            background: #0f172a;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .window-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #eab308; }
+        .dot-orange { background: #f97316; }
+
+        .financial-body {
+            padding: 30px;
+            color: var(--text-main);
+        }
+
+        .calc-input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 6px;
+            width: 100%;
+            font-family: var(--font-mono);
+            transition: var(--transition-smooth);
+        }
+
+        .calc-input:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .result-box {
+            background: rgba(249, 115, 22, 0.05);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* ========================================================================
+        8. MALLA GENERAL Y TARJETAS FORMATIVAS
+        ========================================================================
+        */
+        .pillar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 30px;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(15px);
+            height: 100%;
+        }
+
+        .pillar-card:hover {
+            border-color: var(--accent-orange);
+            transform: scale(1.02);
+            background: rgba(249, 115, 22, 0.02);
+        }
+
+        .pillar-icon {
+            font-size: 2.5rem;
+            color: var(--accent-orange);
+            margin-bottom: 20px;
+            display: block;
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+        }
+
+        .bullet-item {
+            list-style: none;
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .bullet-item::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-orange);
+            font-weight: bold;
+        }
+
+        /* ========================================================================
+        9. REQUISITOS Y TABLAS ESTILIZADAS
+        ========================================================================
+        */
+        .tech-table-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+        }
+
+        .tech-table {
+            width: 100%;
+            color: var(--text-main);
+            border-collapse: collapse;
+        }
+
+        .tech-table th {
+            font-family: var(--font-title);
+            font-weight: 700;
+            color: var(--accent-orange);
+            border-bottom: 2px solid var(--border-glass);
+            padding: 18px;
+            text-align: left;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tech-table td {
+            padding: 18px;
+            border-bottom: 1px solid var(--border-glass);
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .tech-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tech-table tr:hover td {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        /* ========================================================================
+        10. FOOTER CYBER ELECTRÓNICO
+        ========================================================================
+        */
+        .footer-cyber {
+            background: #010409;
+            border-top: 1px solid var(--border-glass);
+            padding: 100px 0 40px;
+            position: relative;
+        }
+
+        .footer-cyber::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-orange), var(--accent-blue), transparent);
+        }
+
+        .footer-title {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-logo-span {
+            color: var(--accent-red);
+        }
+
+        .footer-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links-list li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links-list a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-family: var(--font-tech);
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            display: inline-block;
+        }
+
+        .footer-links-list a:hover {
+            color: var(--accent-orange);
+            transform: translateX(5px);
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-glass);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            margin-right: 12px;
+        }
+
+        .social-btn:hover {
+            background: var(--accent-orange);
+            color: #ffffff;
+            box-shadow: var(--glow-orange);
+            border-color: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-glass);
+            margin-top: 60px;
+            padding-top: 30px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        /* ========================================================================
+        11. RESPONSIVE MEDIA QUERIES (DISPOSITIVOS MÓVILES)
+        ========================================================================
+        */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: #020617;
+                border: 1px solid var(--border-glass);
+                border-radius: 12px;
+                padding: 20px;
+                margin-top: 15px;
+            }
+            
+            .nav-link {
+                margin: 5px 0;
+            }
+            
+            .btn-nav-accent {
+                margin-top: 10px;
+                display: inline-block;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .card-internship {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles-canvas"></canvas>
+    <div class="tech-grid"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark custom-nav sticky-top">
+        <div class="container">
+            <a class="navbar-brand-tech" href="index.html">
+                <i class="fa-solid fa-calculator me-2 text-warning"></i>IGP <span class="ms-1 footer-logo-span" style="color: var(--accent-orange);">BTPCF</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMainGrid" aria-controls="navMainGrid" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navMainGrid">
+                <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Index</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Historia.html">Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="colegio.html">Colegio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Ciclo.html">Ciclo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPI.html">BTPI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPCF.html">BTPCF</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="BCH.html">BCH</a></li>
+                    <li class="nav-item"><a class="nav-link btn-nav-accent text-white" href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-special">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7 text-start animate__animated animate__fadeInLeft">
+                    <span class="badge-btp">BACHILLERATO TÉCNICO PROFESIONAL</span>
+                    <h1 class="main-title">EL MOTOR DE LA <br><span class="text-glow-orange">GESTIÓN FINANCIERA</span></h1>
+                    <p class="hero-desc">
+                        En el Instituto Gubernamental Polivalente Roberto Micheletti Bain, capacitamos a expertos en el análisis riguroso de mercados, leyes fiscales, optimización de presupuestos y modelado analítico complejo. Domina el flujo económico con la formación financiera de mayor prestigio técnico en Agua Blanca Sur.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#malla" class="btn-cyber btn-cyber-orange">Ejes Formativos</a>
+                        <a href="#calculador" class="btn-cyber btn-cyber-outline">Simulador de Análisis</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 animate__animated animate__fadeInRight">
+                    <div class="card-internship text-center" style="border-color: rgba(249, 115, 22, 0.2);">
+                        <i class="fa-solid fa-money-bill-trend-up text-warning mb-4" style="font-size: 3rem; filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.5));"></i>
+                        <h4 class="text-white mb-3">Modelado Financiero</h4>
+                        <p class="text-secondary small">Estudiantes altamente calificados para estructurar la salud fiscal, presupuestaria y contable de organizaciones corporativas.</p>
+                        <hr class="border-secondary my-4">
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <span class="d-block text-muted small">Herramienta Core</span>
+                                <span class="text-white fw-bold font-tech fs-5">Excel Avanzado</span>
+                            </div>
+                            <div class="col-6">
+                                <span class="d-block text-muted small">Trabajo Social</span>
+                                <span class="text-white fw-bold font-tech fs-5">800 Horas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <span class="section-tag">Fundamento Corporativo</span>
+                    <h2 class="section-title text-white mb-4">La Ciencia del <br><span class="text-glow-orange" style="-webkit-text-fill-color: var(--accent-orange);">Control Económico</span></h2>
+                    <p class="text-secondary mb-4">
+                        La carrera de Contaduría y Finanzas (BTPCF) asume el compromiso de moldear líderes del análisis financiero. No desglosamos el aprendizaje de forma aislada; nuestra metodología integra los fundamentos contables globales de forma holística, preparando al estudiante para asimilar de inmediato los retos prácticos del mundo comercial moderno.
+                    </p>
+                    <div class="mb-4">
+                        <span class="skill-tag">Finanzas Corporativas</span>
+                        <span class="skill-tag">Modelado en Excel</span>
+                        <span class="skill-tag">Auditoría Fiscal</span>
+                        <span class="skill-tag">Cálculo de Impuestos</span>
+                        <span class="skill-tag">Presupuestos Analíticos</span>
+                        <span class="skill-tag">Estadística Bancaria</span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card-internship" style="background: rgba(249, 115, 22, 0.02); border-color: rgba(249, 115, 22, 0.1);">
+                        <h4 class="text-white mb-4"><i class="fa-solid fa-vault text-warning me-2"></i>Áreas de Dominio Puro</h4>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <h6 class="text-white"><i class="fa-solid fa-file-invoice-dollar text-warning me-2"></i>Análisis Tributario</h6>
+                                <p class="text-secondary small">Interpretación y liquidación eficiente de obligaciones fiscales, aranceles, ISR e ISV.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="text-white"><i class="fa-solid fa-table text-warning me-2"></i>Modelos en Excel</h6>
+                                <p class="text-secondary small">Estructuración técnica de bases de datos, macros contables, tablas dinámicas y análisis financieros automatizados.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="text-white"><i class="fa-solid fa-scale-balanced text-warning me-2"></i>Auditoría Financiera</h6>
+                                <p class="text-secondary small">Estudio riguroso de balances de comprobación y control interno para mitigar riesgos organizacionales.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="text-white"><i class="fa-solid fa-calculator text-warning me-2"></i>Matemática Aplicada</h6>
+                                <p class="text-secondary small">Estudio de tasas efectivas, nominales, valor del dinero en el tiempo e interés compuesto.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="calculador" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <span class="section-tag">SIMULADOR OPERATIVO</span>
+                    <h2 class="section-title text-white mb-4">Calculadora de Amortización Profesional</h2>
+                    <p class="text-secondary mb-5">Prueba la precisión analítica que desarrollan nuestros estudiantes. Calcula instantáneamente cuotas financieras estructuradas basadas en interés compuesto.</p>
+                    
+                    <div class="financial-container text-start">
+                        <div class="financial-header">
+                            <div>
+                                <span class="window-dot dot-red"></span>
+                                <span class="window-dot dot-yellow"></span>
+                                <span class="window-dot dot-orange"></span>
+                            </div>
+                            <span class="text-muted small font-mono">hoja_calculo_amortizacion.xlsx</span>
+                        </div>
+                        <div class="financial-body">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <h5 class="text-white mb-4"><i class="fa-solid fa-keyboard text-warning me-2"></i>Ingresar Parámetros</h5>
+                                    
+                                    <div class="mb-3">
+                                        <label class="text-secondary small d-block mb-2 font-tech">Monto del Préstamo (Lps)</label>
+                                        <input type="number" id="montoCalc" class="calc-input" value="50000">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="text-secondary small d-block mb-2 font-tech">Tasa de Interés Anual (%)</label>
+                                        <input type="number" id="interesCalc" class="calc-input" value="12">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="text-secondary small d-block mb-2 font-tech">Plazo (Meses)</label>
+                                        <input type="number" id="plazoCalc" class="calc-input" value="12">
+                                    </div>
+                                    
+                                    <button class="btn-cyber btn-cyber-orange w-100 text-center" onclick="calcularFinanzas()">Ejecutar Simulación</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="result-box">
+                                        <h5 class="text-white mb-3"><i class="fa-solid fa-square-poll-vertical text-warning me-2"></i>Resultados del Análisis</h5>
+                                        <div class="mb-3">
+                                            <span class="text-secondary small d-block">Pago Mensual Nivelado:</span>
+                                            <span class="text-warning fs-3 fw-bold font-tech" id="pagoMensual">Lps. 4,442.44</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <span class="text-secondary small d-block">Total de Intereses a Pagar:</span>
+                                            <span class="text-white fs-4 font-tech" id="totalInteres">Lps. 3,309.27</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-secondary small d-block">Pago Total Acumulado:</span>
+                                            <span class="text-white fs-4 font-tech" id="pagoTotal">Lps. 53,309.27</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="malla">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">PERFIL ACADÉMICO</span>
+                <h2 class="section-title text-white">Ejes Clave de Formación Financiera</h2>
+                <div class="mx-auto" style="width: 80px; height: 3px; background: var(--accent-orange); margin-top: 15px;"></div>
+                <p class="text-secondary mt-4 mx-auto" style="max-width: 750px;">
+                    En lugar de un desglose rígido, estructuramos nuestra formación en torno a pilares financieros transversales. Así, nuestros egresados adquieren una visión global, dinámica y de nivel corporativo.
+                </p>
+            </div>
+
+            <div class="row g-4 mt-2">
+                <div class="col-lg-4 col-md-6">
+                    <div class="pillar-card">
+                        <span class="pillar-icon"><i class="fa-solid fa-chart-column"></i></span>
+                        <h4 class="text-white mb-3">Modelado Financiero en Excel</h4>
+                        <p class="text-secondary small mb-4">Desarrollo intensivo y avanzado de habilidades en hojas de cálculo y macros complejas.</p>
+                        <ul>
+                            <li class="bullet-item">Modelado de presupuestos dinámicos</li>
+                            <li class="bullet-item">Macros para contabilidad automatizada</li>
+                            <li class="bullet-item">Análisis y proyección de flujos de caja</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="pillar-card">
+                        <span class="pillar-icon"><i class="fa-solid fa-landmark-flag"></i></span>
+                        <h4 class="text-white mb-3">Auditoría y Leyes Tributarias</h4>
+                        <p class="text-secondary small mb-4">Comprensión rigurosa de los marcos de control interno y las obligaciones tributarias nacionales.</p>
+                        <ul>
+                            <li class="bullet-item">Legislación fiscal de Honduras (SAR)</li>
+                            <li class="bullet-item">Auditoría de balances y estados contables</li>
+                            <li class="bullet-item">Control administrativo de depreciaciones</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="pillar-card">
+                        <span class="pillar-icon"><i class="fa-solid fa-percent"></i></span>
+                        <h4 class="text-white mb-3">Matemática Financiera Pura</h4>
+                        <p class="text-secondary small mb-4">Análisis exhaustivo del dinero en el tiempo aplicado a operations de crédito y banca.</p>
+                        <ul>
+                            <li class="bullet-item">Tablas dinámicas de amortización francesa</li>
+                            <li class="bullet-item">Análisis de tasas activas y pasivas</li>
+                            <li class="bullet-item">Formulación técnica de proyectos viables</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 order-lg-2">
+                    <span class="section-tag">Impacto Comunitario</span>
+                    <h2 class="section-title text-white mb-4">Las 800 Horas de <br>Trabajo Educativo Social (TES)</h2>
+                    <p class="text-secondary mb-4">
+                        Al igual que las demás especialidades de nuestra institución, los estudiantes del Bachillerato en Contaduría y Finanzas asumen su compromiso comunitario dedicando **800 horas obligatorias de Trabajo Educativo Social (TES)** al cuidado y preservación de nuestro entorno común.
+                    </p>
+                    <ul class="text-secondary small list-unstyled">
+                        <li class="mb-3"><i class="fa-solid fa-circle-check text-warning me-2"></i><strong>Proyectos Ambientales:</strong> Ejecución de jornadas de reforestación y creación de áreas verdes en Agua Blanca Sur.</li>
+                        <li class="mb-3"><i class="fa-solid fa-circle-check text-warning me-2"></i><strong>Conservación Ecológica:</strong> Actividades estructuradas para el manejo de residuos y concientización sobre el reciclaje en nuestra comunidad.</li>
+                        <li class="mb-3"><i class="fa-solid fa-circle-check text-warning me-2"></i><strong>Mantenimiento de Entornos:</strong> Limpieza profunda y restauración de espacios públicos escolares y comunitarios locales.</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="card-internship" style="border-color: rgba(249, 115, 22, 0.15);">
+                        <div class="text-center mb-4">
+                            <i class="fa-solid fa-seedling text-warning display-4 mb-3"></i>
+                            <h4 class="text-white">TES de Impacto Ambiental</h4>
+                            <p class="text-secondary small">Cuidando el medio ambiente a través de acciones directas:</p>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col-6 p-2 bg-dark rounded border border-secondary text-center">
+                                <span class="text-warning fw-bold d-block">Ecología</span>
+                                <span class="text-muted small">Reforestación Activa</span>
+                            </div>
+                            <div class="col-6 p-2 bg-dark rounded border border-secondary text-center">
+                                <span class="text-warning fw-bold d-block">Comunidad</span>
+                                <span class="text-muted small">Limpieza de Entornos</span>
+                            </div>
+                            <div class="col-6 p-2 bg-dark rounded border border-secondary text-center">
+                                <span class="text-warning fw-bold d-block">Reciclaje</span>
+                                <span class="text-muted small">Gestión de Residuos</span>
+                            </div>
+                            <div class="col-6 p-2 bg-dark rounded border border-secondary text-center">
+                                <span class="text-warning fw-bold d-block">Conciencia</span>
+                                <span class="text-muted small">Proyectos Verdes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">REQUISITOS</span>
+                <h2 class="section-title text-white">Permanencia e Incorporación</h2>
+                <div class="mx-auto" style="width: 80px; height: 3px; background: var(--accent-orange); margin-top: 15px;"></div>
+            </div>
+            
+            <div class="tech-table-container">
+                <div class="table-responsive">
+                    <table class="tech-table">
+                        <thead>
+                            <tr>
+                                <th>Criterio Requerido</th>
+                                <th>Detalle Administrativo</th>
+                                <th>Estado de Regla</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-white fw-bold">Ciclo Común Aprobado</td>
+                                <td>Culminación completa de los grados previos de educación básica sin asignaturas pendientes.</td>
+                                <td><span class="badge bg-warning text-dark">Obligatorio</span></td>
+                            </tr>
+                            <tr>
+                                <td class="text-white fw-bold">Ética y Transparencia</td>
+                                <td>Cumplimiento absoluto del código ético debido al manejo analítico de información y balances.</td>
+                                <td><span class="badge bg-warning text-dark">Obligatorio</span></td>
+                            </tr>
+                            <tr>
+                                <td class="text-white fw-bold">Evaluación Financiera</td>
+                                <td>Dominio analítico de herramientas lógicas de cálculo indispensables para la aprobación de módulos prácticos.</td>
+                                <td><span class="badge bg-warning text-dark">Obligatorio</span></td>
+                            </tr>
+                            <tr>
+                                <td class="text-white fw-bold">Trabajo Comunitario (TES)</td>
+                                <td>Culminación rigurosa de las 800 horas de servicio comunitario y social acreditadas por el centro escolar.</td>
+                                <td><span class="badge bg-warning text-dark">Obligatorio</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-cyber">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h4 class="footer-title text-white">IGP <span class="footer-logo-span" style="color: var(--accent-orange);">MICHELETTI</span></h4>
+                    <p class="text-secondary small mb-4">
+                        Instituto Gubernamental Polivalente Roberto Micheletti Bain. Forjando profesionales de alto rendimiento en informática, contaduría y valores morales en Agua Blanca Sur, El Progreso, Yoro.
+                    </p>
+                </div>
+                
+                <div class="col-lg-3 col-md-4">
+                    <h6 class="text-white font-tech mb-4 fw-bold">NAVEGACIÓN PRINCIPAL</h6>
+                    <ul class="footer-links-list">
+                             <ul class="footer-links-list">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Index</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Historia.html">Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="colegio.html">Colegio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Ciclo.html">Ciclo</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-4">
+                    <h6 class="text-white font-tech mb-4 fw-bold">DOCUMENTOS DE INTERÉS</h6>
+                    <ul class="footer-links-list">
+                    <li class="nav-item"><a class="nav-link" href="BTPI.html">BTPI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPCF.html">BTPCF</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BCH.html">BCH</a></li>
+                    <li class="nav-item"><a class="nav-link btn-nav-accent text-white" href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4">
+                    <h6 class="text-white font-tech mb-4 fw-bold">UBICACIÓN</h6>
+                    <p class="text-secondary small mb-2">
+                        Aldea Agua Blanca Sur,<br>El Progreso, Yoro, Honduras.
+                    </p>
+                    <p class="text-secondary small">
+                        <strong>Oficinas:</strong> +504 2647-XXXX<br>
+                        <strong>Email:</strong> info@igpmicheletti.edu
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom text-center">
+                <p class="mb-0">
+                    &copy; 2026 | Diseñado y Desarrollado por la Promoción de 12vo Bachillerato Técnico Profesional en Informática (BTPI) | <span class="text-warning">Excelencia, Innovación y Finanzas</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        /* ========================================================================
+        A. EFECTOS DINÁMICOS AL SCROLLEAR (NAVEGACIÓN PEGAJOSA)
+        ========================================================================
+        */
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.custom-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        /* ========================================================================
+        B. MOTOR GRÁFICO DE PARTÍCULAS DE FONDO (COLOR NARANJA FINANZAS)
+        ========================================================================
+        */
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.4 - 0.2;
+                this.color = Math.random() > 0.5 ? 'rgba(249, 115, 22, 0.15)' : 'rgba(59, 130, 246, 0.15)';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                else if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                else if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            const numberOfParticles = Math.floor((canvas.width * canvas.height) / 10000);
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        /* ========================================================================
+        C. LÓGICA DEL SIMULADOR FINANCIERO (INTERÉS COMPUESTO Y CUOTAS NIVELADAS)
+        ========================================================================
+        */
+        function calcularFinanzas() {
+            const principal = parseFloat(document.getElementById('montoCalc').value);
+            const rateYear = parseFloat(document.getElementById('interesCalc').value);
+            const months = parseInt(document.getElementById('plazoCalc').value);
+
+            if (isNaN(principal) || isNaN(rateYear) || isNaN(months) || principal <= 0 || rateYear < 0 || months <= 0) {
+                alert("Por favor, ingrese valores válidos en la simulación de parámetros.");
+                return;
+            }
+
+            // Tasa mensual efectiva
+            const rateMonth = (rateYear / 100) / 12;
+
+            // Fórmula de cuota nivelada francesa: P = [r * PV] / [1 - (1 + r)^-n]
+            let monthlyPayment = 0;
+            if (rateMonth === 0) {
+                monthlyPayment = principal / months;
+            } else {
+                monthlyPayment = (rateMonth * principal) / (1 - Math.pow(1 + rateMonth, -months));
+            }
+
+            const totalRepayment = monthlyPayment * months;
+            const totalInterestPayable = totalRepayment - principal;
+
+            // Formatear resultados como moneda nacional (Lempiras)
+            document.getElementById('pagoMensual').innerText = "Lps. " + monthlyPayment.toLocaleString('es-HN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('totalInteres').innerText = "Lps. " + totalInterestPayable.toLocaleString('es-HN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('pagoTotal').innerText = "Lps. " + totalRepayment.toLocaleString('es-HN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // Ejecución por defecto inicial
+        calcularFinanzas();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bachillerato en Ciencias y Humanidades | IGP Micheletti Bain</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;600;700;900&family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        /* ========================================================================
+        1. SISTEMA DE DISEÑO AVANZADO - VARIABLES Y PALETA DE COLORES (VERDE ACADÉMICO)
+        ========================================================================
+        */
+        :root {
+            --bg-dark: #020617;
+            --bg-card: rgba(15, 23, 42, 0.65);
+            --accent-red: #e11d48;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-green-dark: #059669;
+            --accent-purple: #8b5cf6;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --font-main: 'Inter', sans-serif;
+            --font-title: 'Montserrat', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            --font-tech: 'Space Grotesk', sans-serif;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --glow-green: 0 0 25px rgba(16, 185, 129, 0.4);
+            --glow-red: 0 0 25px rgba(225, 29, 72, 0.4);
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ========================================================================
+        2. NORMALIZACIÓN Y SCROLLBAR PERSONALIZADO (COLOR CIENCIAS / VERDE)
+        ========================================================================
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-green), var(--accent-blue));
+            border-radius: 5px;
+        }
+
+        /* ========================================================================
+        3. CAPA DE INTERFAZ GRÁFICA DE FONDO (CANVAS Y RED CIENTÍFICA)
+        ========================================================================
+        */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, #081a12 0%, #020617 100%);
+        }
+
+        .tech-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(16, 185, 129, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16, 185, 129, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ========================================================================
+        4. MENÚ DE NAVEGACIÓN FUTURISTA
+        ========================================================================
+        */
+        .custom-nav {
+            background: rgba(2, 6, 23, 0.85) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 1.2rem 0;
+            transition: var(--transition-smooth);
+            z-index: 1000;
+        }
+
+        .custom-nav.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(2, 6, 23, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-brand-tech {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: #ffffff !important;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand-tech span {
+            color: var(--accent-green);
+        }
+
+        .nav-link {
+            color: var(--text-dim) !important;
+            font-family: var(--font-tech);
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition-smooth);
+            margin: 0 8px;
+            padding: 8px 16px !important;
+            border-radius: 6px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff !important;
+            background: rgba(16, 185, 129, 0.08);
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        .btn-nav-accent {
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red) !important;
+            font-family: var(--font-tech);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            border-radius: 50px;
+            padding: 6px 20px !important;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-nav-accent:hover {
+            background: var(--accent-red) !important;
+            color: #ffffff !important;
+            box-shadow: var(--glow-red);
+            transform: translateY(-2px);
+        }
+
+        /* ========================================================================
+        5. HERO SECTION DEL BCH (ESTILO RADIAL VERDE EXCEPCIONAL)
+        ========================================================================
+        */
+        .hero-special {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.12), transparent 50%);
+            padding-top: 140px;
+            position: relative;
+        }
+
+        .badge-btp {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--accent-green);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
+        }
+
+        .main-title {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: clamp(2.5rem, 6vw, 4.8rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to bottom, #ffffff 40%, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-glow-green {
+            -webkit-text-fill-color: var(--accent-green);
+            text-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 650px;
+            margin: 0 auto 3rem;
+            font-weight: 300;
+        }
+
+        .btn-cyber {
+            font-family: var(--font-tech);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 16px 36px;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cyber-green {
+            background: var(--accent-green);
+            color: #ffffff;
+            border: 1px solid var(--accent-green);
+            box-shadow: var(--glow-green);
+        }
+
+        .btn-cyber-green:hover {
+            background: var(--accent-green-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(16, 185, 129, 0.7);
+            color: #ffffff;
+        }
+
+        .btn-cyber-outline {
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            margin-left: 15px;
+        }
+
+        .btn-cyber-outline:hover {
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-3px);
+            color: #ffffff;
+        }
+
+        /* ========================================================================
+        6. SECCIÓN DE PERFIL Y DATOS CLAVE
+        ========================================================================
+        */
+        .section-padding {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 70px;
+        }
+
+        .section-tag {
+            font-family: var(--font-mono);
+            color: var(--accent-green);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-weight: 800;
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+        }
+
+        .card-internship {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 40px;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(15px);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-internship::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--accent-green);
+            opacity: 0.7;
+        }
+
+        .card-internship:hover {
+            border-color: rgba(16, 185, 129, 0.3);
+            transform: translateY(-8px);
+            background: rgba(15, 23, 42, 0.85);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .skill-tag {
+            background: rgba(16, 185, 129, 0.08);
+            color: #5effbc;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-family: var(--font-tech);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 10px;
+            display: inline-block;
+            transition: var(--transition-smooth);
+        }
+
+        .skill-tag:hover {
+            background: var(--accent-green);
+            color: #ffffff;
+            box-shadow: var(--glow-green);
+        }
+
+        /* ========================================================================
+        7. SIMULADOR UNIVERSITARIO INTERACTIVO (ORIENTACIÓN Y PAA)
+        ========================================================================
+        */
+        .financial-container {
+            background: #091611;
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
+            font-family: var(--font-tech);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .financial-header {
+            background: #0f2a1e;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .window-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #eab308; }
+        .dot-green { background: #10b981; }
+
+        .financial-body {
+            padding: 30px;
+            color: var(--text-main);
+        }
+
+        .calc-input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 6px;
+            width: 100%;
+            font-family: var(--font-mono);
+            transition: var(--transition-smooth);
+        }
+
+        .calc-input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .result-box {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* ========================================================================
+        8. MALLA GENERAL Y TARJETAS FORMATIVAS
+        ========================================================================
+        */
+        .pillar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 30px;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(15px);
+            height: 100%;
+        }
+
+        .pillar-card:hover {
+            border-color: var(--accent-green);
+            transform: scale(1.02);
+            background: rgba(16, 185, 129, 0.02);
+        }
+
+        .pillar-icon {
+            font-size: 2.5rem;
+            color: var(--accent-green);
+            margin-bottom: 20px;
+            display: block;
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+
+        .bullet-item {
+            list-style: none;
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .bullet-item::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        /* ========================================================================
+        9. REQUISITOS Y TABLAS ESTILIZADAS
+        ========================================================================
+        */
+        .tech-table-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+        }
+
+        .tech-table {
+            width: 100%;
+            color: var(--text-main);
+            border-collapse: collapse;
+        }
+
+        .tech-table th {
+            font-family: var(--font-title);
+            font-weight: 700;
+            color: var(--accent-green);
+            border-bottom: 2px solid var(--border-glass);
+            padding: 18px;
+            text-align: left;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tech-table td {
+            padding: 18px;
+            border-bottom: 1px solid var(--border-glass);
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .tech-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tech-table tr:hover td {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        /* ========================================================================
+        10. GALERÍA DE IMÁGENES Y CAPTACIÓN VISUAL (PLACEHOLDERS DE CALIDAD)
+        ========================================================================
+        */
+        .image-showcase {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-glass);
+            height: 380px;
+            transition: var(--transition-smooth);
+        }
+
+        .image-showcase img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.5) contrast(1.1);
+            transition: var(--transition-smooth);
+        }
+
+        .image-showcase:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.7) contrast(1.1);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0) 100%);
+        }
+
+        /* ========================================================================
+        11. FOOTER CYBER ELECTRÓNICO (SIN REDES SOCIALES NI PROMO UNAH)
+        ========================================================================
+        */
+        .footer-cyber {
+            background: #010409;
+            border-top: 1px solid var(--border-glass);
+            padding: 100px 0 40px;
+            position: relative;
+        }
+
+        .footer-cyber::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-green), var(--accent-blue), transparent);
+        }
+
+        .footer-title {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-logo-span {
+            color: var(--accent-red);
+        }
+
+        .footer-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links-list li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links-list a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            font-family: var(--font-tech);
+        }
+
+        .footer-links-list a:hover {
+            color: #ffffff;
+            padding-left: 6px;
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg custom-nav fixed-top">
+        <div class="container">
+            <a class="navbar-brand navbar-brand-tech" href="index.html">
+                IGP <span>MICHELETTI</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMainGrid" aria-controls="#navMainGrid" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navMainGrid">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Index</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Historia.html">Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="colegio.html">Colegio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Ciclo.html">Ciclo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPI.html">BTPI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPCF.html">BTPCF</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="BCH.html">BCH</a></li>
+                    <li class="nav-item"><a class="nav-link btn-nav-accent text-white" href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-special">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7 text-start animate__animated animate__fadeInLeft">
+                    <span class="badge-btp">BACHILLERATO EN CIENCIAS Y HUMANIDADES</span>
+                    <h1 class="main-title">EL PASAPORTE AL <br><span class="text-glow-green">ÉXITO UNIVERSITARIO</span></h1>
+                    <p class="hero-desc">
+                        En el Instituto Gubernamental Polivalente Roberto Micheletti Bain, convertimos el conocimiento básico en una plataforma científica y analítica avanzada. Preparamos a las mentes más críticas para el riguroso mundo de la educación superior y el éxito profesional.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#malla" class="btn-cyber btn-cyber-green">Áreas del Saber</a>
+                        <a href="#orientador" class="btn-cyber btn-cyber-outline">Simulador Vocacional</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 animate__animated animate__fadeInRight">
+                    <div class="card-internship text-center" style="border-color: rgba(16, 185, 129, 0.2);">
+                        <i class="fa-solid fa-graduation-cap text-success mb-4" style="font-size: 3rem; filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.5));"></i>
+                        <h4 class="text-white mb-3">Formación Propedéutica</h4>
+                        <p class="text-secondary small">Estudiantes capacitados para enfrentar exitosamente las pruebas de ingreso y la exigencia de las carreras de grado superior.</p>
+                        <hr class="border-secondary my-4">
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <span class="d-block text-muted small">Duración</span>
+                                <span class="text-white fw-bold font-tech fs-5">2 Años</span>
+                            </div>
+                            <div class="col-6">
+                                <span class="d-block text-muted small">Enfoque</span>
+                                <span class="text-white fw-bold font-tech fs-5">Científico</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-padding" id="orientador">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <span class="section-tag">SIMULADOR PROPEDÉUTICO</span>
+                    <h2 class="section-title text-white mb-4">Descubre Tu Línea de Grado Superior</h2>
+                    <p class="text-secondary">
+                        Nuestra malla formativa del BCH expande tus habilidades en múltiples áreas de investigación. Introduce tus niveles de afinidad estimados por área para simular tu diagnóstico de compatibilidad vocacional.
+                    </p>
+                </div>
+                <div class="col-lg-7">
+                    <div class="financial-container">
+                        <div class="financial-header">
+                            <div>
+                                <span class="window-dot dot-red"></span>
+                                <span class="window-dot dot-yellow"></span>
+                                <span class="window-dot dot-green"></span>
+                            </div>
+                            <span class="text-secondary small font-tech">PAA_VOCATIONAL_ENGINE_V1.EXE</span>
+                        </div>
+                        <div class="financial-body">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="text-secondary small d-block mb-2 font-tech">Ciencias Biológicas y de la Salud (Anatomía, Química) [1-100]</label>
+                                        <input type="number" id="saludScore" class="calc-input" value="85" min="1" max="100">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="text-secondary small d-block mb-2 font-tech">Ciencias Exactas e Ingenierías (Física, Álgebra) [1-100]</label>
+                                        <input type="number" id="exactasScore" class="calc-input" value="70" min="1" max="100">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="text-secondary small d-block mb-2 font-tech">Interés en Humanidades (Redacción, Filosofía, Leyes) [1-100]</label>
+                                        <input type="number" id="humanasScore" class="calc-input" value="65" min="1" max="100">
+                                    </div>
+                                    <button class="btn-cyber btn-cyber-green w-100 text-center" onclick="ejecutarSimulacionBCH()">Procesar Diagnóstico</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="result-box">
+                                        <h5 class="text-white mb-3"><i class="fa-solid fa-chart-line text-success me-2"></i>Resultado del Análisis</h5>
+                                        <div class="mb-3">
+                                            <span class="text-secondary small d-block">Área Vocacional Recomendada:</span>
+                                            <span class="text-success fs-3 fw-bold font-tech" id="areaRecomendada">Ciencias Médicas y de la Salud</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <span class="text-secondary small d-block">Afinidad con la Especialidad BCH:</span>
+                                            <span class="text-white fs-4 font-tech" id="afinidadBCH">92% de Compatibilidad</span>
+                                        </div>
+                                        <div>
+                                            <span class="text-secondary small d-block">Sugerencia Académica:</span>
+                                            <span class="text-white small" id="sugerenciaBCH"> Reforzar el área de debilidad es crucial para poder dominar a la carrera de BCH.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" id="malla" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">EJES CURRICULARES</span>
+                <h2 class="section-title text-white">Fortalecimiento del Saber Superior</h2>
+                <div class="mx-auto" style="width: 80px; height: 3px; background: var(--accent-green); margin-top: 15px;"></div>
+                <p class="text-secondary mt-4 mx-auto" style="max-width: 750px;">
+                    En lugar de un simple listado básico de asignaturas, la formación académica del BCH en nuestra institución se agrupa en torno a grandes ejes de conocimiento profundo:
+                </p>
+            </div>
+            <div class="row g-4 mt-2">
+                <div class="col-lg-4 col-md-6">
+                    <div class="pillar-card">
+                        <i class="fa-solid fa-flask-vial pillar-icon"></i>
+                        <h4 class="text-white mb-3">Ciencias Naturales</h4>
+                        <p class="text-secondary small mb-4">Investigación empírica y fundamentación teórica de los procesos biológicos y transformaciones de la materia.</p>
+                        <ul class="p-0 m-0">
+                            <li class="bullet-item">Química Orgánica Avanzada</li>
+                            <li class="bullet-item">Biología Celular e Histología</li>
+                            <li class="bullet-item">Física Analítica y Mecánica</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="pillar-card">
+                        <i class="fa-solid fa-brain pillar-icon"></i>
+                        <h4 class="text-white mb-3">Campo Humanístico</h4>
+                        <p class="text-secondary small mb-4">Modelado del pensamiento crítico, análisis del comportamiento social e interpretación histórica y jurídica.</p>
+                        <ul class="p-0 m-0">
+                            <li class="bullet-item">Sociología y Antropología</li>
+                            <li class="bullet-item">Filosofía y Lógica Formal</li>
+                            <li class="bullet-item">Historia Crítica de Honduras</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="pillar-card">
+                        <i class="fa-solid fa-infinity pillar-icon"></i>
+                        <h4 class="text-white mb-3">Lógica Matemática</h4>
+                        <p class="text-secondary small mb-4">Dominio instrumental de las estructuras de cálculo, modelado y razonamiento espacial abstracto.</p>
+                        <ul class="p-0 m-0">
+                            <li class="bullet-item">Álgebra Lineal y Matrices</li>
+                            <li class="bullet-item">Precálculo y Funciones Complejas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 order-lg-2">
+                    <span class="section-tag">Impacto Comunitario</span>
+                    <h2 class="section-title text-white mb-4">Trabajo Educativo Social (TES): <br>800 Horas de Compromiso</h2>
+                    <p class="text-secondary mb-4">
+                        Al igual que las demás especialidades del centro educativo, los estudiantes del Bachillerato en Ciencias y Humanidades cumplen con orgullo un programa obligatorio de **800 horas de Trabajo Educativo Social (TES)**, orientadas al resguardo ecológico y la restauración ambiental de Agua Blanca Sur.
+                    </p>
+                    <ul class="text-secondary small list-unstyled">
+                        <li class="mb-3"><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Cuidado de Áreas Verdes:</strong> Reforestación sistemática con especies nativas en zonas degradadas de Agua Blanca Sur.</li>
+                        <li class="mb-3"><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Proyectos Ambientales:</strong> Talleres de concientización sobre el reciclaje y recolección de desechos sólidos.</li>
+                        <li class="mb-3"><i class="fa-solid fa-circle-check text-success me-2"></i><strong>Limpieza y Restauración:</strong> Aseo profundo y mantenimiento de entornos educativos y comunitarios locales.</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="card-internship" style="border-color: rgba(16, 185, 129, 0.15);">
+                        <div class="text-center mb-4">
+                            <i class="fa-solid fa-seedling text-success display-4 mb-3"></i>
+                            <h4 class="text-white">TES de Preservación Ecológica</h4>
+                            <p class="text-secondary small">Construyendo una comunidad sostenible mediante acciones concretas:</p>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col-6 p-2 bg-dark rounded border border-secondary text-center">
+                                <span class="text-success fw-bold d-block">Reforestación</span>
+                                <span class="text-muted small">Siembra Activa</span>
+                            </div>
+                            <div class="col-6 p-2 bg-dark rounded border border-secondary text-center">
+                                <span class="text-success fw-bold d-block">Ecología</span>
+                                <span class="text-muted small">Reciclaje Comunitario</span>
+                            </div>
+                            <div class="col-6 p-2 bg-dark rounded border border-secondary text-center">
+                                <span class="text-success fw-bold d-block">Limpieza</span>
+                                <span class="text-muted small">Mantenimiento local</span>
+                            </div>
+                            <div class="col-6 p-2 bg-dark rounded border border-secondary text-center">
+                                <span class="text-success fw-bold d-block">Concientización</span>
+                                <span class="text-muted small">Talleres Escolares</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">GALERÍA CIENTÍFICA</span>
+                <h2 class="section-title text-white">Nuestra Experiencia de Aprendizaje</h2>
+                <div class="mx-auto" style="width: 80px; height: 3px; background: var(--accent-green); margin-top: 15px;"></div>
+            </div>
+            <div class="row g-4 mt-2">
+                <div class="col-md-6 col-lg-4">
+                    <div class="image-showcase">
+                        <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=600" alt="Laboratorio de Química">
+                        <div class="image-overlay">
+                            <span class="badge bg-success mb-2">Prácticas Avanzadas</span>
+                            <h5 class="text-white">Estudios en Laboratorio</h5>
+                            <p class="text-secondary small mb-0">Donde los fundamentos teóricos de la química molecular se convierten en experiencias tangibles.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="image-showcase">
+                        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=600" alt="Estudio e Investigación">
+                        <div class="image-overlay">
+                            <span class="badge bg-success mb-2">Metodología</span>
+                            <h5 class="text-white">Investigación Crítica</h5>
+                            <p class="text-secondary small mb-0">Semilleros de argumentación y estructuración científica bajo estándares internacionales.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="image-showcase">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=600" alt="Ciencias Experimentales">
+                        <div class="image-overlay">
+                            <span class="badge bg-success mb-2">Propedéutico</span>
+                            <h5 class="text-white">Modelado de Prototipos</h5>
+                            <p class="text-secondary small mb-0">Desarrollo práctico enfocado en los exámenes de aptitud de la educación superior.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">REQUISITOS DEL GRADO</span>
+                <h2 class="section-title text-white">Criterios de Promoción Absoluta</h2>
+                <div class="mx-auto" style="width: 80px; height: 3px; background: var(--accent-green); margin-top: 15px;"></div>
+            </div>
+            <div class="tech-table-container mt-5">
+                <div class="table-responsive">
+                    <table class="tech-table">
+                        <thead>
+                            <tr>
+                                <th>Criterio formativo</th>
+                                <th>Descripción detallada de la competencia académica</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-white fw-bold">Bloque Lectivo Común</td>
+                                <td>Aprobación absoluta de todas las materias distribuidas en los ejes de ciencias, humanidades y lógica matemática de la estructura curricular.</td>
+                                <td><span class="badge bg-success">Obligatorio</span></td>
+                            </tr>
+                            <tr>
+                                <td class="text-white fw-bold">Defensa de Ensayos Científicos</td>
+                                <td>Sustentación formal ante terna examinadora de un proyecto de investigación teórica o experimental de campo.</td>
+                                <td><span class="badge bg-success">Obligatorio</span></td>
+                            </tr>
+                            <tr>
+                                <td class="text-white fw-bold">Trabajo Comunitario (TES)</td>
+                                <td>Cumplimiento absoluto de las 800 horas de servicio comunitario de impacto ecológico escolar.</td>
+                                <td><span class="badge bg-success">Obligatorio</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-cyber">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <h4 class="footer-title text-white">IGP <span class="footer-logo-span" style="color: var(--accent-green);">MICHELETTI</span></h4>
+                    <p class="text-secondary small mb-4">
+                        Instituto Gubernamental Polivalente Roberto Micheletti Bain. Forjando profesionales de alto rendimiento intelectual en ciencias, humanidades y valores morales en Agua Blanca Sur, El Progreso, Yoro.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h6 class="text-white font-tech mb-4 fw-bold">NAVEGACIÓN PRINCIPAL</h6>
+                    <ul class="footer-links-list">
+                        <li><a href="index.html">Index</a></li>
+                        <li><a href="Historia.html">Historia</a></li>
+                        <li><a href="colegio.html">Colegio</a></li>
+                        <li><a href="Ciclo.html">Ciclo</a></li>
+                        <li><a href="BTPI.html">BTPI</a></li>
+                        <li><a href="BTPCF.html">BTPCF</a></li>
+                        <li><a href="BCH.html">BCH</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-white font-tech mb-4 fw-bold">UBICACIÓN</h6>
+                    <p class="text-secondary small mb-2">
+                        Aldea Agua Blanca Sur,<br>El Progreso, Yoro, Honduras.
+                    </p>
+                    <p class="text-secondary small">
+                        <strong>Oficinas:</strong> +504 2647-XXXX<br>
+                        <strong>Email:</strong> info@igpmicheletti.edu
+                    </p>
+                </div>
+            </div>
+            <div class="border-top border-secondary mt-5 pt-4 text-center">
+                <p class="text-muted small mb-0">&copy; 2026 IGP Roberto Micheletti Baín. Panel de Control de Infraestructura Académica. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <canvas id="particles-canvas"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        /* ========================================================================
+        A. CONFIGURACIÓN DEL MENÚ NAVEGACIÓN (EFECTO SCROLL)
+        ======================================================================== */
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.custom-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        /* ========================================================================
+        B. MOTOR DE RENDERS DE PARTÍCULAS (EFECTO BIO-CIENTÍFICO DIGITAL)
+        ======================================================================== */
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        let particlesArray = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.3 - 0.15;
+                this.speedY = Math.random() * 0.3 - 0.15;
+                this.color = Math.random() > 0.5 ? 'rgba(16, 185, 129, 0.2)' : 'rgba(255, 255, 255, 0.15)';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0; else if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0; else if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            const numberOfParticles = Math.floor((canvas.width * canvas.height) / 10000);
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        /* ========================================================================
+        C. LÓGICA DEL SIMULADOR VOCACIONAL (ANÁLISIS DE PERFIL ACADÉMICO)
+        ======================================================================== */
+        function ejecutarSimulacionBCH() {
+            const salud = parseFloat(document.getElementById('saludScore').value);
+            const exactas = parseFloat(document.getElementById('exactasScore').value);
+            const humanas = parseFloat(document.getElementById('humanasScore').value);
+
+            if (isNaN(salud) || isNaN(exactas) || isNaN(humanas) || salud < 1 || exactas < 1 || humanas < 1 || salud > 100 || exactas > 100 || humanas > 100) {
+                alert("Por favor, ingrese puntajes válidos entre 1 y 100.");
+                return;
+            }
+
+            let area = "";
+            let compatibilidad = 0;
+            let sugerencia = "";
+
+            if (salud >= exactas && salud >= humanas) {
+                area = "Ciencias Médicas y de la Salud";
+                compatibilidad = Math.round((salud + humanas) / 2);
+                sugerencia = "Reforzar Biología Celular y Química Orgánica en tu plan lectivo del BCH para potenciar tu ingreso a carreras como Medicina, Enfermería o Microbiología.";
+            } else if (exactas >= salud && exactas >= humanas) {
+                area = "Ingenierías y Ciencias Exactas";
+                compatibilidad = Math.round((exactas + salud) / 2);
+                sugerencia = "Concentra tu enfoque del BCH en precálculo avanzadas y física analítica experimental para facilitar tu inserción en Ingeniería Civil, Eléctrica o Industrial.";
+            } else {
+                area = "Ciencias Jurídicas y Sociales";
+                compatibilidad = Math.round((humanas + salud) / 2);
+                sugerencia = "Aprovecha la profundización de sociología y literatura en el BCH para potenciar habilidades críticas e idiomáticas idóneas para carreras de Derecho o Psicología.";
+            }
+
+            // Actualizar resultados en el DOM
+            document.getElementById('areaRecomendada').innerText = area;
+            document.getElementById('afinidadBCH').innerText = compatibilidad + "% de Compatibilidad";
+            document.getElementById('sugerenciaBCH').innerText = sugerencia;
+        }
+
+        // Ejecución por defecto inicial
+        ejecutarSimulacionBCH();
+    </script>
+</body>
+</html>

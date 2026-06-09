@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Instituto Gubernamental Polivalente Roberto Micheletti Baín | Agua Blanca Sur</title>
+    
+    <!-- Fuentes Premium y Tipografía de Sistema Tecnológico -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;900&family=Montserrat:wght@700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- CDNs Estables de Bootstrap, Icons y Animaciones -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        /* 
+        ========================================================================
+        1. SISTEMA DE DISEÑO AVANZADO - VARIABLES Y PALETA DE COLORES (ROJO Y BLANCO)
+        ========================================================================
+        */
+        :root {
+            --bg-dark: #020617;
+            --bg-card: rgba(15, 23, 42, 0.65);
+            --accent-red: #e11d48;
+            --accent-red-dark: #be123c;
+            --accent-red-glow: rgba(225, 29, 72, 0.4);
+            --text-white: #ffffff;
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --font-main: 'Inter', sans-serif;
+            --font-title: 'Montserrat', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            --font-tech: 'Space Grotesk', sans-serif;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-white: rgba(255, 255, 255, 0.15);
+            --glow-red: 0 0 25px var(--accent-red-glow);
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 
+        ========================================================================
+        2. NORMALIZACIÓN Y SCROLLBAR PERSONALIZADO (ROJO CARMESÍ)
+        ========================================================================
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent-red), #be123c);
+            border-radius: 5px;
+        }
+
+        /* 
+        ========================================================================
+        3. CAPA DE INTERFAZ GRÁFICA DE FONDO (CANVAS Y RED TECNOLÓGICA)
+        ========================================================================
+        */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, #17050b 0%, #020617 100%);
+        }
+
+        .tech-grid {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(225, 29, 72, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(225, 29, 72, 0.015) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* 
+        ========================================================================
+        4. MENÚ DE NAVEGACIÓN FUTURISTA (LINKS REALES MULTIPÁGINA)
+        ========================================================================
+        */
+        .custom-nav {
+            background: rgba(2, 6, 23, 0.85) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 1.2rem 0;
+            transition: var(--transition-smooth);
+            z-index: 1000;
+        }
+
+        .custom-nav.scrolled {
+            padding: 0.8rem 0;
+            background: rgba(2, 6, 23, 0.98) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-brand-tech {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: 1.3rem;
+            color: var(--text-white) !important;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand-tech span {
+            color: var(--accent-red);
+        }
+
+        .nav-link {
+            color: var(--text-dim) !important;
+            font-family: var(--font-tech);
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition-smooth);
+            margin: 0 4px;
+            padding: 8px 10px !important;
+            border-radius: 6px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-white) !important;
+            background: rgba(225, 29, 72, 0.08);
+            text-shadow: 0 0 10px rgba(225, 29, 72, 0.5);
+        }
+
+        .btn-nav-accent {
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red) !important;
+            font-family: var(--font-tech);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.75rem;
+            border-radius: 50px;
+            padding: 6px 16px !important;
+            transition: var(--transition-smooth);
+            background: rgba(225, 29, 72, 0.05);
+        }
+
+        .btn-nav-accent:hover {
+            background: var(--accent-red) !important;
+            color: var(--text-white) !important;
+            box-shadow: var(--glow-red);
+            transform: translateY(-2px);
+        }
+
+        /* 
+        ========================================================================
+        5. HERO SECTION (CON ESPACIO PARA IMAGEN)
+        ========================================================================
+        */
+        .hero-special {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top right, rgba(225, 29, 72, 0.12), transparent 50%);
+            padding-top: 140px;
+            position: relative;
+        }
+
+        .badge-btp {
+            background: rgba(225, 29, 72, 0.08);
+            border: 1px solid rgba(225, 29, 72, 0.3);
+            color: var(--accent-red);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(225, 29, 72, 0.1);
+        }
+
+        .main-title {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: clamp(2.3rem, 5vw, 4.2rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to bottom, #ffffff 40%, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-glow-red {
+            -webkit-text-fill-color: var(--accent-red);
+            text-shadow: 0 0 20px rgba(225, 29, 72, 0.6);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 650px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .btn-cyber {
+            font-family: var(--font-tech);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 16px 36px;
+            border-radius: 6px;
+            transition: var(--transition-smooth);
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cyber-red {
+            background: var(--accent-red);
+            color: var(--text-white);
+            border: 1px solid var(--accent-red);
+            box-shadow: var(--glow-red);
+        }
+
+        .btn-cyber-red:hover {
+            background: var(--accent-red-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(225, 29, 72, 0.7);
+            color: var(--text-white);
+        }
+
+        .btn-cyber-outline {
+            background: transparent;
+            color: var(--text-white);
+            border: 1px solid var(--border-white);
+        }
+
+        .btn-cyber-outline:hover {
+            border-color: var(--text-white);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-3px);
+            color: var(--text-white);
+        }
+
+        /* Contenedor de Imagen de Alto Impacto */
+        .cyber-image-frame {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-white);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: var(--transition-smooth);
+            aspect-ratio: 16/10;
+        }
+
+        .cyber-image-frame::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.25), transparent);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .cyber-image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7) contrast(1.1);
+            transition: var(--transition-smooth);
+        }
+
+        .cyber-image-frame:hover {
+            border-color: var(--accent-red);
+            box-shadow: 0 30px 60px -10px rgba(225, 29, 72, 0.3);
+        }
+
+        .cyber-image-frame:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.85) contrast(1.1);
+        }
+
+        /* 
+        ========================================================================
+        6. SECCIÓN DE BIENVENIDA Y ESTADÍSTICAS (CON IMAGEN)
+        ========================================================================
+        */
+        .section-padding {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-tag {
+            font-family: var(--font-mono);
+            color: var(--accent-red);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-title);
+            font-weight: 800;
+            font-size: clamp(2rem, 4vw, 3rem);
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(15px);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(225, 29, 72, 0.2);
+            transform: translateY(-5px);
+            background: rgba(15, 23, 42, 0.85);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Estadísticas */
+        .stat-box {
+            padding: 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-tech);
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--text-white);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        /* 
+        ========================================================================
+        7. SECCIÓN DE HISTORIA CONDENSADA (CON IMAGEN - COLOCADA ANTES DE LAS CARRERAS)
+        ========================================================================
+        */
+        .history-timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 2px solid var(--border-glass);
+        }
+
+        .history-timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .history-timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -41px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-red);
+            border: 4px solid var(--bg-dark);
+            box-shadow: 0 0 10px var(--accent-red-glow);
+        }
+
+        /* 
+        ========================================================================
+        8. SECCIÓN DE GRADOS Y CARRERAS (SIN IMÁGENES - ENFOQUE TECNOLÓGICO)
+        ========================================================================
+        */
+        .course-grid-card {
+            background: #090e1a;
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 35px;
+            height: 100%;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-grid-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--accent-red), transparent);
+            opacity: 0.8;
+        }
+
+        .course-grid-card:hover {
+            border-color: rgba(225, 29, 72, 0.3);
+            transform: translateY(-8px);
+            background: #0f182e;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .course-icon {
+            font-size: 2.5rem;
+            color: var(--accent-red);
+            margin-bottom: 25px;
+            display: inline-block;
+            text-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
+        }
+
+        .course-link {
+            font-family: var(--font-tech);
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .course-link i {
+            margin-left: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .course-link:hover {
+            color: var(--accent-red);
+        }
+
+        .course-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* 
+        ========================================================================
+        9. SECCIÓN INSTALACIONES Y TALLERES REALES (CON IMAGEN)
+        ========================================================================
+        */
+        .tab-btn-cyber {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            color: var(--text-dim);
+            font-family: var(--font-tech);
+            padding: 12px 24px;
+            border-radius: 8px;
+            width: 100%;
+            text-align: left;
+            transition: var(--transition-smooth);
+            margin-bottom: 12px;
+        }
+
+        .tab-btn-cyber.active, .tab-btn-cyber:hover {
+            background: rgba(225, 29, 72, 0.08);
+            border-color: var(--accent-red);
+            color: var(--text-white);
+            box-shadow: var(--glow-red);
+        }
+
+        /* 
+        ========================================================================
+        10. SECCIÓN DE TESTIMONIOS (CON IMAGEN)
+        ========================================================================
+        */
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-red);
+            overflow: hidden;
+            margin: 0 auto 20px;
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 
+        ========================================================================
+        11. WIDGET DE RENDIMIENTO ACADÉMICO / DESAFÍO PAA (CON IMAGEN)
+        ========================================================================
+        */
+        .paa-challenger-card {
+            background: radial-gradient(circle at top left, #1c050b 0%, #0c0206 100%);
+            border: 1px solid rgba(225, 29, 72, 0.25);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 
+        ========================================================================
+        12. FOOTER CYBER ELECTRÓNICO (SIN REDES SOCIALES NI PROMO UNAH)
+        ========================================================================
+        */
+        .footer-cyber {
+            background: #010409;
+            border-top: 1px solid var(--border-glass);
+            padding: 100px 0 40px;
+            position: relative;
+        }
+
+        .footer-cyber::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+        }
+
+        .footer-title {
+            font-family: var(--font-title);
+            font-weight: 900;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-logo-span {
+            color: var(--accent-red);
+        }
+
+        .footer-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links-list li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links-list a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-family: var(--font-tech);
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            display: inline-block;
+        }
+
+        .footer-links-list a:hover {
+            color: var(--accent-red);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-glass);
+            margin-top: 60px;
+            padding-top: 30px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        /* 
+        ========================================================================
+        13. RESPONSIVE MEDIA QUERIES (DISPOSITIVOS MÓVILES)
+        ========================================================================
+        */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: #020617;
+                border: 1px solid var(--border-glass);
+                border-radius: 12px;
+                padding: 20px;
+                margin-top: 15px;
+            }
+            
+            .nav-link {
+                margin: 5px 0;
+            }
+            
+            .btn-nav-accent {
+                margin-top: 10px;
+                display: inline-block;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .glass-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Capas Ambientales del Ecosistema de Fondo -->
+    <canvas id="particles-canvas"></canvas>
+    <div class="tech-grid"></div>
+
+    <!-- Menú de Navegación Tradicional Superior -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-nav sticky-top">
+        <div class="container">
+            <a class="navbar-brand-tech" href="index.html">
+                <i class="fa-solid fa-graduation-cap me-2 text-danger"></i>IGP <span class="ms-1 footer-logo-span">MICHELETTI</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMainGrid" aria-controls="navMainGrid" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navMainGrid">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Index</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Historia.html">Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="colegio.html">Colegio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Ciclo.html">Ciclo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPI.html">BTPI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPCF.html">BTPCF</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="BCH.html">BCH</a></li>
+                    <li class="nav-item"><a class="nav-link btn-nav-accent text-white" href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION: Hero de Portada (CON ESPACIO PARA IMAGEN) -->
+    <header class="hero-special">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7 text-start animate__animated animate__fadeInLeft">
+                    <span class="badge-btp">MATRÍCULAS HABILITADAS 2026</span>
+                    <h1 class="main-title">CONSTRUYENDO EL <br><span class="text-glow-red">PROGRESO DEL PAÍS</span></h1>
+                    <p class="hero-desc">
+                        Bienvenidos al portal institucional del Instituto Gubernamental Polivalente Roberto Micheletti Baín. Un centro formativo oficial de primer nivel enfocado en el desarrollo integral, técnico y científico de la juventud de Agua Blanca Sur.
+                    </p>
+                    </div>
+                </div>
+                <div class="col-lg-5 animate__animated animate__fadeInRight">
+                    <!-- Espacio de Imagen 1: Portada Institucional -->
+                    <div class="cyber-image-frame">
+                        <img src="irmb.jpg" alt="Instalaciones Frontales del Instituto Polivalente Roberto Micheletti Baín" onerror="this.src='https://placehold.co/800x500/111/fff?text=IGP+Micheletti+Bain'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION: Bienvenida y Estadísticas Académicas Reales (CON ESPACIO PARA IMAGEN) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5 order-lg-2">
+                    <span class="section-tag">EXCELENCIA PROBADA</span>
+                    <h2 class="section-title text-white">Educación Pública de Nivel Superior</h2>
+                    <p class="text-secondary mb-4">
+                        El IGP Roberto Micheletti Baín destaca como un faro de transformación académica y técnica en Agua Blanca Sur, El Progreso, Yoro. Gracias al esfuerzo docente y estudiantil, nuestro instituto se posicionó en el **Puesto #18 a nivel nacional** entre los colegios públicos con mejores resultados en la Prueba de Aptitud Académica (PAA) de la Universidad Nacional Autónoma de Honduras (UNAH), logrando un **83.3% de índice de admisión**.
+                    </p>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="stat-box">
+                                <div class="stat-number" id="count-paa">83%</div>
+                                <div class="text-muted small">Admisión PAA</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-box">
+                                <div class="stat-number" id="count-ranking">20</div>
+                                <div class="text-muted small">Ranking Nacional</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7 order-lg-1">
+                    <!-- Espacio de Imagen 2: Prácticas y Rendimiento de Excelencia -->
+                    <div class="cyber-image-frame">
+                        <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&q=80&w=800" alt="Estudiantes en evaluación académica de alto rendimiento" onerror="this.src='https://placehold.co/800x500/111/fff?text=Rendimiento+Academico'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Historia Condensada del Colegio (CON ESPACIO PARA IMAGEN - COLOCADA ANTES DE LAS CARRERAS) -->
+    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <span class="section-tag">NUESTROS ORÍGENES</span>
+                    <h2 class="section-title text-white">Legado de Esfuerzo y Superación</h2>
+                    <p class="text-secondary mb-4">
+                        Fundado con el propósito de descentralizar la educación técnica en el municipio de El Progreso, Yoro, el instituto nació de la decidida organización comunitaria de Agua Blanca Sur. Con el tiempo, pasó de ser un plan de educación básica comunal a consolidarse como un Instituto Gubernamental Polivalente de referencia nacional, egresando profesionales éticos y comprometidos con el desarrollo rural e industrial de la zona norte de Honduras.
+                    </p>
+                    
+                    <div class="history-timeline">
+                        <div class="history-timeline-item">
+                            <h5 class="text-white">Fundación y Base Comunitaria</h5>
+                            <p class="text-secondary small">Establecido para dotar a las familias de Agua Blanca Sur de una secundaria técnica oficial sin necesidad de viajar largas distancias hacia el casco urbano de El Progreso.</p>
+                        </div>
+                        <div class="history-timeline-item">
+                            <h5 class="text-white">Consolidación Polivalente</h5>
+                            <p class="text-secondary small">Sistematización de los talleres de informática, contabilidad y ciencias básicas, alcanzando un notable liderazgo en evaluaciones de ingreso de educación superior.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <!-- Espacio de Imagen 3: Foto Histórica/Desarrollo del Instituto -->
+                    <div class="cyber-image-frame">
+                        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=800" alt="Trayectoria histórica y formación teórica" onerror="this.src='https://placehold.co/800x500/111/fff?text=Historia+IGP'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Cursos y Carreras (SIN ESPACIO PARA IMÁGENES - ENFOQUE PURAMENTE INFORMATIVO Y DE ICONOS) -->
+    <section class="section-padding" id="cursos">
+        <div class="container">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <span class="section-tag">PROPUESTA CURRICULAR</span>
+                    <h2 class="section-title text-white">Nuestra Oferta Académica</h2>
+                    <div class="mx-auto" style="width: 80px; height: 3px; background: var(--accent-red); margin-top: 15px;"></div>
+                </div>
+            </div>
+            
+            <div class="row g-4 text-start">
+                <!-- Ciclo Común -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="course-grid-card">
+                        <div class="course-icon"><i class="fa-solid fa-shapes"></i></div>
+                        <h4 class="text-white mb-3">Ciclo Común</h4>
+                        <p class="text-secondary small">Educación básica fundamental (7mo, 8vo, 9no grado) enfocada en ciencias generales, valores cívicos e iniciación técnica polivalente.</p>
+                        <a href="Ciclo.html" class="course-link">Conoce más <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- BTPI -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="course-grid-card">
+                        <div class="course-icon"><i class="fa-solid fa-code"></i></div>
+                        <h4 class="text-white mb-3">BTP Informática</h4>
+                        <p class="text-secondary small">Formación de primer nivel en lógica algorítmica, bases de datos relacionales, ensamblaje de computadoras, redes LAN y desarrollo web.</p>
+                        <a href="BTPI.html" class="course-link">Conoce más <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- BTPCF -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="course-grid-card">
+                        <div class="course-icon"><i class="fa-solid fa-calculator"></i></div>
+                        <h4 class="text-white mb-3">Contaduría y Finanzas</h4>
+                        <p class="text-secondary small">Capacitación corporativa avanzada en auditoría fiscal, contabilidad mercantil, presupuestos comerciales y legislación tributaria.</p>
+                        <a href="BTPCF.html" class="course-link">Conoce más <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- BCH -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="course-grid-card">
+                        <div class="course-icon"><i class="fa-solid fa-microscope"></i></div>
+                        <h4 class="text-white mb-3">Ciencias y Humanidades</h4>
+                        <p class="text-secondary small">Bachillerato científico propedéutico estructurado para el ingreso directo y exitoso a la educación universitaria y campos de la salud.</p>
+                        <a href="BCH.html" class="course-link">Conoce más <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Instalaciones de Vanguardia Reales (CON ESPACIO PARA IMAGEN DINÁMICA) -->
+    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5">
+                    <span class="section-tag">ENTORNOS PRÁCTICOS REALES</span>
+                    <h2 class="section-title text-white">Nuestros Laboratorios y Talleres</h2>
+                    <p class="text-secondary mb-4">
+                        Descubre las instalaciones físicas del instituto, estructuradas de forma rigurosa para garantizar un adiestramiento técnico y científico real de acuerdo a nuestra polivalencia curricular.
+                    </p>
+                    
+                    <button class="tab-btn-cyber active" onclick="switchLabTab('lab-comp', this)">
+                        <i class="fa-solid fa-desktop me-2"></i> 2 Laboratorios de Informática.
+                    </button>
+                    <button class="tab-btn-cyber" onclick="switchLabTab('lab-quimica', this)">
+                        <i class="fa-solid fa-flask me-2"></i> 1 Laboratorio de Química y Ciencias.
+                    </button>
+                    <button class="tab-btn-cyber" onclick="switchLabTab('taller-reparacion', this)">
+                        <i class="fa-solid fa-screwdriver-wrench me-2"></i> 1 Taller de Reparación.
+                    </button>
+                    <button class="tab-btn-cyber" onclick="switchLabTab('taller-cocina', this)">
+                        <i class="fa-solid fa-kitchen-set me-2"></i> 1 Taller de Cocina.
+                    </button>
+                </div>
+                
+                <div class="col-lg-7">
+                    <!-- Espacio de Imagen 4: Carrusel de Áreas Prácticas Reales -->
+                    <div class="cyber-image-frame" id="lab-image-container">
+                        <img src="pkarlalab.jpg" id="lab-dynamic-img" alt="Laboratorios de Computación y Desarrollo de Software" onerror="this.src='https://placehold.co/800x500/111/fff?text=Laboratorio+de+Computacion'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Patrimonio Cultural Folclórico (CON ESPACIO PARA IMAGEN) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-7 order-lg-2">
+                    <span class="section-tag">IDENTIDAD Y FOLCLORE</span>
+                    <h2 class="section-title text-white">Orgullo en Danza Folclórica Hondureña</h2>
+                    <p class="text-secondary mb-4">
+                        No todo es ciencia exacta y tecnología; la identidad nacional corre por las venas de nuestra comunidad escolar. El grupo de danza folclórica del **Instituto Gubernamental Polivalente Roberto Micheletti Baín** ha representado con orgullo a Agua Blanca Sur y a El Progreso en festivales regionales de Yoro, coronándose en múltiples ocasiones con los primeros lugares gracias a la espectacular ejecución, disciplina y rescate de nuestras raíces criollas.
+                    </p>
+                    <div class="p-3 bg-dark rounded border border-secondary">
+                        <span class="text-white small d-block"><i class="fa-solid fa-award text-danger me-2"></i><strong>Triple Galardón:</strong> Ganador de tres premios clave en el festival folclórico departamental en Morazán, Yoro.</span>
+                    </div>
+                </div>
+                <div class="col-lg-5 order-lg-1">
+                    <!-- Espacio de Imagen 5: Grupo de Danza Folclórica -->
+                    <div class="cyber-image-frame">
+                        <img src="danza.jpg" alt="Grupo de Danza Folclórica del Instituto" onerror="this.src='https://placehold.co/800x500/111/fff?text=Danza+Folclorica'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Widget Interactivo Desafío PAA (CON ESPACIO PARA IMAGEN) -->
+    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="paa-challenger-card">
+                <div class="row g-5 align-items-center text-start">
+                    <div class="col-lg-6">
+                        <span class="section-tag" style="color: var(--accent-red);">ENTRENADOR ACADÉMICO</span>
+                        <h3 class="text-white font-display mb-3">Mide tu Lógica con el Desafío PAA</h3>
+                        <p class="text-secondary small mb-4">
+                            Nuestros estudiantes obtienen puntuaciones sobresalientes en la Prueba de Aptitud Académica (PAA). Pon a prueba tus capacidades de razonamiento matemático analítico con este simulador interactivo de admisión.
+                        </p>
+                        
+                        <!-- Mini Simulador Interactivo -->
+                        <div class="p-3 bg-black rounded border border-secondary mb-4">
+                            <p class="text-white small mb-2"><strong>Pregunta de Razonamiento Matemático:</strong></p>
+                            <p class="text-secondary small mb-3">Si una fotocopiadora procesa $x$ páginas en $y$ segundos, ¿cuántas páginas procesará en $1$ minuto a la misma velocidad?</p>
+                            
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="paaOpt" id="paa1" value="A">
+                                <label class="form-check-label text-secondary small" for="paa1">$60xy$ páginas</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="paaOpt" id="paa2" value="B">
+                                <label class="form-check-label text-secondary small" for="paa2">$\frac{60x}{y}$ páginas</label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="radio" name="paaOpt" id="paa3" value="C">
+                                <label class="form-check-label text-secondary small" for="paa3">$\frac{xy}{60}$ páginas</label>
+                            </div>
+                            
+                            <button onclick="checkPaaAnswer()" class="btn-nav-accent text-white py-1 px-3 d-inline-block">Verificar Respuesta</button>
+                            <span id="paa-feedback" class="ms-3 small fw-bold"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <!-- Espacio de Imagen 6: Preparación Académica y PAA -->
+                        <div class="cyber-image-frame">
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=800" alt="Preparación para el examen de aptitud académica nacional" onerror="this.src='https://placehold.co/800x500/111/fff?text=Simulador+PAA'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Testimonios de la Promoción (CON ESPACIO PARA IMAGEN) -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="row justify-content-center text-center mb-5">
+                <div class="col-lg-8">
+                    <span class="section-tag">VOCES ESCOLARES</span>
+                    <h2 class="section-title text-white">Nuestra Experiencia Real</h2>
+                </div>
+            </div>
+            
+            <div class="row g-4 justify-content-center text-center">
+                <div class="col-md-6">
+                    <div class="glass-card">
+                        <!-- Espacio de Imagen 7: Avatar del Alumno 1 -->
+                        <div class="testimonial-avatar">
+                            <img src="yop.jpeg" alt="Jesus Martinez, Estudiante destacado de BTPI" onerror="this.src='https://placehold.co/150x150/111/fff?text=Alumno'">
+                        </div>
+                        <h5 class="text-white mb-1">Jesus Martinez</h5>
+                        <p class="text-danger small mb-3">12vo BTPI - Promoción 2026</p>
+                        <p class="text-secondary small mb-0">"La exigencia del IGP Roberto Micheletti nos prepara de forma real para las demandas universitarias. Desarrollar proyectos lógicos y de redes en los 2 laboratorios de informática nos lleva a desarrollar nuestras habilidades de maneras inimaginables."</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="glass-card">
+                        <!-- Espacio de Imagen 8: Avatar del Alumno 2 -->
+                        <div class="testimonial-avatar">
+                            <img src="joseph.jpeg" alt="Joseph Abrego, Egresado de Bachillerato en Informática" onerror="this.src='https://placehold.co/150x150/111/fff?text=Alumno'">
+                        </div>
+                        <h5 class="text-white mb-1">Joseph Abrego</h5>
+                        <p class="text-danger small mb-3">Egresado BTPI - Admitido UNAH</p>
+                        <p class="text-secondary small mb-0">"La bases de el instituto son solidas, me ayudaron en mi formación profesional, la sólida base del laboratorio de la licenciada Karla Andrade y el conocimiento dado por el licenciado Stanly Rodriguez me dio la ventaja necesaria para triunfar."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: Admisiones y Conexión (CON ESPACIO PARA IMAGEN) -->
+    <section class="section-padding" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="glass-card" style="border-color: rgba(225, 29, 72, 0.25);">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-6 text-start">
+                        <span class="badge-btp">SOPORTE DE INSCRIPCIÓN</span>
+                        <h3 class="text-white font-display mb-3">¿Listo para formar parte de la familia del IGP?</h3>
+                        <p class="text-secondary small mb-4">Regístrate en línea de forma segura o ponte en contacto con nuestro equipo de admisión para programar una cita y conocer nuestros laboratorios polivalentes.</p>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <!-- Espacio de Imagen 9: Inscripción Digital -->
+                        <div class="cyber-image-frame">
+                            <img src="colegio1.jpg" alt="Proceso de inscripción digital y admisiones" onerror="this.src='https://placehold.co/800x500/111/fff?text=Admisiones+2026'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER ELECTRONICO FUTURISTA (LINKS REALES MULTIPÁGINA - SIN REDES NI PROMO UNAH) -->
+    <footer class="footer-cyber">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Columna Logo/Branding -->
+                <div class="col-lg-4 text-start">
+                    <h4 class="footer-title text-white">IGP <span class="footer-logo-span">MICHELETTI</span></h4>
+                    <p class="text-secondary small mb-4">
+                        Instituto Gubernamental Polivalente Roberto Micheletti Baín. Forjando profesionales de alto rendimiento intelectual en informática, contaduría, humanidades y valores morales en Agua Blanca Sur, El Progreso, Yoro.
+                    </p>
+                </div>
+                
+                <!-- Columna Navegación Multipage -->
+                <div class="col-lg-3 col-md-4 text-start">
+                    <h6 class="text-white font-tech mb-4 fw-bold">NAVEGACIÓN PRINCIPAL</h6>
+                    <ul class="footer-links-list">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Index</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Historia.html">Historia</a></li>
+                    <li class="nav-item"><a class="nav-link" href="colegio.html">Colegio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Ciclo.html">Ciclo</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Columna Enlaces de Interés -->
+                <div class="col-lg-3 col-md-4 text-start">
+                    <h6 class="text-white font-tech mb-4 fw-bold">DOCUMENTOS DE INTERÉS</h6>
+                    <ul class="footer-links-list">
+                  <li class="nav-item"><a class="nav-link" href="BTPI.html">BTPI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="BTPCF.html">BTPCF</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="BCH.html">BCH</a></li>
+                    <li class="nav-item"><a class="nav-link btn-nav-accent text-white" href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Columna Información de Ubicación -->
+                <div class="col-lg-2 col-md-4 text-start">
+                    <h6 class="text-white font-tech mb-4 fw-bold">UBICACIÓN</h6>
+                    <p class="text-secondary small mb-2">
+                        Aldea Agua Blanca Sur,<br>El Progreso, Yoro, Honduras.
+                    </p>
+                    <p class="text-secondary small text-white-50">
+                        <strong>Email:</strong> info@igpmicheletti.edu.hn
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Barra de Créditos Final -->
+            <div class="footer-bottom text-center">
+                <p class="mb-0">
+                    &copy; 2026 | Diseñado y Desarrollado por la Promoción del 12vo Bachillerato Técnico Profesional en Informática (BTPI) | <span class="text-danger">Innovación, Excelencia y Polivalencia</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================================
+         SCRIPTS: LÓGICA DE PARTÍCULAS, ANIMACIONES, CONTADORES Y VISOR
+         ========================================================================= -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        /* 
+        ========================================================================
+        A. EFECTOS DINÁMICOS AL SCROLLEAR (NAVEGACIÓN PEGAJOSA)
+        ========================================================================
+        */
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.custom-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        /* 
+        ========================================================================
+        B. MOTOR GRÁFICO DE PARTÍCULAS DE FONDO (CANVAS - ROJO Y BLANCO)
+        ========================================================================
+        */
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.4 - 0.2;
+                // Combinar partículas Rojas e intensas con Blancas suaves
+                this.color = Math.random() > 0.4 ? 'rgba(225, 29, 72, 0.15)' : 'rgba(255, 255, 255, 0.15)';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                else if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                else if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            const numberOfParticles = Math.floor((canvas.width * canvas.height) / 10000);
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        /* 
+        ========================================================================
+        C. ANIMACIÓN EN VIVO DE CONTADORES NUMÉRICOS DE ESTADÍSTICAS REALES
+        ========================================================================
+        */
+        function animateCounter(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentVal = Math.floor(progress * (end - start) + start);
+                obj.innerHTML = id === 'count-paa' ? currentVal + '%' : currentVal;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Animación de estadísticas institucionales reales (Admisión PAA 83% y Puesto #18)
+        setTimeout(() => {
+            animateCounter('count-paa', 0, 83, 2000);
+            animateCounter('count-ranking', 0, 18, 2000);
+        }, 800);
+
+        /* 
+        ========================================================================
+        D. VISOR INTERACTIVO DE INFRAESTRUCTURA REAL
+        ========================================================================
+        */
+        const labImages = {
+            'lab-comp': 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=800',
+            'lab-quimica': 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=800',
+            'taller-reparacion': 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&q=80&w=800',
+            'taller-cocina': 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=800'
+        };
+
+        function switchLabTab(key, btn) {
+            const tabs = document.querySelectorAll('.tab-btn-cyber');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            btn.classList.add('active');
+            
+            const img = document.getElementById('lab-dynamic-img');
+            img.style.opacity = 0;
+            
+            setTimeout(() => {
+                img.src = labImages[key];
+                img.style.opacity = 1;
+            }, 250);
+        }
+
+        /* 
+        ========================================================================
+        E. DETECTOR DE RESPUESTA SIMULADOR PAA
+        ========================================================================
+        */
+        function checkPaaAnswer() {
+            const selectedOpt = document.querySelector('input[name="paaOpt"]:checked');
+            const feedbackSpan = document.getElementById('paa-feedback');
+            
+            if (!selectedOpt) {
+                feedbackSpan.style.color = 'var(--accent-red)';
+                feedbackSpan.innerText = 'Por favor selecciona una opción.';
+                return;
+            }
+
+            if (selectedOpt.value === 'B') {
+                feedbackSpan.style.color = '#10b981';
+                feedbackSpan.innerHTML = '<i class="fa-solid fa-check me-1"></i>¡Correcto! Velocidad = $x/y$ pág/seg. En 60 seg: $60x/y$';
+            } else {
+                feedbackSpan.style.color = 'var(--accent-red)';
+                feedbackSpan.innerHTML = '<i class="fa-solid fa-xmark me-1"></i>Incorrecto. Intenta analizando la regla de tres simple.';
+            }
+        }
+    </script>
+</body>
+</html>
